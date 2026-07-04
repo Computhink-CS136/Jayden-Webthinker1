@@ -1,8 +1,34 @@
-html, body {
-    margin: 0;
-    padding: 0;
+header {
+  background-color:gray
+  color wheat;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+
+}
+
+body {
+  background-color: rgb(15, 61, 45);
+}
+
+main {
+  background-color: rgb(255, 55, 0);
+}
+
+section {
+  background-color: azure;
+
+  text-align: center;
+}
+  h1 {
+    color: red
   }
-  canvas {
-    display: block;
+
+  h2 {
+    color: blue
   }
-  
+
+  h3 {
+    color: yellow
+  }
