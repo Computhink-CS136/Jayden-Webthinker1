@@ -10,6 +10,8 @@ function setup() {
 
 
   // Challenge 1: An eye using ellipse() function
+  ellipse
+
   }
   // Challenge 2: A face using circle() function
 
