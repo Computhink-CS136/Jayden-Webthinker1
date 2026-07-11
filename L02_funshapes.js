@@ -12,7 +12,6 @@ function setup() {
 //   ellipse(300, 200, 100, 200);
 //   ellipse(300, 200, 100, 50);
   // Challenge 2: A face using circle() function
-// function draw() {
 // circle(300, 200, 300)
 // circle(200, 150, 50)
 // circle(400, 150, 50)
@@ -21,7 +20,7 @@ function setup() {
 // circle(445, 75, 80)
   // Challenge 3: A house using rect() function
 function draw() {
-  
+
   // Challenge 4: A rocketship using triangle() function
 
   // Challenge 5: A square face using quad() function
