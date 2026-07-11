@@ -19,7 +19,7 @@ function draw() {
 // circle(155, 75, 80);
 // circle(445, 75, 80);
   // Challenge 3: A house using rect() function
-React()
+Rect()
 
   // Challenge 4: A rocketship using triangle() function
 
