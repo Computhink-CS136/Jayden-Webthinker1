@@ -9,7 +9,8 @@ function setup() {
 function draw() {
   // Challenge 1: An eye using ellipse() function
   ellipse(300, 200, 300, 200);
-  ellipse(300, 200, 50, 200)
+  ellipse(300, 200, 100, 200);
+  ellipse()
   // Challenge 2: A face using circle() function
 
   // Challenge 3: A house using rect() function
