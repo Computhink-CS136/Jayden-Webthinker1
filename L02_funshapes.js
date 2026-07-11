@@ -3,7 +3,8 @@ Task 1: Add the setup() function
 */
 
 function setup1() {
-  createCanvas(600)
+  createCanvas(600, 400);
+  background
   // Challenge 1: An eye using ellipse() function
 
   // Challenge 2: A face using circle() function
