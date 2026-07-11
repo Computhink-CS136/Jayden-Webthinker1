@@ -13,7 +13,7 @@ function setup() {
 //   ellipse(300, 200, 100, 50);
   // Challenge 2: A face using circle() function
 function draw() {
-circle()
+circle(300, 200, 300, 200)
   // Challenge 3: A house using rect() function
 
   // Challenge 4: A rocketship using triangle() function
