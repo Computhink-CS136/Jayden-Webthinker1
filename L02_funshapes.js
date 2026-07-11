@@ -22,7 +22,7 @@ function draw() {
 rect(100, 100, 350, 250)
 rect(250, 250, 60, 100)
 ellipse(300, 300, 10, 25)
-Circle()
+circle(100, )
   // Challenge 4: A rocketship using triangle() function
 
   // Challenge 5: A square face using quad() function
