@@ -30,23 +30,23 @@ function draw() {
 // rect(220, 305, 150, 45);
 // triangle(300, 0, 375, 130, 225, 130);
   // Challenge 5: A square face using quad() function
-stroke(255, 12, 135)
+stroke(255, 12, 135);
   strokeWidth(5);
-  fill(184, 34, 255)
-  quad(200, 100, 400, 100, 400, 300, 200, 300)
-  stroke(34, 155, 21)
-  fill(234, 115, 103)
-  circle(300, 200, 50)
-  fill(112, 215, 132)
-  ellipse(250, 150, 40, 30)
-  ellipse(350, 150, 40, 30)
-  fill(32, 214, 215)
-  triangle(250, 250, 350, 250, 300, 300)
-  fill(145, 153, 255)
-  rect(150, 170, 40, 30)
-  rect(410, 170, 40, 30)
-  ellipse(190, 185, 40, 30)
-  ellipse(410, 185, 40, 30)
+  fill(184, 34, 255);
+  quad(200, 100, 400, 100, 400, 300, 200, 300);
+  stroke(34, 155, 21);
+  fill(234, 115, 103);
+  circle(300, 200, 50);
+  fill(112, 215, 132);
+  ellipse(250, 150, 40, 30);
+  ellipse(350, 150, 40, 30);
+  fill(32, 214, 215);
+  triangle(250, 250, 350, 250, 300, 300);
+  fill(145, 153, 255);
+  rect(150, 170, 40, 30);
+  rect(410, 170, 40, 30);
+  ellipse(190, 185, 40, 30);
+  ellipse(410, 185, 40, 30);
   // Challenge 6: Add some colours to the drawings in the above challenges
 
   // Challenge 7: Create a funny Pokemon
