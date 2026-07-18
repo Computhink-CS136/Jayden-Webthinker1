@@ -54,7 +54,29 @@ function draw() {
   // ellipse(190, 185, 40, 30);
   // ellipse(410, 185, 40, 30);
   // Challenge 6: Add some colours to the drawings in the above challenges
-
+  // stroke(255, 12, 135);
+  // strokeWeight(5);
+  // fill(184, 34, 255);
+  // quad(200, 100, 400, 100, 400, 300, 200, 300);
+  // stroke(34, 155, 21);
+  // strokeWeight(4);
+  // fill(234, 115, 103);
+  // circle(300, 200, 50);
+  // fill(112, 215, 132);
+  // stroke(243, 125, 34);
+  // strokeWeight(4);
+  // ellipse(250, 150, 40, 30);
+  // ellipse(350, 150, 40, 30);
+  // fill(32, 214, 215);
+  // stroke(21, 243, 84)
+  // strokeWeight(3);
+  // triangle(250, 250, 350, 250, 300, 300);
+  // fill(145, 153, 255);
+  // strokeWeight(3);
+  // rect(150, 170, 40, 30);
+  // rect(410, 170, 40, 30);
+  // ellipse(190, 185, 40, 30);
+  // ellipse(410, 185, 40, 30);
   // Challenge 7: Create a funny Pokemon
-  
+
 }
