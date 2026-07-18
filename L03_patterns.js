@@ -13,7 +13,7 @@ function draw() {
   // Task 1: Colour Gradient
   for (let i = 1; i <= 5; i++) {
     console.log(i);
-    CSSNumericValue(75 +i * , 200, 100)
+    CSSNumericValue(75 + i * 50, 200, 100)
   }
   // Task 2: Colour Loop
 
