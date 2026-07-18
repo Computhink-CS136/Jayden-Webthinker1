@@ -14,7 +14,7 @@ function draw() {
 let num = 5
 let a = 10
 let b = 20
-const
+const pi = 3.14159
   // Task 2: Colour Loop
 
   // Task 3: Row of Circles
