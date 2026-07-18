@@ -45,8 +45,8 @@ stroke(255, 12, 135)
   fill(145, 153, 255)
   rect(150, 170, 40, 30)
   rect(410, 170, 40, 30)
-ellipse(190, 185, 40, 30)
-ellipse(410, 185, 40, 30)
+  ellipse(190, 185, 40, 30)
+  ellipse(410, 185, 40, 30)
   // Challenge 6: Add some colours to the drawings in the above challenges
 
   // Challenge 7: Create a funny Pokemon
