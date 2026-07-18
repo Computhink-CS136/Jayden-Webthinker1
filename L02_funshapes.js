@@ -39,7 +39,8 @@ function draw() {
   fill(234, 115, 103);
   circle(300, 200, 50);
   fill(112, 215, 132);
-  stroke(243, 125, 34)
+  stroke(243, 125, 34);
+  strokeWeight()
   ellipse(250, 150, 40, 30);
   ellipse(350, 150, 40, 30);
   fill(32, 214, 215);
