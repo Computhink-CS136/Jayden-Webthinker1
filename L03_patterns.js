@@ -3,9 +3,7 @@ function setup() {
     background(220);
     noLoop(); // Stops continuous drawing
   }
-  for (let i = 10; i = 0; i--) {
-    console.log(i);
-  }
+
 function draw() {
   // Recap 1: Repeating Circles
 // circle(75, 200, 100)
@@ -13,7 +11,9 @@ function draw() {
 // circle(375, 200, 100)
 // circle(525, 200, 100)
   // Task 1: Colour Gradient
-
+  for (let i = 10; i = 0; i--) {
+    console.log(i);
+  }
   // Task 2: Colour Loop
 
   // Task 3: Row of Circles
