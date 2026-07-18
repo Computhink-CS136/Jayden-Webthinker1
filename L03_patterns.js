@@ -4,7 +4,7 @@ function setup() {
     noLoop(); // Stops continuous drawing
   }
   for (let i = 0; i < 10; i++) {
-    console.log(i)
+    console.log(i);
   }
 function draw() {
   // Recap 1: Repeating Circles
