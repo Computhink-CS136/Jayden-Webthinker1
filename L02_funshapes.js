@@ -40,10 +40,11 @@ function draw() {
   circle(300, 200, 50);
   fill(112, 215, 132);
   stroke(243, 125, 34);
-  strokeWeight()
+  strokeWeight(4);
   ellipse(250, 150, 40, 30);
   ellipse(350, 150, 40, 30);
   fill(32, 214, 215);
+  
   triangle(250, 250, 350, 250, 300, 300);
   fill(145, 153, 255);
   rect(150, 170, 40, 30);
