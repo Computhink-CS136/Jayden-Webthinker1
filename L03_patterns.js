@@ -3,7 +3,9 @@ function setup() {
     background(220);
     noLoop(); // Stops continuous drawing
 }
-
+  for (let i = 10; i >= 0; i--) {
+    console.log(i);
+  }
 function draw() {
   // Recap 1: Repeating Circles
 // circle(75, 200, 100)
