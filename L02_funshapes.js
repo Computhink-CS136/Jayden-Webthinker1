@@ -36,7 +36,7 @@ ellipse(250, 150, 40, 30)
 ellipse(350, 150, 40, 30)
 triangle(250, 250, 350, 250, 300, 300)
 rect(150, 200, 40, 30)
-rect(410, 200, 40, 30)
+rect(410, 190, 40, 30)
 ellipse(190, 215, 40, 30)
 ellipse(410, 215, 40, 30)
   // Challenge 6: Add some colours to the drawings in the above challenges
