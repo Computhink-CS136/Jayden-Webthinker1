@@ -11,10 +11,11 @@ function draw() {
 // circle(375, 200, 100)
 // circle(525, 200, 100)
   // Task 1: Colour Gradient
-let num = 5
-let a = 10
-let b = 20
-const pi = 3.14159
+let num = 5;
+let a = 10;
+let b = 20;
+const pi = 3.14159;
+const gravity = 9.81;
   // Task 2: Colour Loop
 
   // Task 3: Row of Circles
