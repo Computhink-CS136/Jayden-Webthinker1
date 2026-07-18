@@ -30,7 +30,8 @@ function draw() {
 // rect(220, 305, 150, 45);
 // triangle(300, 0, 375, 130, 225, 130);
   // Challenge 5: A square face using quad() function
-fill(184, 34, 255)
+stroke()
+  fill(184, 34, 255)
   quad(200, 100, 400, 100, 400, 300, 200, 300)
 fill(234, 115, 103)
   circle(300, 200, 50)
