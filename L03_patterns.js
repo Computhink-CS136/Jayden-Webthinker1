@@ -42,6 +42,6 @@ colourValue++;
     } else {
       fill(255);
     }
-    rect(50 + i *50, 100, 40);
+    rect(50 + i *50, 100, 50 + i );
   }
 }
