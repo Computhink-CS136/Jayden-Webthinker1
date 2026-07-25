@@ -28,9 +28,8 @@ function draw() {
     if (i % 2 ==0) {
       fill(0); 
     } else {
-      fill
+      fill(255)
     }
-    fill();
     circle(50 + i *50, 100, 40)
   }
   // Task 3: Row of Circles
