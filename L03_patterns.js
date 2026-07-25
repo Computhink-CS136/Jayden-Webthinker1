@@ -23,7 +23,6 @@ function draw() {
   //   circle(50 + i * 50, 100, 40)
   // }
   // Task 2: Colour Loop
-  circle(100, 100, 100);
   fill(colorValue);
   for(let i = 0; i <= 5, i++;) {
     colourValue++;
