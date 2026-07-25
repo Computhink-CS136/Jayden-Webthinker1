@@ -38,7 +38,8 @@ function draw() {
   //   circle(50 + i *50, 100, 40);
   // }
   function draw() {
-    
+    let circleDiameter = 30;
+    let 
   }
   // Task 4: Grid of Circles
   // for (row = 0; row < 5; row++)
