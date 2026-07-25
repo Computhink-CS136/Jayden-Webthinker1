@@ -37,7 +37,7 @@ function draw() {
   // }
   // Task 4: Grid of Circles
   for (row = 0; row < 5; row++)
-    for(let column = 0; col <= 5; col++) {
+    for(let col = 0; col <= 5; col++) {
     if (i % 2 ==0) {
       fill(0); 
     } else {
