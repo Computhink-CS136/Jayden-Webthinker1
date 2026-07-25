@@ -43,6 +43,6 @@ function draw() {
     } else {
       fill(255);
     }
-    
+    React(col * 50, )
   }
 }
