@@ -1,5 +1,5 @@
 let colourValue;
-let height;
+let height ()
 let width;
 function setup() {
     createCanvas(600, 400);
