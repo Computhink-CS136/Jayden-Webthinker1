@@ -36,14 +36,14 @@ function draw() {
   //   circle(50 + i *50, 100, 40);
   // }
 
-    let circleDiameter = 30;
-    let numCircles = 5;
-    let totalWidth = numCircles * circleDiameter;
-    let startX = (width - totalWidth) / 2 + circleDiameter / 2;
-    for (let i = 0; i < numCircles; i++) {
-      let x = startX + i * circleDiameter;
-      ellipse(x, height / 2, circleDiameter. circleDiameter);
-    }
+  let circleDiameter = 30;
+  let numCircles = 5;
+  let totalWidth = numCircles * circleDiameter;
+  let startX = (width - totalWidth) / 2 + circleDiameter / 2;
+  for (let i = 0; i < numCircles; i++) {
+    let x = startX + i * circleDiameter;
+    ellipse(x, height / 2, circleDiameter. circleDiameter);
+  }
   // Task 4: Grid of Circles
   // for (row = 0; row < 5; row++)
   //   for(let col = 0; col < 5; col++) {
