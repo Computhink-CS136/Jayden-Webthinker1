@@ -22,7 +22,7 @@ function draw() {
   //   circle(50 + i * 50, 100, 40)
   // }
   // Task 2: Colour Loop
-  circle
+  circle(100, 100, 100)
   // Task 3: Row of Circles
 
   // Task 4: Grid of Circles
