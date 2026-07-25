@@ -36,5 +36,12 @@ colourValue++;
   //   circle(50 + i *50, 100, 40);
   // }
   // Task 4: Grid of Circles
-  
+    for(let i = 0; i <= 5; i++) {
+    if (i % 2 ==0) {
+      fill(0); 
+    } else {
+      fill(255);
+    }
+    circle(50 + i *50, 100, 40);
+  }
 }
