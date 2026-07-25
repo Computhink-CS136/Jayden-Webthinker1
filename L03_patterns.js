@@ -19,7 +19,7 @@ function draw() {
   for (let i = 0; i < 5; i++) {
     console.log(i);
     fill(0, 30 + i * 50, 0);
-    circle(red + i * 50, 100, 40)
+    circle(red + i * 50, green + i , 40)
   }
   // Task 2: Colour Loop
 
