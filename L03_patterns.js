@@ -1,6 +1,4 @@
 let colourValue;
-let height;
-let width;
 function setup() {
     createCanvas(600, 400);
     background(220);
@@ -39,7 +37,7 @@ function draw() {
   // }
   function draw() {
     let circleDiameter = 30;
-    let numCircles
+    let numCircles = 5;
   }
   // Task 4: Grid of Circles
   // for (row = 0; row < 5; row++)
