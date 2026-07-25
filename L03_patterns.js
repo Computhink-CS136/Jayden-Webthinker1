@@ -23,6 +23,8 @@ function draw() {
   //   circle(50 + i * 50, 100, 40)
   // }
   // Task 2: Colour Loop
+circle()
+  // Task 3: Row of Circles
   for(let i = 0; i <= 5; i++) {
     if (i % 2 ==0) {
       fill(0); 
@@ -31,7 +33,5 @@ function draw() {
     }
     circle(50 + i *50, 100, 40);
   }
-  // Task 3: Row of Circles
-
   // Task 4: Grid of Circles
 }
