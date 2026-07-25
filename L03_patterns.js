@@ -40,12 +40,13 @@ function draw() {
   let totalWidth = numCircles * circleDiameter;
   let startX = (width - totalWidth) / 2 + circleDiameter / 2;
   let startY = (height - totalWidth) / 2 + circleDiameter / 2;
-  for (row = 0; row < 5; row++);
+  for (row = 0; row < 5; row++) {
     let rowY = startY + (circleDiameter * row);
     for (let i = 0; i < numCircles; i++) {
       let x = startX + i * circleDiameter;
       ellipse(x, rowY, circleDiameter, circleDiameter);
   }
+    
   // Task 4: Grid of Circles
   // for (row = 0; row < 5; row++)
   //   for(let col = 0; col < 5; col++) {
