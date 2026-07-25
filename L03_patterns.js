@@ -15,10 +15,10 @@ function draw() {
   // Task 1: Colour Gradient
   let red = 10
   let green = 20
-  let blue = 30
+  let blue = 0
   for (let i = 0; i < 5; i++) {
     console.log(i);
-    fill(0, 30 + i * 50, 0)
+    fill(red, 30 + i * 50, 0)
     circle(50 + i * 50, 100, 40)
   }
   // Task 2: Colour Loop
