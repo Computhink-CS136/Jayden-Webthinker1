@@ -43,21 +43,21 @@
 //     fill(randomCol)
 //     ellipse(mouseX, mouseY, 10, 10);
 // }
-function setup() {
-    createCanvas(400, 400);
-    background(220);
-}
-let prevMouseX = mouseX
-let circleSize = 50
-function mouseMoved() {
-    if (prevMouseX < mouseX) {
-        circleSize++
-     } else {
-        circleSize--
-     }
-    background(220);
-    ellipse(200, 200, circleSize, circleSize);
-}
+// function setup() {
+//     createCanvas(400, 400);
+//     background(220);
+// }
+// let prevMouseX = mouseX
+// let circleSize = 50
+// function mouseMoved() {
+//     if (prevMouseX < mouseX) {
+//         circleSize++
+//      } else {
+//         circleSize--
+//      }
+//     background(220);
+//     ellipse(200, 200, circleSize, circleSize);
+// }
 // function setup() {
 //     createCanvas(400, 400);
 //     background(220);
@@ -65,11 +65,11 @@ function mouseMoved() {
 // function mouseMoved() {
 //     ellipse(200, 200, mouseX, mouseY);
 // }
-function setup() {
-    createCanvas(400, 400);
-    background(220);
-}
-function mouseMoved() {
-    background(220);
-    circle(200, 200, mouseX);
-}
+// function setup() {
+//     createCanvas(400, 400);
+//     background(220);
+// }
+// function mouseMoved() {
+//     background(220);
+//     circle(200, 200, mouseX);
+// }
