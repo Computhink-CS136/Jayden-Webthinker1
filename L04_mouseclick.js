@@ -35,3 +35,7 @@ function mousePressed() {
     circleSize = random(100);
     ellipse(200, 200, 80, 80);
 }
+function mouseReleased() {
+    shapeColor = 'b';
+    ellipse(200, 200, 80)
+}
