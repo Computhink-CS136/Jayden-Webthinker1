@@ -50,9 +50,12 @@ function setup() {
 let prevMouseX = mouseX
 function mouseMoved() {
     if (prevMouseX < mouseX) {
-        circle()
+        circle(200, 200, prevMouseX)
+    }else {
+        circle(200, 200, mouseX)
     }
-}
+    }
+
 // function setup() {
 //     createCanvas(400, 400);
 //     background(220);
