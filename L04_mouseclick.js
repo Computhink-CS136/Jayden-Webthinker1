@@ -7,9 +7,9 @@ function setup() {
 
 function draw() {
     fill(shapeColor);
-    circle(200, 200, 80)
+    circle(200, 200, 80);
 }
 
 function mousePressed() {
-    shapeColor = 'red'
+    shapeColor = 'red';
 }
