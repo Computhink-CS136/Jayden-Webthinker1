@@ -18,4 +18,5 @@ function mousePressed() {
 
 function mouseReleased() {
     shapeColor = 'blue';
+    ellipse(200)
 }
