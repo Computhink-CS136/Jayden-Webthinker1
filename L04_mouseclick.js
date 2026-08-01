@@ -79,7 +79,7 @@ function setup() {
 }
 function mouseDragged() {
     for (let i = 0; i < 5; i++) {
-        let randomSize = random(10, 30)
+        let randomSize = random(5, 21)
         let randomMouseX = random(mouseX-10, mouseX+10)
         let randomMouseY = random(mouseY-10, mouseY+10)
         circle(randomMouseX, randomMouseY, randomSize);
