@@ -52,7 +52,9 @@ let circleSize = 50
 function mouseMoved() {
     if (prevMouseX < mouseX) {
         circleSize++
-     } else 
+     } else {
+        circleSize--
+     }
     background(220);
     circle(200, 200, mouseX);
 }
