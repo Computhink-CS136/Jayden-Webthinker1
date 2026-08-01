@@ -73,3 +73,4 @@
 //     background(220);
 //     circle(200, 200, mouseX);
 // }
+function setup
