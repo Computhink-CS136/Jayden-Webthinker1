@@ -47,8 +47,8 @@ function setup() {
     createCanvas(400, 400);
     background(220);
 }
+
 function mouseMoved() {
-    let ()
     background(220);
     circle(200, 200, mouseX);
 }
