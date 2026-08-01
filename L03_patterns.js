@@ -35,18 +35,6 @@ function draw() {
   //   }
   //   circle(50 + i *50, 100, 40);
   // }
-  let circleDiameter = 30;
-  let numCircles = 5;
-  let totalWidth = numCircles * circleDiameter;
-  let startX = (width - totalWidth) / 2 + circleDiameter / 2;
-  let startY = (height - totalWidth) / 2 + circleDiameter / 2;
-  for (row = 0; row < 5; row++) {
-    let rowY = startY + (circleDiameter * row);
-    for (let i = 0; i < numCircles; i++) {
-      let x = startX + i * circleDiameter;
-      ellipse(x, rowY, circleDiameter, circleDiameter);
-  }
-}
   // Task 4: Grid of Circles
   // for (row = 0; row < 5; row++)
   //   for(let col = 0; col < 5; col++) {
@@ -58,5 +46,16 @@ function draw() {
   //   rect(col * 50, row * 50, 50, 50)
   // }
   // circle(width / 2, height / 2)
-  
+    let circleDiameter = 30;
+  let numCircles = 5;
+  let totalWidth = numCircles * circleDiameter;
+  let startX = (width - totalWidth) / 2 + circleDiameter / 2;
+  let startY = (height - totalWidth) / 2 + circleDiameter / 2;
+  for (row = 0; row < 5; row++) {
+    let rowY = startY + (circleDiameter * row);
+    for (let i = 0; i < numCircles; i++) {
+      let x = startX + i * circleDiameter;
+      ellipse(x, rowY, circleDiameter, circleDiameter);
+  }
+}
 }
