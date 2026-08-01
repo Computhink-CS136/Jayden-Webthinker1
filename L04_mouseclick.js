@@ -15,6 +15,7 @@ function mousePressed() {
     fill(randomCol);
     noStroke();
     circleSize = random(100)
+    circle()
 }
 
 function mouseReleased() {
