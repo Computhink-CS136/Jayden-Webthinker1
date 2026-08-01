@@ -21,22 +21,14 @@
 //     ellipse(200, 200, 80)
 // }
 
-// function setup() {
-//     createCanvas(400, 400);
-//     background(220);
-// }
+function setup() {
+    createCanvas(400, 400);
+    background(220);
+}
 
-// function draw() {
-//     fill(shapeColor);
-// }
-// function setup() {
-//     createCanvas(400, 400);
-//     background(220);
-// }
-
-// function draw() {
-//     fill(shapeColor);
-// }
+function draw() {
+    fill(shapeColor);
+}
 function mousePressed() {
     let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
     fill(randomCol);
