@@ -49,5 +49,5 @@ function setup() {
 }
 function mouseMoved() {
     background(220);
-    ellipse(200, 200, mouseX, mouseY);
+    circle(200, 200, mouseX);
 }
