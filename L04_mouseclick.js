@@ -74,5 +74,9 @@
 //     circle(200, 200, mouseX);
 // }
 function setup() {
-    createCanvas(400, 400)
+    createCanvas(400, 400);
+    background(220);
+}
+function mouseDragged() {
+    
 }
