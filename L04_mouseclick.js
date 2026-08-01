@@ -56,7 +56,7 @@ function mouseMoved() {
         circleSize--
      }
     background(220);
-    ellipse(200,);
+    ellipse(200, 200, circleSize, circleSize);
 }
 // function setup() {
 //     createCanvas(400, 400);
