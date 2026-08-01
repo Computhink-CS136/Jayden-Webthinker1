@@ -78,5 +78,7 @@ function setup() {
     background(220);
 }
 function mouseDragged() {
+    let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
+    fill
     ellipse(mouseX, mouseY, 20, 20);
 }
