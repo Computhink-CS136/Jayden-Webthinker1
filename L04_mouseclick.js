@@ -48,10 +48,11 @@ function setup() {
     background(220);
 }
 let prevMouseX = mouseX
+let circleSize = 50
 function mouseMoved() {
     if (prevMouseX < mouseX) {
-        circleS
-    }
+        circleSize++
+}
     background(220);
     circle(200, 200, mouseX);
 }
