@@ -1,22 +1,23 @@
-let shapeColor = 'blue';
+// let shapeColor = 'blue';
 
-function setup() {
-    createCanvas(400, 400);
-    background(220);
-}
+// function setup() {
+//     createCanvas(400, 400);
+//     background(220);
+// }
 
-function draw() {
-    fill(shapeColor);
-}
+// function draw() {
+//     fill(shapeColor);
+// }
 
-function mousePressed() {
-    let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
-    fill(randomCol);
-    circleSize = random(100);
-    ellipse(200, 200, 80, 80);
-}
+// function mousePressed() {
+//     let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
+//     fill(randomCol);
+//     circleSize = random(100);
+//     ellipse(200, 200, 80, 80);
+// }
 
-function mouseReleased() {
-    shapeColor = 'blue';
-    ellipse(200, 200,)
-}
+// function mouseReleased() {
+//     shapeColor = 'blue';
+//     ellipse(200, 200, 80)
+// }
+
