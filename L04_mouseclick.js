@@ -52,8 +52,6 @@ function mouseMoved() {
     if (prevMouseX < mouseX); {
         
     }
-    background(220);
-    circle(200, 200, mouseX);
 }
 // function setup() {
 //     createCanvas(400, 400);
