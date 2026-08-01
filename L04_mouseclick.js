@@ -49,8 +49,8 @@ function setup() {
 }
 let prevMouseX = mouseX
 function mouseMoved() {
-    if (prevMouseX < mouseX); {
-        
+    if (prevMouseX < mouseX) {
+
     }
 }
 // function setup() {
