@@ -10,6 +10,6 @@ function draw() {
     circle(200, 200, 80)
 }
 
-function mousePressed() {\
-    
+function mousePressed() {
+    shapeColor = 'red'
 }
