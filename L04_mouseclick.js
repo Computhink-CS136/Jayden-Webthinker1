@@ -80,6 +80,6 @@ function setup() {
 function mouseDragged() {
     let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
     fill(randomCol)
-    let randomSize = random(0, 100)
+    let randomSize = random(0, 30)
     circle(mouseX, mouseY, randomSize);
 }
