@@ -73,4 +73,6 @@
 //     background(220);
 //     circle(200, 200, mouseX);
 // }
-function setup
+function setup() {
+    createCanvas(400, 400)
+}
