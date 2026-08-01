@@ -1,4 +1,4 @@
-let shapeColor = 'blue';
+let shapeColor = fill(random(0, 255), random(0, 255), random(0, 255));
 
 function setup() {
     createCanvas(400, 400);
