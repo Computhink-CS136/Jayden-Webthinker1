@@ -21,7 +21,7 @@ function draw() {
 //     ellipse(200, 200, 80)
 // }
 
-
+// let shapeColor = 'blue';
 function mousePressed() {
     let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
     fill(randomCol);
@@ -31,5 +31,5 @@ function mousePressed() {
 
 function mouseReleased() {
     shapeColor = 'white';
-    ellipse(200, 200, 80)
+    ellipse(200, 200, 80, 80)
 }
