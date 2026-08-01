@@ -43,3 +43,12 @@
 //     fill(randomCol)
 //     ellipse(mouseX, mouseY, 10, 10);
 // }
+function setup() {
+    createCanvas(400, 400);
+    background(220);
+}
+function mouseMoved() {
+    let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
+    fill(randomCol)
+    ellipse(mouseX, mouseY, 10, 10);
+}
