@@ -78,5 +78,5 @@ function setup() {
     background(220);
 }
 function mouseDragged() {
-    ellipse(mouse)
+    ellipse(mouseX, mouseY, 20, 20)
 }
