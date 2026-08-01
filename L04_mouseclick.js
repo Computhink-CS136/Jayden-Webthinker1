@@ -11,9 +11,9 @@ function draw() {
 }
 
 function mousePressed() {
-    shapeColor = fill(random(0, 255), random(0, 255), random(0, 255));
+    shapeColor = 'red';
 }
 
 function mouseReleased() {
-    shapeColor = fill(random(0, 255), random(0, 255), random(0, 255));
+    shapeColor = 'blue';
 }
