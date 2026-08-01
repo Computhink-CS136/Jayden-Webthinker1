@@ -50,7 +50,7 @@ function setup() {
 let prevMouseX = mouseX
 function mouseMoved() {
     if (prevMouseX < mouseX) {
-        circle
+        circle()
     }
 }
 // function setup() {
