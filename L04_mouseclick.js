@@ -40,6 +40,6 @@ function setup() {
 }
 function mouseMoved() {
     let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
-    fill
+    fill(randomCol)
     ellipse(mouseX, mouseY, 10, 10);
 }
