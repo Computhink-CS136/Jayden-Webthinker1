@@ -1,1 +1,3 @@
-let shapeColor = 'blue'
+let shapeColor = 'blue';
+
+function setup() 
