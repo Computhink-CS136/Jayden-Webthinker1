@@ -84,7 +84,7 @@ function mouseDragged() {
         let randomMouseY = random(mouseY-10, mouseY+10)
         let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
         fill(randomCol)
-        circle(mouseX, mouseY, randomSize);
+        circle(randomMouseX, mouseY, randomSize);
     }
     noStroke()
 }
