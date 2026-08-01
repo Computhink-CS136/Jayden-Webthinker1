@@ -80,6 +80,7 @@ function setup() {
 function mouseDragged() {
     for (let i = 0; i < 5; i++) {
         let randomSize = random(10, 30)
+        let random
     }
     let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
     fill(randomCol)
