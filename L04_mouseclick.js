@@ -15,13 +15,8 @@ function mousePressed() {
     fill(randomCol);
     noStroke();
     circleSize = random(100)
-    circle(200, 200, 80)
 }
 
 function mouseReleased() {
-    let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
-    fill(randomCol);
-    noStroke();
-    circleSize = random(100)
-    circle(200, 200, 80)
+    shapeColor = 'blue';
 }
