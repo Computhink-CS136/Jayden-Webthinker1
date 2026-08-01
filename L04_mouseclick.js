@@ -40,5 +40,5 @@ function setup() {
     FileList(255, 0, 0);
 }
 function mouseMoved() {
-    
+    ellipse(mouseX, mouseY)
 }
