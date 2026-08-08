@@ -40,7 +40,7 @@ function keyPressed() {
         console.log('heo')
     }
     if (key === 's') {
-        rect(200, 200, 200, 200);
+        rect(100, 100, 200, 200);
     }
 }
 
