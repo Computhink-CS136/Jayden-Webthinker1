@@ -35,11 +35,11 @@ function setup() {
 
 function keyPressed() {
     console.log('hedsdso')
-    if (keyPressed === 'c') {
+    if (key === 'c') {
         circle(200, 200, 300);
         console.log('heo')
     }
-    if (keyPressed === 's') {
+    if (key === 's') {
         rect(200, 200, 200, 200);
     }
 }
