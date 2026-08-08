@@ -24,6 +24,3 @@ function keyPressed() {
     circle(random(0, 400), random(0, 400), randomSize);
         
 }
-function keyReleased() {
-
-}
