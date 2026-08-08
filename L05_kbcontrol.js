@@ -36,5 +36,6 @@ function setup() {
 function keyPressed() {
     if (keyPressed == 'c');
         circle(200, 200, 300)
-    elif (keyPressed == 'S')
+    elif (keyPressed == 's')
+    
 }
