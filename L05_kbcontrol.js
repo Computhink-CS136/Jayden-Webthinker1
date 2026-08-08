@@ -34,10 +34,10 @@ function setup() {
 // }
 
 function keyPressed() {
-    console.log('he;;o')
+    console.log('hedsdso')
     if (keyPressed === 'c') {
         circle(200, 200, 300);
-        console.log('he;;o')
+        console.log('heo')
     }
     if (keyPressed === 's') {
         rect(200, 200, 200, 200);
