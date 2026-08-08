@@ -38,7 +38,7 @@ function keyPressed() {
         circle(200, 200, 300);
     }
     elif (keyPressed == 's'); {
-        rect(100, 100, 200, 100, 200, 200, 100, 200);
+        rect(200, 200, 200, 200);
     }
 }
 
