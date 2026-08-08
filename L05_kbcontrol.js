@@ -34,10 +34,10 @@ function setup() {
 // }
 
 function keyPressed() {
-    if (keyPressed == 'c') {
+    if (keyPressed === 'c') {
         circle(200, 200, 300);
     }
-    if (keyPressed == 's') {
+    if (keyPressed === 's') {
         rect(200, 200, 200, 200);
     }
 }
