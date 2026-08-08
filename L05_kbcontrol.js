@@ -20,11 +20,12 @@ function draw() {
 // }
 function keyPressed() {
     for (let i = 0; i < number; i++)
-    let Size = random(10, 50)
-    let circle_col = color(random(0, 255), random(0, 255), random(0, 255))
-    let circlenum = random(5, 20)
-    let circ_x = random(0, 400)
-    let circ_y = random(0, 400)
+        let Size = random(10, 50)
+        let circle_col = color(random(0, 255), random(0, 255), random(0, 255))
+        let circlenum = random(5, 20)
+        let circ_x = random(0, 400)
+        let circ_y = random(0, 400)
+        
 }
 function keyReleased() {
     background(220)
