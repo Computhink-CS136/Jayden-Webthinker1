@@ -47,6 +47,6 @@ function setup() {
 // function keyReleased() {
 //     background(220)
 // }
-function keyPressed(){
+function keyPressed() {
     
 }
