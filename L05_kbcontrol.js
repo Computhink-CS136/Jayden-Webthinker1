@@ -37,7 +37,7 @@ function keyPressed() {
     if (keyPressed == 'c') {
         circle(200, 200, 300);
     }
-    else if (keyPressed == 's') {
+    if (keyPressed == 's') {
         rect(200, 200, 200, 200);
     }
 }
