@@ -23,9 +23,8 @@ function keyPressed() {
     let circ_x = random(0, 400)
     let circ_y = random(0, 400)
     for (let i = 0; i < number; i++) {
-        
+        ellipse
     }
-    circle(circ_x, circ_y, Size)
 }
 function keyReleased() {
 
