@@ -35,5 +35,5 @@ function setup() {
 
 function keyPressed() {
     if (keyPressed == 'c');
-        circle
+        circle()
 }
