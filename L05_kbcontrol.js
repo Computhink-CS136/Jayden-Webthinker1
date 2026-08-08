@@ -26,4 +26,4 @@ function keyPressed() {
         
     }
 }
-fuc
+function keyReleased
