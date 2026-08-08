@@ -35,7 +35,7 @@ function setup() {
 
 function keyPressed() {
     console.log('hedsdso')
-    if (key === 'c') {
+    if (keycode === 48) {
         circle(200, 200, 300);
         console.log('heo')
     }
