@@ -34,7 +34,9 @@ function setup() {
 // }
 
 function keyPressed() {
-    if (keyPressed == 'c');
+    if (keyPressed == 'c') {
+        
+    }
         circle(200, 200, 300)
     elif (keyPressed == 's');
         rect(100, 100, 200, 100, 200, 200, 100, 200)
