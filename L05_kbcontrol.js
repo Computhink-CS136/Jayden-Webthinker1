@@ -41,7 +41,7 @@ function keyPressed() {
     }
     if (keyCode === 38) {
         rect(100, 100, 200, 200);
-        console.log()
+        console.log('ur gay')
     }
 }
 
