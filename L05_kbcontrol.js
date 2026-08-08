@@ -18,7 +18,7 @@ function setup() {
 //     rectSize = 50;
 // }
 function keyPressed() {
-    number = random(10, )
+    number = random(10, 20)
     for (let i = 0; i < number; i++)
         let Size = random(10, 50)
         let circle_col = color(random(0, 255), random(0, 255), random(0, 255))
