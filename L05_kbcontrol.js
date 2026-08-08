@@ -36,6 +36,6 @@ function setup() {
 function keyPressed() {
     if (keyPressed == 'c');
         circle(200, 200, 300)
-    elif (keyPressed == 's')
+    if (keyPressed == 's')
         rectSize(100, 100, 200, 100, 200, 200, 100, 200,)
 }
