@@ -17,13 +17,9 @@ function setup() {
 //     rectSize = 50;
 // }
 function keyPressed() {
-    let randomSize = random(5, 21)
-    let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
-    fill(randomCol)
-    noStroke()
-    circle(random(0, 400), random(0, 400), randomSize);
+    
         
 }
 function keyReleased() {
-    
+
 }
