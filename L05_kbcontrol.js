@@ -21,7 +21,7 @@ function keyPressed() {
     let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
     fill(randomCol)
     noStroke()
-        circle(random(0, 400), random(0, 400), randomSize);
+    circle(random(0, 400), random(0, 400), randomSize);
         
 }
 function keyReleased() {
