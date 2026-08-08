@@ -4,15 +4,27 @@ function setup() {
     createCanvas(400, 400);
 }
 
-function draw() {
-    background(220);
-    rect(width / 2 - rectSize / 2, height / 2 - rectSize / 2, rectSize, rectSize);
-}
+// function draw() {
+//     background(220);
+//     rect(width / 2 - rectSize / 2, height / 2 - rectSize / 2, rectSize, rectSize);
+// }
 
+// function keyPressed() {
+//     rectSize = 100;
+// }
+
+// function keyReleased() {
+//     rectSize = 50;
+// }
 function keyPressed() {
-    rectSize = 100;
-}
-
-function keyReleased() {
-    rectSize = 50;
+    for (let i = 0; i < 5; i++) {
+        let randomSize = random(5, 21)
+        let randomMouseX = random(mouseX-10, mouseX+10)
+        let randomMouseY = random(mouseY-10, mouseY+10)
+        let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
+        fill(randomCol)
+        noStroke()
+        circle(randomMouseX, randomMouseY, randomSize);
+        
+    }
 }
