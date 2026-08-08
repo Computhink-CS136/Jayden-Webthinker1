@@ -22,7 +22,7 @@ function keyPressed() {
         let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
         fill(randomCol)
         noStroke()
-        circle(randomMouseX, randomMouseY, randomSize);
+        circle(random , randomSize);
         
     }
 }
