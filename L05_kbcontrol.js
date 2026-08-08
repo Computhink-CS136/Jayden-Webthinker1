@@ -19,8 +19,6 @@ function setup() {
 function keyPressed() {
     for (let i = 0; i < 5; i++) {
         let randomSize = random(5, 21)
-        let randomMouseX = random(mouseX-10, mouseX+10)
-        let randomMouseY = random(mouseY-10, mouseY+10)
         let randomCol = color(random(0, 255), random(0, 255), random(0, 255));
         fill(randomCol)
         noStroke()
