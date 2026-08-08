@@ -18,7 +18,7 @@ function setup() {
 // }
 function keyPressed() {
     let Size = random(10, 50)
-    let circle_col = color
+    let circle_col = color(random)
         
 }
 function keyReleased() {
