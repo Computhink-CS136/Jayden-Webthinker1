@@ -39,7 +39,7 @@ function keyPressed() {
         circle(200, 200, 300);
         console.log('heo')
     }
-    if (keyCode === 83) {
+    if (keyCode === 38) {
         rect(100, 100, 200, 200);
     }
 }
