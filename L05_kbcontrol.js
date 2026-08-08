@@ -22,7 +22,7 @@ function keyPressed() {
     let circlenum = random(5, 20)
     let circ_x = random(0, 400)
     let circ_y = random(0, 400)
-    
+    for (let i = 0; i < Number;)
     circle(circ_x, circ_y, Size)
 }
 function keyReleased() {
