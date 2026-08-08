@@ -17,7 +17,7 @@ function setup() {
 //     rectSize = 50;
 // }
 function keyPressed() {
-    
+    let Size = 
         
 }
 function keyReleased() {
