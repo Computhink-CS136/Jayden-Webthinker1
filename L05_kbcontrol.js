@@ -33,17 +33,17 @@ function setup() {
 //     background(220)
 // }
 
-function keyPressed() {
-    console.log('hedsdso')
-    if (key === 'c') {
-        circle(200, 200, 300);
-        console.log('heo')
-    }
-    if (key === 's') {
-        rect(100, 100, 200, 200);
-    }
-}
+// function keyPressed() {
+//     console.log('hedsdso')
+//     if (key === 'c') {
+//         circle(200, 200, 300);
+//         console.log('heo')
+//     }
+//     if (key === 's') {
+//         rect(100, 100, 200, 200);
+//     }
+// }
 
-function keyReleased() {
-    background(220)
-}
+// function keyReleased() {
+//     background(220)
+// }
