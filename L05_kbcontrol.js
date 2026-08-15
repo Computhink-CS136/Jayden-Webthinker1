@@ -104,7 +104,7 @@ function setup() {
 //     x = width - 25
 // }
 // }
-
+let y 
 function draw() {
     background(220)
     
