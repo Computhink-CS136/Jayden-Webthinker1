@@ -50,5 +50,6 @@ function setup() {
 // }
 
 function keyPressed() {
-    
+    if (keyPressed === 'W')
+        fill()
 }
