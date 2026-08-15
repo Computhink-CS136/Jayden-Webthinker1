@@ -124,6 +124,6 @@ function draw() {
         direction = "down"
     }
     if (direction = "up") {
-        triangle(75, y + 25, )
+        triangle(75, y + 25, 100, y - 25, 125, y + 25)
     }
 }
