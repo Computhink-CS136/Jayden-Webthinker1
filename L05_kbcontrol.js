@@ -85,22 +85,22 @@ function setup() {
 //     }
 //     circle(width / 2 + x, height / 2, 100);
 // }
-let x = 200;
+// let x = 200;
 
-function draw() {
-    background(220)
-    circle(x, height / 2, 50);
+// function draw() {
+//     background(220)
+//     circle(x, height / 2, 50);
     
-    if (keyIsDown(LEFT_ARROW)) {
-        x -= 5;
-    }
-    if (keyIsDown(RIGHT_ARROW)) {
-        x += 5;
-    }
-    if (x < 25) {
-    x = 25;
-}
-if (x > width - 25) {
-    x = width - 25
-}
-}
+//     if (keyIsDown(LEFT_ARROW)) {
+//         x -= 5;
+//     }
+//     if (keyIsDown(RIGHT_ARROW)) {
+//         x += 5;
+//     }
+//     if (x < 25) {
+//     x = 25;
+// }
+// if (x > width - 25) {
+//     x = width - 25
+// }
+// }
