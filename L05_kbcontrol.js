@@ -106,7 +106,7 @@ function setup() {
 // }
 function draw() {
     background(220)
-    triangle(100, 100, 300, 100, )
+    triangle(100, 100, 300, 100, 200, 200)
     
     if (keyIsDown(LEFT_ARROW)) {
         y -= 5;
