@@ -71,3 +71,6 @@ function setup() {
 //         fill("yellow");
 //     }
 // }
+function draw() {
+    
+}
