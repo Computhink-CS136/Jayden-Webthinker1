@@ -106,13 +106,13 @@ function setup() {
 // }
 function draw() {
     background(220)
-    circle(x, height / 2, 50);
+    triangle
     
     if (keyIsDown(LEFT_ARROW)) {
-        x -= 5;
+        y -= 5;
     }
     if (keyIsDown(RIGHT_ARROW)) {
-        x += 5;
+        y += 5;
     }
     if (x < 25) {
     x = 25;
