@@ -106,7 +106,7 @@ function setup() {
 // }
 function draw() {
     background(220)
-    triangle
+    triangle(100,)
     
     if (keyIsDown(LEFT_ARROW)) {
         y -= 5;
@@ -118,6 +118,6 @@ function draw() {
     y = 25;
 }
 if (y > width - 25) {
-    x = width - 25
+    y = width - 25
 }
 }
