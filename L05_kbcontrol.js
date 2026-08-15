@@ -50,7 +50,7 @@ function setup() {
 // }
 
 function keyPressed() {
-    if (keyPressed === 'w') {
+    if (key === 'w') {
       fill("white")
-    }
+    } else if (key === 'r')
 }
