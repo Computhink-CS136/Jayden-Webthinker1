@@ -104,7 +104,7 @@ function setup() {
 //     x = width - 25
 // }
 // }
-let y 
+let y = 200;
 function draw() {
     background(220)
     
