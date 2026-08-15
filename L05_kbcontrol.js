@@ -49,7 +49,7 @@ function setup() {
 //     background(220)
 // }
 function draw() {
-    circle()
+    circle(100, 100, 50)
 }
 function keyPressed() {
     if (key === 'w') {
