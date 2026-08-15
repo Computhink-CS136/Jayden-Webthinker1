@@ -74,6 +74,6 @@ function setup() {
 let x = 0;
 function draw() {
     if (keyIsDown(RIGHT_ARROW)) {
-        x 
+        x += 1
     }
 }
