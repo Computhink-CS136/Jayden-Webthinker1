@@ -63,9 +63,9 @@ function draw() {
 //     }
 // }
 function mouseMoved() {
-    if (mouseX < 125) {
+    if (mouseX < 150) {
         fill("red");
-    } else if (mouseX >= 125 && mouseX < 200) {
+    } else if (mouseX >= 150 && mouseX < 225) {
         fill("orange");
     } else if (mouseX >= 200) {
         fill("yellow");
