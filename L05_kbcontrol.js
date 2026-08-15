@@ -85,3 +85,8 @@ function setup() {
 //     }
 //     circle(width / 2 + x, height / 2, 100);
 // }
+let x = 200;
+
+function setup() {
+    
+}
