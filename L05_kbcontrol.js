@@ -104,3 +104,20 @@ function setup() {
 //     x = width - 25
 // }
 // }
+function draw() {
+    background(220)
+    circle(x, height / 2, 50);
+    
+    if (keyIsDown(LEFT_ARROW)) {
+        x -= 5;
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+        x += 5;
+    }
+    if (x < 25) {
+    x = 25;
+}
+if (x > width - 25) {
+    x = width - 25
+}
+}
