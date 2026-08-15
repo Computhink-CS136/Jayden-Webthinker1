@@ -33,6 +33,22 @@ function setup() {
 //     background(220)
 // }
 
+// function keyPressed() {
+//     console.log('hedsdso')
+//     if (keyCode === 67) {
+//         circle(200, 200, 300);
+//         console.log('heo')
+//     }
+//     if (keyCode === 38) {
+//         rect(100, 100, 200, 200);
+//         console.log('ur gay')
+//     }
+// }
+
+// function keyReleased() {
+//     background(220)
+// }
+
 function keyPressed() {
     console.log('hedsdso')
     if (keyCode === 67) {
