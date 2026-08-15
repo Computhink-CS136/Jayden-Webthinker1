@@ -105,8 +105,9 @@ function setup() {
 // }
 // }
 let y = 200;
+
 function draw() {
-    background(220)
+    background(220);
     
     if (keyIsDown(UP_ARROW)) {
         y -= 2;
