@@ -62,12 +62,12 @@ function draw() {
 //         fill("yellow");
 //     }
 // }
-function mouseMoved() {
-    if (mouseX < 150) {
-        fill("red");
-    } else if (mouseX >= 150 && mouseX < 225) {
-        fill("orange");
-    } else if (mouseX >= 225) {
-        fill("yellow");
-    }
-}
+// function mouseMoved() {
+//     if (mouseX < 150) {
+//         fill("red");
+//     } else if (mouseX >= 150 && mouseX < 225) {
+//         fill("orange");
+//     } else if (mouseX >= 225) {
+//         fill("yellow");
+//     }
+// }
