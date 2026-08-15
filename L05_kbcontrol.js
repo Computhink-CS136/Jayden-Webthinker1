@@ -48,9 +48,9 @@ function setup() {
 // function keyReleased() {
 //     background(220)
 // }
-// function draw() {
-//     circle(200, 200, 100)
-// }
+function draw() {
+    circle(200, 200, 100)
+}
 // function keyPressed() {
 //     if (key === 'w') {
 //         fill("white");
