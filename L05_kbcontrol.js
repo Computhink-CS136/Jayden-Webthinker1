@@ -119,7 +119,7 @@ function draw() {
     if (keyIsDown(DOWN_ARROW)) {
         y1 += 5;
         y2 += 5;
-        y += 5;
+        y3 += 5;
     }
     if (y < 25) {
     y = 25;
