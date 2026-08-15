@@ -62,4 +62,4 @@ function setup() {
 //         fill("yellow");
 //     }
 // }
-functio
+function mouseMoved ()
