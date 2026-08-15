@@ -51,12 +51,12 @@ function setup() {
 
 function keyPressed() {
     if (key === 'w') {
-        fill("white")
+        fill("white");
     } else if (key === 'r') {
-        fill("red")
+        fill("red");
     } else if (key === 'g') {
-        fill("green")
+        fill("green");
     } else {
-        fill("yellow")
+        fill("yellow");
     }
 }
