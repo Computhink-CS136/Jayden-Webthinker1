@@ -55,7 +55,7 @@ function keyPressed() {
         circle(200, 200, 300);
         console.log('heo')
     }
-    if (key === 38) {
+    if (keyPressed === ) {
         rect(100, 100, 200, 200);
         console.log('ur gay')
     }
