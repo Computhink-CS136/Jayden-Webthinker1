@@ -123,13 +123,4 @@ function draw() {
         y3 += 5;
         direction = "up"
     }
-    if (y < 25) {
-    y = 25;
-}
-if (y > width - 25) {
-    y = width - 25
-}
-}
-function keyPressed() {
-    
 }
