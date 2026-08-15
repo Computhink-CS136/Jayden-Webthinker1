@@ -109,7 +109,7 @@ let y2 = 100;
 let y3 = 200;
 function draw() {
     background(220)
-    triangle(100, 100, 300, 100, 200, 200)
+    triangle(100, y1, 300, y2, 200, 200)
     
     if (keyIsDown(UP_ARROW)) {
         y -= 5;
