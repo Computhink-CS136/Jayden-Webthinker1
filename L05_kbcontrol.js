@@ -108,7 +108,7 @@ function draw() {
     background(220)
     triangle(100, 100, 300, 100, 200, 200)
     
-    if (keyIsDown(DOWN)) {
+    if (keyIsDown(UP_ARROW)) {
         y -= 5;
     }
     if (keyIsDown(RIGHT_ARROW)) {
