@@ -121,6 +121,9 @@ function draw() {
         y1 += 5;
         y2 += 5;
         y3 += 5;
-        direction = "up"
+        direction = "down"
+    }
+    if (direction = "up") {
+        
     }
 }
