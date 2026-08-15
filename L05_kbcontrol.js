@@ -114,10 +114,10 @@ function draw() {
     if (keyIsDown(RIGHT_ARROW)) {
         y += 5;
     }
-    if (x < 25) {
-    x = 25;
+    if (y < 25) {
+    y = 25;
 }
-if (x > width - 25) {
+if (y > width - 25) {
     x = width - 25
 }
 }
