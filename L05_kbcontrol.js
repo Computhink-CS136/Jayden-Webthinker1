@@ -71,7 +71,7 @@ function setup() {
 //         fill("yellow");
 //     }
 // }
-let x 
+let x = 0;
 function draw() {
     if (keyIsDown(RIGHT_ARROW)) {
         x 
