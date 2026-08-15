@@ -63,6 +63,7 @@ function draw() {
 //     }
 // }
 function mouseMoved() {
-    if (mouseX < 75)
-    ellipse(mouseX, mouseY, 10, 10);
+    if (mouseX < 75) {
+
+    }
 }
