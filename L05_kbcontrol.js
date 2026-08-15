@@ -87,4 +87,6 @@ function setup() {
 // }
 let x = 200;
 
-function
+function draw() {
+    background
+}
