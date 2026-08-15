@@ -115,7 +115,7 @@ function draw() {
         y1 -= 5;
         y2 -= 5;
         y3 -= 5;
-        direction = "down";
+        direction = "up";
     }
     if (keyIsDown(DOWN_ARROW)) {
         y1 += 5;
