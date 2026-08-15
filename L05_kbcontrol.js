@@ -109,9 +109,7 @@ function draw() {
     background(220)
     
     if (keyIsDown(UP_ARROW)) {
-        y1 -= 5;
-        y2 -= 5;
-        y3 -= 5;
+        y -= 2
         direction = "up";
     }
     if (keyIsDown(DOWN_ARROW)) {
