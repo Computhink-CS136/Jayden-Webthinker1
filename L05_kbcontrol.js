@@ -104,7 +104,9 @@ function setup() {
 //     x = width - 25
 // }
 // }
-let y = 200;
+let y1 = 200;
+let y1 = 200;
+let y1 = 200;
 function draw() {
     background(220)
     triangle(100, 100, 300, 100, 200, 200)
