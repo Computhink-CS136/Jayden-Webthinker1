@@ -105,7 +105,7 @@ function setup() {
 // }
 // }
 let y = 200;
-let direction = 
+let direction = "up";
 function draw() {
     background(220);
     
