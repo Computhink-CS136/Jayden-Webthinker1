@@ -78,3 +78,10 @@ function draw() {
     }
     circle(width / 2 + x, height / 2, 100);
 }
+let x = 0;
+function draw() {
+    if (key == (RIGHT_ARROW)) {
+        x += 1
+    }
+    circle(width / 2 + x, height / 2, 100);
+}
