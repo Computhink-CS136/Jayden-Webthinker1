@@ -73,6 +73,6 @@ function setup() {
 // }
 function draw() {
     if (keyIsDown(RIGHT_ARROW)) {
-        
+        x 
     }
 }
