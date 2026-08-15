@@ -51,7 +51,6 @@ function setup() {
 
 function keyPressed() {
     if (keyPressed === 'w') {
-        
+      fill("white")
     }
-        fill("white")
 }
