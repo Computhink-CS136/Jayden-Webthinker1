@@ -88,5 +88,5 @@ function setup() {
 let x = 200;
 
 function draw() {
-    background
+    circle
 }
