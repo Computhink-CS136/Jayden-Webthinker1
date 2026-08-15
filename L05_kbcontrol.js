@@ -113,10 +113,11 @@ function draw() {
     
     if (keyIsDown(UP_ARROW)) {
         y1 -= 5;
-        y1 -= 5;
-        y1 -= 5;
+        y2 -= 5;
+        y3 -= 5;
     }
     if (keyIsDown(DOWN_ARROW)) {
+        y1 += 5;
         y += 5;
     }
     if (y < 25) {
