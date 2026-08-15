@@ -88,5 +88,5 @@ function setup() {
 let x = 200;
 
 function draw() {
-    circle(x, height / 2, 50)
+    circle(x, height / 2, 50);
 }
