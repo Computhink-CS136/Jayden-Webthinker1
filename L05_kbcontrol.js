@@ -118,6 +118,7 @@ function draw() {
     }
     if (keyIsDown(DOWN_ARROW)) {
         y1 += 5;
+        y2 += 5;
         y += 5;
     }
     if (y < 25) {
