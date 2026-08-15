@@ -71,3 +71,6 @@ function draw() {
 //         fill("yellow");
 //     }
 // }
+let x = 0;
+
+function
