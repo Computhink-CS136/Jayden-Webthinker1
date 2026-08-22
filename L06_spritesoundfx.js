@@ -20,10 +20,10 @@ function draw() {
     }
     if (keyIsDown(SPACEBAR)) {
         let col = random(0, 255);
+        fill(col);
     }
 
     y = constrain(y, 50, 350 - 50);
     x = constrain(x, 50, 350 - 50);
-    fill(col);
     rect(x, y, 50, 50);
 }
