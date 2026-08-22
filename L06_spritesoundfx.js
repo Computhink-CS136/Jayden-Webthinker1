@@ -32,7 +32,7 @@ let soundEffect, bgMusic, staticImage;
 
 function preload() {
     soundEffect = loadSound('assets/pop.mp3');
-    bgMusic = loadSound('assests/bossNova.mp3');
+    bgMusic = loadSound('assests/bossaNova.mp3');
     staticImage = loadImage('assets/pico-a.png');
 }
 
