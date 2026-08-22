@@ -25,5 +25,9 @@ function draw() {
     }
     y = constrain(y, 0, height);
     x = constrain(x, 0, height);
-    
+     if (direction == "up") {
+        triangle(75, y + 25, 100, y, 125, y + 25);
+    } else if (direction == "down") {
+        triangle(75, y - 25, 100, y, 125, y - 25);
+    }
 }
