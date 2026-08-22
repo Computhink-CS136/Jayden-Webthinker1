@@ -28,6 +28,9 @@
 //     rect(x, y, 50, 50);
 // }
 
+let speed = 5;
+let x = 100;
+let y = 200;
 let soundEffect, bgMusic, staticImage;
 
 function preload() {
@@ -45,20 +48,19 @@ function draw() {
     background("lightblue")
     image(staticImage, 0, 0, 110, 113);
     if (keyIsDown(UP_ARROW)) {
-        y -= 2;
+        y -= speed;
     }
     if (keyIsDown(DOWN_ARROW)) {
-        y += 2;
+        y += speed;
     }
     if (keyIsDown(RIGHT_ARROW)) {
-        x  += 2;
+        x  += speed;
     }
     if (keyIsDown(LEFT_ARROW)) {
-        x  -= 2;
+        x  -= speed;
     }
     y = constrain(y, 0, height);
     x = constrain(x, 0, height);
-    sta
 }
 
 function keyPressed() {
