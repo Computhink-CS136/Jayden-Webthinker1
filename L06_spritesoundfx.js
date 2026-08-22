@@ -19,11 +19,11 @@ function draw() {
         x  -= 2;
     }
     if (keyCode(32)) {
-        let col = random(0, 255)
-        fill(col)
+        let col = random(0, 255);
     }
 
     y = constrain(y, 50, 350 - 50);
     x = constrain(x, 50, 350 - 50);
+    fill(col);
     rect(x, y, 50, 50);
 }
