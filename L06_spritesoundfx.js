@@ -52,7 +52,7 @@ function keyPressed() {
     }
 }
 function keyPressed() {
-           if (keyIsDown(UP_ARROW)) {
+    if (keyIsDown(UP_ARROW)) {
         y -= 2;
     }
     if (keyIsDown(DOWN_ARROW)) {
