@@ -43,5 +43,5 @@ function setup() {
 
 function draw() {
     background("lightblue")
-    
+    Image(staticImage, 0, 0, )
 }
