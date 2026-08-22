@@ -51,3 +51,6 @@ function keyPressed() {
         soundEffect.play();
     }
 }
+function keyPressed() {
+    
+}
