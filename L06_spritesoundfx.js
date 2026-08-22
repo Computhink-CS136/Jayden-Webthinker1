@@ -61,7 +61,7 @@ function draw() {
     }
     if (x === 400 || x === 0 || y === 400 || y === 0 ) {
         soundEffect.play();
-        background
+        background("red")
     }
     y = constrain(y, 0, width - 100);
     x = constrain(x, 0, height - 100);
