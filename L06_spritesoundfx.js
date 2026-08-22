@@ -52,5 +52,16 @@ function keyPressed() {
     }
 }
 function keyPressed() {
-    
+           if (keyIsDown(UP_ARROW)) {
+        y -= 2;
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+        y += 2;
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+        x  += 2;
+    }
+    if (keyIsDown(LEFT_ARROW)) {
+        x  -= 2;
+    }
 }
