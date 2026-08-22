@@ -56,7 +56,8 @@ function draw() {
     if (keyIsDown(LEFT_ARROW)) {
         x  -= 2;
     }
-    
+    y = constrain(y, 0, height);
+    x = constrain(x, 0, height);
 }
 
 function keyPressed() {
