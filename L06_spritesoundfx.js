@@ -19,9 +19,9 @@ function draw() {
         x  += 2;
         direction = "right";
     }
-    if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(LEFT_ARROW)) {
         x  -= 2;
-        direction = ""
+        direction = "left";
     }
 
 }
