@@ -18,7 +18,7 @@
 //     if (keyIsDown(LEFT_ARROW)) {
 //         x  -= 2;
 //     }
-//     if (keyIsDown(SPACEBAR)) {
+//     if (keyCode === 32) {
 //         let col = random(0, 255);
 //         fill(col);
 //     }
