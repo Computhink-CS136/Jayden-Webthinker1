@@ -20,7 +20,7 @@ function draw() {
         x  -= 2;
     }
     if (keyIsDown())
-    y = constrain(y, 50, height);
-    x = constrain(x, 50, height);
+    y = constrain(y, 50, 350);
+    x = constrain(x, 50, 350);
     rect(x, y, 50, 50);
 }
