@@ -46,7 +46,7 @@ function setup() {
 
 function draw() {
     background("lightblue")
-    image(staticImage, 0, x, y, 100, 100);
+    image(staticImage, x, y, 100, 100);
     if (keyIsDown(UP_ARROW)) {
         y -= speed;
     }
