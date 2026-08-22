@@ -20,7 +20,7 @@ function draw() {
     }
     if (keyCode(32))
         let col = random(0, 255)
-    
+        fill(rect)
     y = constrain(y, 50, 350 - 50);
     x = constrain(x, 50, 350 - 50);
     rect(x, y, 50, 50);
