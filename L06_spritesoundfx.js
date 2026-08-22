@@ -26,8 +26,8 @@ function draw() {
     y = constrain(y, 0, height);
     x = constrain(x, 0, height);
      if (direction == "up") {
-        rect(75, y + 25, 100, y, 125, y + 25);
+        rect(x, y, 50, 50);
     } else if (direction == "down") {
-        rect(x, y, );
+        rect(x, y, 50, 50);
     }
 }
