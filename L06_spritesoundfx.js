@@ -4,4 +4,7 @@ function setup() {
 }
 let x = 200
 let y = 200
-let direction = 
+let direction = 'up'
+function draw() {
+    
+}
