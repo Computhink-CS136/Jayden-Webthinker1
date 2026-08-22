@@ -1,7 +1,7 @@
-function setup() {
-    createCanvas(400, 400);
-    background(220)
-}
+// function setup() {
+//     createCanvas(400, 400);
+//     background(220)
+// }
 // let x = 200
 // let y = 200
 // function draw() {
@@ -37,7 +37,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(200, 200);
+    createCanvas(200, 400);
     bgMusic.loop();
 }
 
