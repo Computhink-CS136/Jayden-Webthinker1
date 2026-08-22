@@ -18,8 +18,8 @@ function draw() {
     if (keyIsDown(LEFT_ARROW)) {
         x  -= 2;
     }
-    if (keyIsDown())
     y = constrain(y, 50, 350);
     x = constrain(x, 50, 350);
     rect(x, y, 50, 50);
+    rect(50, )
 }
