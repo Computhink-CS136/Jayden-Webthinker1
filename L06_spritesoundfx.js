@@ -58,7 +58,7 @@ function draw() {
     if (keyIsDown(LEFT_ARROW)) {
         x  -= speed;
     }
-    if (x === 400 || x === 0 || y === 400 || y === 0 ) {
+    if (x === 400 - 100 || x === 0 || y === 400  - 100|| y === 0 ) {
         soundEffect.play();
         background("red")
     }
