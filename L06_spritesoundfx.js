@@ -44,24 +44,22 @@ function setup() {
 function draw() {
     background("lightblue")
     image(staticImage, 0, 0, 110, 113);
+    //        if (keyIsDown(UP_ARROW)) {
+//         y -= 2;
+//     }
+//     if (keyIsDown(DOWN_ARROW)) {
+//         y += 2;
+//     }
+//     if (keyIsDown(RIGHT_ARROW)) {
+//         x  += 2;
+//     }
+//     if (keyIsDown(LEFT_ARROW)) {
+//         x  -= 2;
+//     }
 }
 
 function keyPressed() {
     if (keyCode === 32) {
         soundEffect.play();
-    }
-}
-function draw() {
-    if (keyIsDown(UP_ARROW)) {
-        y -= 2;
-    }
-    if (keyIsDown(DOWN_ARROW)) {
-        y += 2;
-    }
-    if (keyIsDown(RIGHT_ARROW)) {
-        x  += 2;
-    }
-    if (keyIsDown(LEFT_ARROW)) {
-        x  -= 2;
     }
 }
