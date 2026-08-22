@@ -28,6 +28,6 @@ function draw() {
      if (direction == "up") {
         rect(75, y + 25, 100, y, 125, y + 25);
     } else if (direction == "down") {
-        triangle(75, y - 25, 100, y, 125, y - 25);
+        rect(75, y - 25, 100, y, 125, y - 25);
     }
 }
