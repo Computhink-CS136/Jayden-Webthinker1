@@ -27,3 +27,5 @@
 //     x = constrain(x, 50, 350 - 50);
 //     rect(x, y, 50, 50);
 // }
+
+let soundEffect, bgMusic, static
