@@ -42,5 +42,6 @@ function setup() {
 }
 
 function draw() {
-    background("light")
+    background("lightblue")
+    
 }
