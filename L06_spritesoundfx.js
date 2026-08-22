@@ -60,7 +60,7 @@ function draw() {
         x  -= speed;
     }
     if (x === 400 || x === 0 || y === 400 || y === 0 ) {
-        soundEffect.play();
+        popSound.play
         background("red")
     }
     y = constrain(y, 0, width - 100);
