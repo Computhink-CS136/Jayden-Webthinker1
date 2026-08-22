@@ -16,5 +16,5 @@ function draw() {
         direction = "down";
     }
     if (keyIsDown(RIGHT_ARROW))
-        x
+        x  ==
 }
