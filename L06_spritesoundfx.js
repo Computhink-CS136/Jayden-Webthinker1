@@ -12,6 +12,8 @@ function draw() {
     if (keyIsDown(DOWN_ARROW)) {
         y += 2;
     }
-    if (keyIsDown(RIGHT_ARROW))
+    if (keyIsDown(RIGHT_ARROW)) {
+        
+    }
         x  += 2;
 }
