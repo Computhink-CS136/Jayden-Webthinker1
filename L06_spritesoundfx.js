@@ -46,7 +46,6 @@ function setup() {
 
 function draw() {
     background("lightblue")
-    image(staticImage, x, y, 100, 100);
     if (keyIsDown(UP_ARROW)) {
         y -= speed;
     }
@@ -65,6 +64,7 @@ function draw() {
     }
     y = constrain(y, 0, width - 100);
     x = constrain(x, 0, height - 100);
+    image(staticImage, x, y, 100, 100);
 }
 
 function keyPressed() {
