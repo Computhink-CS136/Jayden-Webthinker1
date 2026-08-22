@@ -51,7 +51,7 @@ function keyPressed() {
         soundEffect.play();
     }
 }
-function keyPressed() {
+function draw() {
     if (keyIsDown(UP_ARROW)) {
         y -= 2;
     }
