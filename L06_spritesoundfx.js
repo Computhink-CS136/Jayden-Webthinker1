@@ -30,4 +30,6 @@
 
 let soundEffect, bgMusic, staticImage;
 
-function preload
+function preload() {
+    soundEffect = 
+}
