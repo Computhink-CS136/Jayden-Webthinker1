@@ -15,6 +15,6 @@ function draw() {
         y += 2;
         direction = "down";
     }
-    if (keyIsDown())
-    y = constrain(y, 0, height);
+    if (keyIsDown(RIGHT_ARROW))
+        x
 }
