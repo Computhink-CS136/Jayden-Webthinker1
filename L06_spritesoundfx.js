@@ -28,4 +28,6 @@
 //     rect(x, y, 50, 50);
 // }
 
-let soundEffect, bgMusic, static
+let soundEffect, bgMusic, staticImage;
+
+function preload
