@@ -57,7 +57,7 @@ function draw() {
     ballx += ballSpeedx;
     bally += ballSpeedy;
     if (ballx <= 0 || ballx >= width) {
-        ballspeed2x
+        ballSpeedx *= -1;
     }
     noStroke();
     fill(67, 194, 50);
