@@ -27,6 +27,6 @@ function draw() {
         x  -= speed;
     }
     y = constrain(y, 0, width);
-    x = constrain(x, 0, height - 100);
+    x = constrain(x, 0, height);
     image(picoImage, x, y, 100, 100);
 }
