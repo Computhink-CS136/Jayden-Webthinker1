@@ -62,10 +62,9 @@ function draw() {
     }
     if (bally <= 0 || bally >= height) {
         ballSpeedY *= -1;
-    fill(random(255), random(255), random(255));
+        fill(random(255), random(255), random(255));
     }
     noStroke();
-    fill(random(255), random(255), random(255));
     circle(ballx, bally, ballsize);
 }
 
