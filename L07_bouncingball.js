@@ -56,7 +56,9 @@ function draw() {
     background(220);
     ballx += ballSpeedx;
     bally += ballSpeedy;
-    if (ballx)
+    if (ballx <= 0 || ballx >= width) {
+        ballspeed2x
+    }
     noStroke();
     fill(67, 194, 50);
     circle(ballx, bally, ballsize);
