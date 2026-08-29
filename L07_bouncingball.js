@@ -14,5 +14,17 @@ let x = 100;
 let y = 200;
 function draw() {
     background("gray");
+    if (keyIsDown(UP_ARROW)) {
+        y -= speed;
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+        y += speed;
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+        x  += speed;
+    }
+    if (keyIsDown(LEFT_ARROW)) {
+        x  -= speed;
+    }
     image(staticImage, x, y, 100, 100);
 }
