@@ -26,5 +26,5 @@ function draw() {
     if (keyIsDown(LEFT_ARROW)) {
         x  -= speed;
     }
-    image(staticImage, x, y, 100, 100);
+    image(picoImage, x, y, 100, 100);
 }
