@@ -55,12 +55,12 @@ function setup() {
 function draw() {
     background(220);
     ballx += ballSpeedx;
-    bally += ballSpeedy;
+    bally += ballSpeedY;
     if (ballx <= 0 || ballx >= width) {
         ballSpeedx *= -1;
     }
     if (bally <= 0 || bally >= height) {
-        ballSpeedy *= -1;
+        ballSpeedY *= -1;
     }
     noStroke();
     fill(67, 194, 50);
