@@ -2,6 +2,6 @@ let picoImage;
 let popSound;
 
 function preload() {
-    picoImage = loadImage("assets")
+    picoImage = loadImage("assets/pico-a")
     popSound = loadSound("")
 }
