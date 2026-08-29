@@ -50,10 +50,10 @@ let ballSpeedx = 30;
 let ballSpeedY = 30;
 function setup() {
     createCanvas(600, 400);
+    background(220);
 }
 
 function draw() {
-    background(220);
     ballx += ballSpeedx;
     bally += ballSpeedY;
     if (ballx <= 0 || ballx >= width) {
