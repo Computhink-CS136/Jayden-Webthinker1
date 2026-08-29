@@ -26,7 +26,7 @@ function draw() {
     if (keyIsDown(LEFT_ARROW)) {
         x  -= speed;
     }
-    y = constrain(y, 0, width);
-    x = constrain(x, 0, height);
+    y = constrain(y, 0, height);
+    x = constrain(x, 0, width);
     image(picoImage, x, y, 100, 100);
 }
