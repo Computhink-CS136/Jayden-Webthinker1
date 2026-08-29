@@ -26,5 +26,11 @@ function draw() {
     if (keyIsDown(LEFT_ARROW)) {
         x  -= speed;
     }
+    if (x === 400 - 100 || x === 0 || y === 400  - 100|| y === 0 ) {
+        soundEffect.play();
+        background("red")
+    }
+    y = constrain(y, 0, width - 100);
+    x = constrain(x, 0, height - 100);
     image(picoImage, x, y, 100, 100);
 }
