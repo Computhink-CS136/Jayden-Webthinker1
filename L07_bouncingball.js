@@ -46,7 +46,8 @@
 let ballx = 300;
 let bally = 200;
 let ballsize = 50;
-let ballSpeedx
+let ballSpeedx = 30;
+let ballSpeedY = 23
 function setup() {
     createCanvas(600, 400);
 }
@@ -54,7 +55,7 @@ function setup() {
 function draw() {
     background(220);
     noStroke();
-    fill(67, 194, 50)
-    circle(ballx, bally, ballsize)
+    fill(67, 194, 50);
+    circle(ballx, bally, ballsize);
 }
 
