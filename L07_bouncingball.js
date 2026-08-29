@@ -37,3 +37,9 @@ function keyPressed() {
         picoWidth = 50;
     }
 }
+
+function keyRelease() {
+    if (key === " ") {
+        picoWidth 
+    }
+}
