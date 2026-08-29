@@ -58,9 +58,11 @@ function draw() {
     bally += ballSpeedY;
     if (ballx <= 0 || ballx >= width) {
         ballSpeedx *= -1;
+        fill(random(255), random(255), random(255));
     }
     if (bally <= 0 || bally >= height) {
         ballSpeedY *= -1;
+    fill(random(255), random(255), random(255));
     }
     noStroke();
     fill(random(255), random(255), random(255));
