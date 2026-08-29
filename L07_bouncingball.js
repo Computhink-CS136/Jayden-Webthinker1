@@ -9,6 +9,7 @@ function preload() {
 function setup() {
     createCanvas(600, 400);
 }
+let picoWidth = 100;
 let speed = 5;
 let x = 100;
 let y = 200;
@@ -28,11 +29,11 @@ function draw() {
     }
     y = constrain(y, 0, height - 100);
     x = constrain(x, 0, width - 100);
-    image(picoImage, x, y, 100, 100);
+    image(picoImage, x, y, picoWidth, 100);
 }
 function keyPressed() {
     if (keyCode === 32) {
         popSound.play();
-        
+
     }
 }
