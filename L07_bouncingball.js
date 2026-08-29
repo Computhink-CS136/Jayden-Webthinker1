@@ -63,7 +63,7 @@ function draw() {
         ballSpeedY *= -1;
     }
     noStroke();
-    fill();
+    fill(random(255));
     circle(ballx, bally, ballsize);
 }
 
