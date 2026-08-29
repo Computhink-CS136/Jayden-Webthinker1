@@ -3,5 +3,5 @@ let popSound;
 
 function preload() {
     picoImage = loadImage("assets/pico-a.png")
-    popSound = loadSound("assets/pop.")
+    popSound = loadSound("assets/pop.mp3")
 }
