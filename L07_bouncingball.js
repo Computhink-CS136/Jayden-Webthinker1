@@ -43,8 +43,9 @@
 //         picoWidth = 100;
 //     }
 // }
-let ballx = 
-
+let ballx = 300;
+let bally = 200;
+let ballsize = 
 function setup() {
     createCanvas(600, 400);
 }
