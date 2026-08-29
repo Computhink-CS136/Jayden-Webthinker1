@@ -39,7 +39,7 @@ function keyPressed() {
 }
 
 function keyRelease() {
-    if (key === " ") {
-        picoWidth 
+    if (keyCode=== 32) {
+        picoWidth = 100;
     }
 }
