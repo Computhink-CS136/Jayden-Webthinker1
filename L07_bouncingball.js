@@ -52,6 +52,8 @@ function setup() {
 
 function draw() {
     background(220);
+    noStroke();
+    
     circle(ballx, bally, ballsize)
 }
 
