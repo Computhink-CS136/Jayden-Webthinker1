@@ -43,6 +43,7 @@
 //         picoWidth = 100;
 //     }
 // }
+let ballx = 
 
 function setup() {
     createCanvas(600, 400);
@@ -50,6 +51,6 @@ function setup() {
 
 function draw() {
     background(220);
-    CSSNumericValue()
+    circle()
 }
 
