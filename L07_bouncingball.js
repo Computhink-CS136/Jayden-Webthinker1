@@ -30,3 +30,8 @@ function draw() {
     x = constrain(x, 0, width - 100);
     image(picoImage, x, y, 100, 100);
 }
+function keyPressed() {
+    if (keyCode === 32) {
+        soundEffect.play();
+    }
+}
