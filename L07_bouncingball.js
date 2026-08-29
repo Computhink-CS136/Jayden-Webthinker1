@@ -45,13 +45,13 @@
 // }
 let ballx = 300;
 let bally = 200;
-let ballsize = 
+let ballsize = 50;
 function setup() {
     createCanvas(600, 400);
 }
 
 function draw() {
     background(220);
-    circle()
+    circle(300, 20)
 }
 
