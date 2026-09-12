@@ -43,24 +43,24 @@
 //     text("I like gaming", 50, 150);
 // }
 
-let favouritefood = ["Pizza", "Burger", "Sushi", "Tacos", "Pasta"];
+// let favouritefood = ["Pizza", "Burger", "Sushi", "Tacos", "Pasta"];
 
-function setup() {
-    createCanvas(400, 400);
-    textSize(24);
-    textAlign(LEFT, TOP);
-}
+// function setup() {
+//     createCanvas(400, 400);
+//     textSize(24);
+//     textAlign(LEFT, TOP);
+// }
 
-function draw() {
-    background(220);
+// function draw() {
+//     background(220);
 
-    fill(0);
-    text("My favorite foods:", 50, 50);
+//     fill(0);
+//     text("My favorite foods:", 50, 50);
     
-    for (let i = 0; i < favouritefood.length; i++) {
-        text((i + 1) + ". " + favouritefood[i], 50, 80 + i * 30);
-    }
-}
+//     for (let i = 0; i < favouritefood.length; i++) {
+//         text((i + 1) + ". " + favouritefood[i], 50, 80 + i * 30);
+//     }
+// }
 
 function setup() {
     createCanvas(400, 400);
