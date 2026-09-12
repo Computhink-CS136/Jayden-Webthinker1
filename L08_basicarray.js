@@ -61,3 +61,9 @@ function draw() {
         text((i + 1) + ". " + favouritefood[i], 50, 80 + i * 30);
     }
 }
+
+function setup() {
+    createCanvas(400, 400);
+    textSize(24);
+    textAlign(LEFT, TOP);
+}
