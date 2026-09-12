@@ -38,5 +38,5 @@ function setup() {
     background(220);
 
     textSize(40);
-    text("")
+    text("My name is Jayden", width)
 }
