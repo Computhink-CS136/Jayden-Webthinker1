@@ -21,5 +21,6 @@
 // }
 
 function setup() {
-    ctreateCanvas(6)
+    ctreateCanvas(600, 400);
+    background(220)
 }
