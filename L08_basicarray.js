@@ -21,7 +21,7 @@
 // }
 
 function setup() {
-    ctreateCanvas(600, 400);
+    createCanvas(600, 400);
     background(220);
 
     textSize(45);
@@ -30,5 +30,5 @@ function setup() {
 }
 
 function draw() {
-    
+
 }
