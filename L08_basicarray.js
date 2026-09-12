@@ -39,4 +39,5 @@ function setup() {
 
     textSize(40);
     text("My name is Jayden", 50, 50)
+    text("My name is Jayden", 50, 50)
 }
