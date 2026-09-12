@@ -7,7 +7,7 @@ function setup() {
 }
 
 function draw() {
-    background(220)
+    background(220);
 
     // if square x pos goes past right
     if (squareX > width - 100 || squareX < 0) {
@@ -16,6 +16,6 @@ function draw() {
 
     squareX += squareSpeed;
 
-    fill(255, 255, 0)
+    fill(255, 255, 0);
     rect(squareX. squareY, 100, 100);
 }
