@@ -25,7 +25,7 @@ function setup() {
     background(220);
 
     textSize(45);
-
+    textAlign(CEN)
     text("ibuprofen", width / 2, height / 2);
 }
 
