@@ -61,4 +61,5 @@ function draw() {
     for (let i = 0; i < favouritefood.length; i++) {
         text((i + 1) + ". " + favouritefood[i], width / 2, yPos + i * 50);
     }
+    yPos -= 1
 }
