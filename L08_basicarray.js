@@ -43,4 +43,4 @@
 //     text("I like gaming", 50, 150);
 // }
 
-let favouritefood = ["Pizza", "Burger", "Sushi", "Tacos"]
+let favouritefood = ["Pizza", "Burger", "Sushi", "Tacos", "Pasta"];
