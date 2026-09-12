@@ -55,5 +55,5 @@ function draw() {
     background(220);
 
     fill(0);
-    
+    text("My favourite")
 }
