@@ -23,5 +23,5 @@
 function setup() {
     ctreateCanvas(600, 400);
     background(220);
-    
+        textSize(45)
 }
