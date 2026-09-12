@@ -17,5 +17,5 @@ function draw() {
     squareX += squareSpeed;
 
     fill(255, 255, 0);
-    rect(squareX. squareY, 100, 100);
+    rect(squareX, squareY, 100, 100);
 }
