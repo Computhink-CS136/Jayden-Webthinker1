@@ -20,15 +20,19 @@
 //     rect(squareX, squareY, 100, 100);
 // }
 
+// function setup() {
+//     createCanvas(600, 400);
+//     background(220);
+
+//     textSize(45);
+//     textAlign(CENTER, CENTER);
+//     text("ibuprofen", width / 2, height / 2);
+// }
+
+// function draw() {
+
+// }
+
 function setup() {
-    createCanvas(600, 400);
-    background(220);
-
-    textSize(45);
-    textAlign(CENTER, CENTER);
-    text("ibuprofen", width / 2, height / 2);
-}
-
-function draw() {
-
+    
 }
