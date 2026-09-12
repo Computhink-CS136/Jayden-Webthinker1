@@ -26,5 +26,5 @@ function setup() {
 
     textSize(45);
 
-    text("ibuprofen", width)
+    text("ibuprofen", width / 2, height / 2);
 }
