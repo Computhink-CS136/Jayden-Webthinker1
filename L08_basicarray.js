@@ -64,7 +64,11 @@ function draw() {
 
 function setup() {
     createCanvas(400, 400);
-    fill()
+    fill(255, 255, 0)
     textSize(24);
     textAlign(CENTER, CENTER);
+}
+
+function draw() {
+    
 }
