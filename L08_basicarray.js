@@ -33,12 +33,12 @@
 
 // }
 
-function setup() {
-    createCanvas(600, 400);
-    background(220);
+// function setup() {
+//     createCanvas(600, 400);
+//     background(220);
 
-    textSize(40);
-    text("My name is Jayden", 50, 50);
-    text("I am 13 this year", 50, 100);
-    text("I like gaming", 50, 150);
-}
+//     textSize(40);
+//     text("My name is Jayden", 50, 50);
+//     text("I am 13 this year", 50, 100);
+//     text("I like gaming", 50, 150);
+// }
