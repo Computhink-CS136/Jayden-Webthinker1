@@ -34,5 +34,5 @@
 // }
 
 function setup() {
-    tde
+    createCanvas()
 }
