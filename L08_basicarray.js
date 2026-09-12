@@ -38,6 +38,7 @@ function setup() {
     background(220);
 
     textSize(40);
-    text("My name is Jayden", 50, 50)
-    text("My name is Jayden", 50, 50)
+    text("My name is Jayden", 50, 50);
+    text("I am 13 this year", 50, 50);
+    
 }
