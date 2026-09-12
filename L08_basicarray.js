@@ -1,21 +1,25 @@
-let squareX = 300;
-let squareY = 200;
-let squareSpeed = 5;
+// let squareX = 300;
+// let squareY = 200;
+// let squareSpeed = 5;
+// function setup() {
+//     createCanvas(600, 400);
+//     background(220);
+// }
+
+// function draw() {
+//     background(220);
+
+//     // if square x pos goes past right
+//     if (squareX > width - 100 || squareX < 0) {
+//         squareSpeed *= -1;
+//     }
+
+//     squareX += squareSpeed;
+
+//     fill(255, 255, 0);
+//     rect(squareX, squareY, 100, 100);
+// }
+
 function setup() {
-    createCanvas(600, 400);
-    background(220);
-}
-
-function draw() {
-    background(220);
-
-    // if square x pos goes past right
-    if (squareX > width - 100 || squareX < 0) {
-        squareSpeed *= -1;
-    }
-
-    squareX += squareSpeed;
-
-    fill(255, 255, 0);
-    rect(squareX, squareY, 100, 100);
+    ctreateCanvas(6)
 }
