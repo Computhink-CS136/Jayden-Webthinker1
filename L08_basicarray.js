@@ -25,5 +25,6 @@ function setup() {
     background(220);
 
     textSize(45);
-    
+
+    text("")
 }
