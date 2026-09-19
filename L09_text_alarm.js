@@ -13,7 +13,7 @@ function draw() {
     background(0)
     hr = hour();
     min = minute();
-    sec = sec();
+    sec = second();
 
     text(hour, width / 2, height / 2);
     text(minute, width / 2, height / 2 + 50);
