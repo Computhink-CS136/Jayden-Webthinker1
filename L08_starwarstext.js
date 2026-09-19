@@ -10,7 +10,8 @@ let storyText = [
     "Rebel spaceships, striking",
     "from a hidden base, have",
     "won their first victory",
-    ""
+    "against the evil Galactic",
+    "Empire",
 ]
 function setup() {
     createCanvas(600, 400);
