@@ -7,11 +7,11 @@ function setup() {
     fill("rgb(255, 255, 0)")
 
     yPos = height;
-    
 }
 
 function draw() {
     background(0);
 
     text("asd",  width / 2, yPos);
+    
 }
