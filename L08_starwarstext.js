@@ -6,7 +6,7 @@ let storyText = [
     "EPISODE I",
     "THE BEGINNING",
     "",
-    "It "
+    "It is a period of civil war."
 ]
 function setup() {
     createCanvas(600, 400);
