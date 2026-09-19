@@ -5,7 +5,7 @@ let sec;
 function setup() {
     createCanvas(600, 400);
     textAlign(CENTER, CENTER);
-    TextSize(40);
+    textSize(40);
     fill("rgb(20, 70, 190)");
 }
 
