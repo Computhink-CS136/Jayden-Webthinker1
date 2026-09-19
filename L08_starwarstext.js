@@ -17,7 +17,7 @@ let storyText = [
 let bgMusic;
 
 function preload() {
-    bgMusic = loadSound("");
+    bgMusic = loadSound("02. String Theoracy.mp3");
 }
 function setup() {
     createCanvas(600, 400);
