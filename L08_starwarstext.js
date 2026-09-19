@@ -25,7 +25,7 @@ function setup() {
 function draw() {
     background(0);
         for (let i = 0; i < storyText; i++) {
-
+            
     }
     yPos -= 1;
 }
