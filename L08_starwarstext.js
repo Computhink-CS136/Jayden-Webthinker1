@@ -12,5 +12,5 @@ function setup() {
 function draw() {
     background(0);
 
-    text("asd",  width / 2, 200);
+    text("asd",  width / 2, yPos);
 }
