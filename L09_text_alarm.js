@@ -8,3 +8,7 @@ function setup() {
     TextSize(40);
     fill("rgb(20, 70, 190)");
 }
+
+function draw() {
+    
+}
