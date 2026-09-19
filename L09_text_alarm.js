@@ -10,6 +10,6 @@ function setup() {
 }
 
 function draw() {
-    hr = hr()
-    
+    hr = hr();
+    min = min
 }
