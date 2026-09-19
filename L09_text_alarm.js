@@ -10,5 +10,6 @@ function setup() {
 }
 
 function draw() {
+    hr = hr()
     
 }
