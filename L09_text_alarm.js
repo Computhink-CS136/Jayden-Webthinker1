@@ -10,6 +10,7 @@ function setup() {
 }
 
 function draw() {
+    background(0)
     hr = hr();
     min = min();
     sec = sec();
