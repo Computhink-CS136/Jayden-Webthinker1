@@ -25,7 +25,7 @@ function setup() {
 function draw() {
     background(0);
     for (let i = 0; i < storyText.length; i++) {
-        text(storyText[i], width / 2, yPos + i * 30);
+        text(storyText[i], width / 4, yPos + i * 30);
     }
     yPos -= 1;
 }
