@@ -11,5 +11,8 @@ function setup() {
 
 function draw() {
     hr = hr();
-    min = min
+    min = min();
+    sec = sec();
+
+    text(hour)
 }
