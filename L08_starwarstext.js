@@ -12,6 +12,6 @@ function setup() {
 function draw() {
     background(0);
 
-    text("we",  width / 2, yPos);
+    text("sdd",  width / 2, yPos);
     yPos -= 1;
 }
