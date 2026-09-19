@@ -4,7 +4,8 @@ let storyText = [
     "far away...",
     "",
     "EPISODE I",
-    "THE BEGINNING"
+    "THE BEGINNING",
+    ""
 ]
 function setup() {
     createCanvas(600, 400);
