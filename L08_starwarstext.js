@@ -1,5 +1,6 @@
 function setup() {
     createCanvas(600, 400);
     textAlign(LEFT, CENTER);
-    textSize
+    textSize(24);
+    fill("")
 }
