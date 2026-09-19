@@ -15,6 +15,6 @@ function draw() {
     sec = sec();
 
     text(hour, width / 2, height / 2);
-    text(minute, width / 2, height / 2);
-    text(sec, width / 2, height / 2);
+    text(minute, width / 2, height / 2 + 50);
+    text(sec, width / 2, height / 2 + 100);
 }
