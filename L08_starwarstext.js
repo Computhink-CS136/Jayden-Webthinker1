@@ -7,4 +7,6 @@ function setup() {
 
 function draw() {
     background(0);
+
+    text("asd")
 }
