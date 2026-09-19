@@ -3,5 +3,6 @@ let min;
 let sec;
 
 function setup() {
-    create
+    createCanvas(600, 400);
+    
 }
