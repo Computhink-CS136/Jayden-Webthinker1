@@ -17,7 +17,7 @@ let storyText = [
 let bgMusic;
 
 function preload() {
-    
+    bgMusic = loadSound("assets/star")
 }
 function setup() {
     createCanvas(600, 400);
