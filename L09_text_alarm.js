@@ -20,8 +20,7 @@
 //     text(timeString, width / 2, height / 2);
 // }
 
-let intervalId;
-let countdown = 5;
+// let intervalId;
 // let x = 0;
 
 // function setup() {
@@ -45,11 +44,13 @@ let countdown = 5;
 //     clearInterval(intervalId);
 // }
 
+let intervalId;
+let countdown = 5;
 function setup() {
     createCanvas(600, 400);
     intervalId = setInterval(countdown, 1000);
 }
 
 function updateCountdown() {
-    
+
 }
