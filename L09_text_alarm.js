@@ -22,7 +22,7 @@
 
 let intervalId;
 
-let x;
+let x = 0;
 
 function setup() {
     createCanvas(600, 400);
