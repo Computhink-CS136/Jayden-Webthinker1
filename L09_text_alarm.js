@@ -26,7 +26,7 @@ let x = 0;
 
 function setup() {
     createCanvas(600, 400);
-    intervalId = setInterval(drawCircle, 1000);
+    intervalId = setInterval(drawCircle, 10);
 }
 
 function draw() {
