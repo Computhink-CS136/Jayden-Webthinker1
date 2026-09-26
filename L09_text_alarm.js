@@ -21,7 +21,7 @@
 // }
 
 let intervalId;
-
+let countdown = 5;
 // let x = 0;
 
 // function setup() {
@@ -44,3 +44,4 @@ let intervalId;
 // function mousePressed() {
 //     clearInterval(intervalId);
 // }
+
