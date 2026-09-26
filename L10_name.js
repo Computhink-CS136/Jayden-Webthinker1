@@ -1,2 +1,2 @@
 let inputText;
-let display
+let displayText = "Input your name"
