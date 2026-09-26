@@ -55,6 +55,7 @@ function setup() {
 }
 function draw() {
     background(150);
+    text(countdown)
 }
 function mousePressed() {
 
