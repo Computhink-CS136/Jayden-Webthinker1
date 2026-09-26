@@ -52,7 +52,7 @@ function setup() {
 }
 function draw() {
     background(150);
-        textAlign(CENTER, CENTER);
+    textAlign(CENTER, CENTER);
     textSize(40);
     fill("rgb(20, 70, 190)");
 }
