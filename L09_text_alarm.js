@@ -26,6 +26,7 @@ let x;
 
 function setup() {
     createCanvas(600, 400);
+    intervalId
 }
 
 function draw() {
