@@ -53,6 +53,9 @@ function setup() {
 function draw() {
     background(150);
 }
+function mousePressed() {
+    
+}
 function updateCountdown() {
 
 }
