@@ -48,13 +48,13 @@ let intervalId;
 let countdown = 5;
 function setup() {
     createCanvas(600, 400);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    fill("rgb(20, 70, 190)");
     intervalId = setInterval(countdown, 1000);
 }
 function draw() {
     background(150);
-    textAlign(CENTER, CENTER);
-    textSize(40);
-    fill("rgb(20, 70, 190)");
 }
 function mousePressed() {
 
