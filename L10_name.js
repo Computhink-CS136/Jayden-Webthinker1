@@ -1,6 +1,6 @@
 let inputText;
 let displayText = "Input your name";
-
+let inputX
 function setup() {
     createCanvas(600, 400);
     inputText = createInput();
