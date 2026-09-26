@@ -51,7 +51,7 @@ function setup() {
     intervalId = setInterval(countdown, 1000);
 }
 function draw() {
-    
+    background(0);
 }
 function updateCountdown() {
 
