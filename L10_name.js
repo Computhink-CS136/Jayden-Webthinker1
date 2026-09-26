@@ -9,4 +9,6 @@ function setup() {
     inputText.input(displayText);
 }
 
-function draw() {}
+function draw() {
+    background(0);
+}
