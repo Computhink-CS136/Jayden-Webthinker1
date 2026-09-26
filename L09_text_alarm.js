@@ -58,7 +58,9 @@ function draw() {
     text(countdown, width / 2, height / 2);
 }
 function mousePressed() {
-    if (countdownStart === false) 
+    if (countdownStart === false) {
+            intervalId = setInterval(updateCountdown, 1000);
+    }
     intervalId = setInterval(updateCountdown, 1000);
 }
 function updateCountdown() {
