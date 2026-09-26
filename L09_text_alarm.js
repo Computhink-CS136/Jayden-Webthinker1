@@ -49,3 +49,7 @@ function setup() {
     createCanvas(600, 400);
     intervalId = setInterval(countdown, 1000);
 }
+
+function updateCountdown() {
+    
+}
