@@ -34,4 +34,5 @@ function draw() {
 
 function drawCircle() {
     clear();
+    circle()
 }
