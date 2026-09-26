@@ -67,7 +67,7 @@ function mousePressed() {
 function updateCountdown() {
     countdown--;
     console.log(countdown);
-    if (countdown <= 0); {
+    if (countdown <= 0) {
         countdown = 0;
         clearInterval(intervalId);
         countdownStart = false;
