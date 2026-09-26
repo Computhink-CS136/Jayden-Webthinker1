@@ -62,5 +62,7 @@ function mousePressed() {
 }
 function updateCountdown() {
     countdown -- ;
-    if (countdown <= 0);
+    if (countdown <= 0); {
+        countdown = 0;
+    }
 }
