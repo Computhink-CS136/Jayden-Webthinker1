@@ -46,6 +46,7 @@
 
 let intervalId;
 let countdown = 5;
+let countdownStart = false;
 function setup() {
     createCanvas(600, 400);
     textAlign(CENTER, CENTER);
