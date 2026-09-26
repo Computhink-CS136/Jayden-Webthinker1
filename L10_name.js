@@ -4,7 +4,7 @@ let displayText = "Input your name";
 function setup() {
     createCanvas(600, 400);
     inputText = createInput();
-    let inputX = this.
+    let inputX = this.canvas.offsetLeft + width
     inputText.position(width / 2, height / 2);
 
     inputText.input(updateText);
