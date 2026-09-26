@@ -1,13 +1,13 @@
 let inputText;
 let displayText = "Input your name";
-let inputX;
-let inputY;
+let InputX;
+let InputY;
 function setup() {
     createCanvas(600, 400);
     inputText = createInput();
     let inputX = this.canvas.offsetLeft + (width / 2) - 80;
     let inputY = this.canvas.offsetTop + (height / 2) - 10;
-    inputText.position(inputX, InputY);
+    inputText.position(inputX, inputY);
 
     inputText.input(updateText);
 }
