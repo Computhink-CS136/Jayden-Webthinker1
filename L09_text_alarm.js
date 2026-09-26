@@ -26,9 +26,6 @@ let x = 0;
 
 function setup() {
     createCanvas(600, 400);
-    textAlign(CENTER, CENTER);
-    textSize(40);
-    fill("rgb(20, 70, 190)");
     intervalId = setInterval(drawCircle, 10);
 }
 
