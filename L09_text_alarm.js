@@ -21,26 +21,26 @@
 // }
 
 let intervalId;
-let 
+
 // let x = 0;
 
-function setup() {
-    createCanvas(600, 400);
-    intervalId = setInterval(e, 10);
-}
+// function setup() {
+//     createCanvas(600, 400);
+//     intervalId = setInterval(drawCircle, 10);
+// }
 
-function draw() {
-    // background(0);
-}
+// function draw() {
+//     // background(0);
+// }
 
-function drawCircle() {
-    clear();
-    circle(x, 50, 20);
-    x += 10;
-    if (x > 200) {
-        x = 0;
-    }
-}
-function mousePressed() {
-    clearInterval(intervalId);
-}
+// function drawCircle() {
+//     clear();
+//     circle(x, 50, 20);
+//     x += 10;
+//     if (x > 200) {
+//         x = 0;
+//     }
+// }
+// function mousePressed() {
+//     clearInterval(intervalId);
+// }
