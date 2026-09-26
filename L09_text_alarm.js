@@ -68,5 +68,6 @@ function updateCountdown() {
     if (countdown <= 0); {
         countdown = 0;
         clearInterval(intervalId);
+        countdownStart = false;
     }
 }
