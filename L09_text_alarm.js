@@ -60,5 +60,5 @@ function mousePressed() {
 
 }
 function updateCountdown() {
-
+    countdown -= 1;
 }
