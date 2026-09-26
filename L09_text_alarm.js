@@ -32,4 +32,6 @@ function draw() {
     background(0);
 }
 
-functio
+function drawCircle() {
+    
+}
