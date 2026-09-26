@@ -5,9 +5,9 @@
 
 // function setup() {
 //     createCanvas(600, 400);
-//     textAlign(CENTER, CENTER);
-//     textSize(40);
-//     fill("rgb(20, 70, 190)");
+    // textAlign(CENTER, CENTER);
+    // textSize(40);
+    // fill("rgb(20, 70, 190)");
 // }
 
 // function draw() {
@@ -54,7 +54,7 @@ function draw() {
     background(150);
 }
 function mousePressed() {
-    
+
 }
 function updateCountdown() {
 
