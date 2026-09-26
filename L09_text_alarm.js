@@ -23,3 +23,7 @@
 let intervalId;
 
 let x;
+
+function setup() {
+    
+}
