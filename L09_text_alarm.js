@@ -47,5 +47,5 @@ let countdown = 5;
 
 function setup() {
     createCanvas(600, 400);
-    intervalId = setInterval(drawCircle, 10);
+    intervalId = setInterval(countdown, 1000);
 }
