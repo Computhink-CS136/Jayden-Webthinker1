@@ -51,7 +51,6 @@ function setup() {
     textAlign(CENTER, CENTER);
     textSize(40);
     fill("rgb(20, 70, 190)");
-    intervalId = setInterval(updateCountdown, 1000);
 }
 function draw() {
     background(150);
