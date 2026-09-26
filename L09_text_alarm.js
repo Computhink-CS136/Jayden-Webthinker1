@@ -45,3 +45,7 @@ let countdown = 5;
 //     clearInterval(intervalId);
 // }
 
+function setup() {
+    createCanvas(600, 400);
+    intervalId = setInterval(drawCircle, 10);
+}
