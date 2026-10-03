@@ -25,7 +25,7 @@ function setup() {
     adverbField.position(width / 2 + offsetX, height * 0.2 + offsetY + 150);
     placeField.position(width / 2 + offsetX, height * 0.2 + offsetY + 200);
     
-    text()
+    text("Enter a noun:")
 }
 
 function draw() {
