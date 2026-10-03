@@ -45,5 +45,6 @@ function buttonExample() {
 }
 
 function generateStory() {
-    let noun = nounField
+    let noun = nounField.value()
+    
 }
