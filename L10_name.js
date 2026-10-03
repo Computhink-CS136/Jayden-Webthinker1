@@ -11,7 +11,8 @@ function setup() {
     inputText.position(InputX, InputY);
 
     inputText.input(updateText);
-    colourPicker = createColorPicker
+    colourPicker = createColorPicker();
+    let colour
 }
 
 function draw() {
