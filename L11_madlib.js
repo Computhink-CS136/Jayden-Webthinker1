@@ -20,5 +20,9 @@ function setup() {
     let offsetY = this.canvas.offsetTop;
 
     nounField.position(width / 2 + offsetX, height / 2 + offsetY);
+    verbField.position(width / 2 + offsetX, height / 2 + offsetY);
+    nounField.position(width / 2 + offsetX, height / 2 + offsetY);
+    nounField.position(width / 2 + offsetX, height / 2 + offsetY);
+    nounField.position(width / 2 + offsetX, height / 2 + offsetY);
     
 }
