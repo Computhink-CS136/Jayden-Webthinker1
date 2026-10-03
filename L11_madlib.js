@@ -49,5 +49,5 @@ function generateStory() {
     let verb = nounField.value()
     let adjective = nounField.value()
     let adverb = nounField.value()
-    let noun = nounField.value()
+    let place = nounField.value()
 }
