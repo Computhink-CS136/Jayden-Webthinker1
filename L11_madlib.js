@@ -55,5 +55,5 @@ function generateStory() {
     console.log(adverb);
     console.log(place);
 
-    let story = "A ${noun}"
+    let story = "A ${noun} is ${verb"
 }
