@@ -18,4 +18,6 @@ function setup() {
 
     let offsetX = this.canvas.offsetLeft;
     let offsetY = this.canvas.offsetTop;
+
+    nounField.position()
 }
