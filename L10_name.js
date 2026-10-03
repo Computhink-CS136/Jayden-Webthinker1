@@ -1,6 +1,8 @@
 let inputText;
 let displayText = "Input your name";
-let colourPicker
+let colourPicker;
+let colourX;
+let colourY;
 let InputX;
 let InputY;
 function setup() {
@@ -12,7 +14,7 @@ function setup() {
 
     inputText.input(updateText);
     colourPicker = createColorPicker();
-    let colour
+    let colourX
 }
 
 function draw() {
