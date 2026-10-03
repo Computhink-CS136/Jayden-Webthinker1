@@ -1,5 +1,6 @@
 let inputText;
 let displayText = "Input your name";
+let colourPicker
 let InputX;
 let InputY;
 function setup() {
