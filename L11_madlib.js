@@ -12,5 +12,6 @@ function setup() {
 
     nounField = createInput();
     verbField = createInput();
-    adjectiveField = createInput()
+    adjectiveField = createInput();
+    adverbField
 }
