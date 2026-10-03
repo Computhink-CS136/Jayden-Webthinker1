@@ -9,5 +9,5 @@ function setup() {
     inputText = createInput();
     textSize(40);
     textAlign(CENTER, CENTER);
-    
+    nounField = createInput();
 }
