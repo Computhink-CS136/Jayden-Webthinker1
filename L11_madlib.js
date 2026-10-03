@@ -47,7 +47,7 @@ function buttonExample() {
 function generateStory() {
     let noun = nounField.value()
     let verb = nounField.value()
-    let noun = nounField.value()
-    let noun = nounField.value()
+    let adjective = nounField.value()
+    let adverb = nounField.value()
     let noun = nounField.value()
 }
