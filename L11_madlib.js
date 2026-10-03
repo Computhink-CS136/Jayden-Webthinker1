@@ -44,4 +44,6 @@ function buttonExample() {
     console.log("Button Clicked");
 }
 
-functio
+function generateStory() {
+    
+}
