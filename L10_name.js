@@ -9,7 +9,7 @@ function setup() {
     createCanvas(600, 400);
     inputText = createInput();
     textSize(40);
-    textAlign(CENTER, CENTER)
+    textAlign(CENTER, CENTER);
     let InputX = this.canvas.offsetLeft + (width / 2) - 80;
     let InputY = this.canvas.offsetTop + (height / 2) - 10;
     inputText.position(InputX, InputY);
