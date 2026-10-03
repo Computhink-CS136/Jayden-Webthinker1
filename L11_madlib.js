@@ -51,7 +51,7 @@ function generateStory() {
     let place = nounField.value()
     console.log(noun);
     console.log(verb);
-    console.log(noun);
-    console.log(noun);
+    console.log(adjective);
+    console.log(adverb);
     console.log(noun);
 }
