@@ -16,5 +16,5 @@ function setup() {
     adverbField = createInput();
     placeField = createInput();
 
-    let offset
+    let offsetX = this.canvas
 }
