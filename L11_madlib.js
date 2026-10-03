@@ -28,8 +28,8 @@ function setup() {
     text("Enter a noun:", 400, height * 0.2 + offsetY);
     text("Enter a verb:", 400, height * 0.2 + offsetY);
     text("Enter a adjective:", 400, height * 0.2 + offsetY);
-    text("Enter a noun:", 400, height * 0.2 + offsetY);
-    text("Enter a noun:", 400, height * 0.2 + offsetY);
+    text("Enter a adverb:", 400, height * 0.2 + offsetY);
+    text("Enter a place:", 400, height * 0.2 + offsetY);
 }
 
 function draw() {
