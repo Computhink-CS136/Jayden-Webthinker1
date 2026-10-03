@@ -26,8 +26,8 @@ function setup() {
     placeField.position(width / 2 + offsetX, height * 0.2 + offsetY + 200);
     
     text("Enter a noun:", 400, height * 0.2 + offsetY);
-    text("Enter a verb:", 400, height * 0.2 + offsetY);
-    text("Enter a adjective:", 400, height * 0.2 + offsetY);
+    text("Enter a verb:", 400, height * 0.2 + offsetY + 50);
+    text("Enter a adjective:", 400, height * 0.2 + offsetY + 100);
     text("Enter a adverb:", 400, height * 0.2 + offsetY);
     text("Enter a place:", 400, height * 0.2 + offsetY);
 }
