@@ -19,7 +19,7 @@ function setup() {
     let offsetX = this.canvas.offsetLeft;
     let offsetY = this.canvas.offsetTop;
 
-    nounField.position(width / 2 + offsetX, height / 2 + offsetY);
+    nounField.position(width / 2 + offsetX, height * 0.2 + offsetY);
     verbField.position(width / 2 + offsetX, height / 2 + offsetY + 50);
     adjectiveField.position(width / 2 + offsetX, height / 2 + offsetY + 100);
     adverbField.position(width / 2 + offsetX, height / 2 + offsetY + 150);
