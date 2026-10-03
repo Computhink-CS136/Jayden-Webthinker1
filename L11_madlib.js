@@ -40,5 +40,5 @@ function draw() {
 }
 
 function buttonExample() {
-    console.log()
+    console.log("Button Clicked");
 }
