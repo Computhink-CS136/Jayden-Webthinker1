@@ -1,5 +1,5 @@
 
-let offsetX
+let offsetX;
 function setup() {
     createCanvas(600, 400);
     submitButton = createButton("example");
