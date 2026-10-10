@@ -1,6 +1,7 @@
 let placeField;
 let submitButton;
 let wordArray = ["Sugar", "Poop", "Piss", "Toilet "]
+let randomword;
 
 function setup() {
     createCanvas(600, 400);
