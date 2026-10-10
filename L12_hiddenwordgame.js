@@ -10,7 +10,7 @@ function setup() {
     textField = createInput();
     textField.position(width / 2 + offsetX - 80, height / 2 + offsetY);
     textField.size(150, 30);
-    textField.style("background-color", );
+    textField.style("background-color", "lightblue");
     textField.style("font-size", "20px");
     textField.style("border", "1px solid black");
     textField.style("color", "green");
