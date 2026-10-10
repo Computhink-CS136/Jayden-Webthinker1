@@ -18,7 +18,7 @@ function draw() {
 }
 
 function submitGuess() {
-    background(100)
+    background(100);
     let inputText = textField.value();
     fill(0);
     textSize(28);
