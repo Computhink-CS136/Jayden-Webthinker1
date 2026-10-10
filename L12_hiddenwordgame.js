@@ -11,7 +11,7 @@ function setup() {
     textField.position(width / 2 + offsetX - 80, height / 2 + offsetY);
     textField.size(150, 30);
     textField.style();
-    textField.style("font")
+    textField.style("font-size", "20px");
     submitButton = createButton("geuss");
     submitButton.position(width / 2 + offsetX + 100, height / 2 + offsetY);
     submitButton.mousePressed(submitGuess);
