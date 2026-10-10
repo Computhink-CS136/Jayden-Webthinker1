@@ -6,7 +6,8 @@ function setup() {
     background(100);
     textField = createInput();
     textField.position();
-    
+    let offsetX = this.canvas.offsetLeft;
+    let offsetY = this.canvas.offsetTop;
     submitButton = createButton("example");
 }
 
