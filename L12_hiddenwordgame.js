@@ -1,6 +1,6 @@
 let placeField;
 let submitButton;
-let wordArray = ["Sugar", "Poop", "Piss", "Toilet "]
+let wordArray = ["Sugar", "Poop", "Piss", "Toilet, Supercalifragilisticexpialidocious"]
 let randomword;
 let displayHint;
 
