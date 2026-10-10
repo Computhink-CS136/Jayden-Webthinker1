@@ -10,7 +10,7 @@ function setup() {
     textField = createInput();
     textField.position(width / 2 + offsetX - 80, height / 2 + offsetY);
     textField.size(150, 30);
-    te
+    textField.style();
     submitButton = createButton("geuss");
     submitButton.position(width / 2 + offsetX + 100, height / 2 + offsetY);
     submitButton.mousePressed(submitGuess);
