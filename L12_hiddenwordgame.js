@@ -2,6 +2,7 @@ let placeField;
 let submitButton;
 let wordArray = ["Sugar", "Poop", "Piss", "Toilet "]
 let randomword;
+let displayHint;
 
 function setup() {
     createCanvas(600, 400);
