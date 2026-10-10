@@ -23,6 +23,7 @@ function setup() {
     submitButton.mousePressed(submitGuess);
     randomWord = random(wordArray);
     displayHint = randomWord[0].toUpperCase() + " " + " _".repeat(randomWord.length - 1);
+    textAlign
     textSize(28)
     text("hint: " + displayHint, width / 2, height * 0.4);
 }
