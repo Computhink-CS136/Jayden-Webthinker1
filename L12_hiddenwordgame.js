@@ -5,6 +5,7 @@ function setup() {
     createCanvas(600, 400);
     background(100);
     textField = createInput();
+    textField
     submitButton = createButton("example");
 }
 
