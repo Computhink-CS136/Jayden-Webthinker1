@@ -43,7 +43,7 @@ function submitGuess() {
 
 function correctGuess(geuss, Word) {
     let correctLetters = "";
-    for (i = 0; i < Word.length; i++) {
+    for (let i = 0; i < Word.length; i++) {
         if (Word.includes(guess[i]) && !correctLetters.includes(guess[i])){
             correctLetters += guess[i];
         }
