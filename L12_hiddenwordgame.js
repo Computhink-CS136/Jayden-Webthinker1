@@ -22,7 +22,7 @@ function setup() {
     submitButton.position(width / 2 + offsetX + 100, height / 2 + offsetY);
     submitButton.mousePressed(submitGuess);
     randomWord = random(wordArray);
-    randomWord = 
+    randomWord = random(wordArray)
     displayHint = randomWord[0].toUpperCase() + " " + "_".repeat(randomword);
 }
 
