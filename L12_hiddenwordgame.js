@@ -1,5 +1,6 @@
 let placeField;
 let submitButton;
+let wordArray = [""]
 
 function setup() {
     createCanvas(600, 400);
