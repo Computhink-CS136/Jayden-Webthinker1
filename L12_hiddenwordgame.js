@@ -39,8 +39,10 @@ function submitGuess() {
     text("hint: " + displayHint, width / 2, height * 0.4);
 }
 
-function correctGuess(geuss, word) {
-    for (i = 0; i < word.length; i++) {
-        
+function correctGuess(geuss, randomWord) {
+    for (i = 0; i < randomWord.length; i++) {
+        if (randomWord.includes(guess[i])) {
+            
+        }
     }
 }
