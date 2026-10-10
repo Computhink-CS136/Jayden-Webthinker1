@@ -40,10 +40,10 @@ function submitGuess() {
     let letters = correctGuess(inputText. randomWord);
 }
 
-function correctGuess(geuss, randomWord) {
+function correctGuess(geuss, Word) {
     let correctLetters = "";
-    for (i = 0; i < randomWord.length; i++) {
-        if (randomWord.includes(guess[i]) && !correctLetters.includes(guess[i])){
+    for (i = 0; i < Word.length; i++) {
+        if (Word.includes(guess[i]) && !correctLetters.includes(guess[i])){
             correctLetters += guess[i];
         }
     }
