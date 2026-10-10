@@ -12,7 +12,7 @@ function setup() {
     textField.size(150, 30);
     textField.style();
     textField.style("font-size", "20px");
-    textField.style()
+    textField.style("border", )
     submitButton = createButton("geuss");
     submitButton.position(width / 2 + offsetX + 100, height / 2 + offsetY);
     submitButton.mousePressed(submitGuess);
