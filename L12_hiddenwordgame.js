@@ -1,7 +1,7 @@
 function setup() {
     createCanvas(600, 400);
     background(0);
-    submitButton = createButton("Generate Story");
+    submitButton = createButton("example");
 }
 
 function draw() {
