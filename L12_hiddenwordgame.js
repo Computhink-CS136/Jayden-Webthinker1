@@ -18,5 +18,5 @@ function draw() {
 }
 
 function submitGuess() {
-
+    let
 }
