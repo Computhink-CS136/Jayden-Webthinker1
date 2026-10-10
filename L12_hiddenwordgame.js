@@ -37,8 +37,9 @@ function submitGuess() {
     fill(0);
     textSize(28);
     text(inputText, width / 2, height / 1.5);
-    console.log(letters);
+
     let letters = correctGuess(inputText. randomWord);
+console.log(letters);
 }
 
 function correctGuess(geuss, Word) {
