@@ -11,7 +11,7 @@ function setup() {
     textField.position(width / 2 + offsetX - 80, height / 2 + offsetY);
     submitButton = createButton("geuss");
     submitButton.position(width / 2 + offsetX + 100, height / 2 + offsetY);
-    submitButton.mousePressed();
+    submitButton.mousePressed(submitGuess);
 }
 
 function draw() {
