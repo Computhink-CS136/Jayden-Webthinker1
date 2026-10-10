@@ -36,7 +36,8 @@ function submitGuess() {
     let inputText = textField.value();
     fill(0);
     textSize(28);
-    text("hint: " + displayHint, width / 2, height * 0.4);
+    text("hint: " + displayHint, width / 2, height / 1.5);
+    l
 }
 
 function correctGuess(geuss, randomWord) {
