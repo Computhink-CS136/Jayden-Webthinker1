@@ -1,4 +1,3 @@
-
 let placeField;
 let submitButton;
 
