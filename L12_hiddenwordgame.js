@@ -40,9 +40,10 @@ function submitGuess() {
 }
 
 function correctGuess(geuss, randomWord) {
+    let correct
     for (i = 0; i < randomWord.length; i++) {
         if (randomWord.includes(guess[i])) {
-            
+
         }
     }
 }
