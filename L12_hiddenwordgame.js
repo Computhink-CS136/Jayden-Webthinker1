@@ -9,7 +9,7 @@ function setup() {
     let offsetX = this.canvas.offsetLeft;
     let offsetY = this.canvas.offsetTop;
     submitButton = createButton("example");
-
+    textField.position(width / 2 + offsetX, height / 2 + offsetY);
 }
 
 function draw() {
