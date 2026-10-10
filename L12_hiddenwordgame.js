@@ -42,8 +42,8 @@ function submitGuess() {
 function correctGuess(geuss, randomWord) {
     let correctLetters = "";
     for (i = 0; i < randomWord.length; i++) {
-        if (randomWord.includes(guess[i])) {
-            
+        if (randomWord.includes(guess[i]) && !correctLetters.includes(guess[i])){
+
         }
     }
 }
