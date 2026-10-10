@@ -9,6 +9,7 @@ function setup() {
     let offsetX = this.canvas.offsetLeft;
     let offsetY = this.canvas.offsetTop;
     submitButton = createButton("example");
+    
 }
 
 function draw() {
