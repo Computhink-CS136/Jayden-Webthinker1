@@ -14,7 +14,7 @@ function setup() {
     textField.style("font-size", "20px");
     textField.style("border", "1px solid black");
     textField.style("color", "green");
-    textField.style("text-align", )
+    textField.style("text-align", "center");
     submitButton = createButton("geuss");
     submitButton.position(width / 2 + offsetX + 100, height / 2 + offsetY);
     submitButton.mousePressed(submitGuess);
