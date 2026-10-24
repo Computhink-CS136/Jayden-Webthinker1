@@ -39,7 +39,7 @@ function draw() {
     for (let i = 0; i < spikesX.length; i++) {
         spikesX[i] -= spikeSpeed;
 
-        if (spikes[i] < - spikeWidth) {
+        if (spikesX[i] < - spikeWidth) {
             spikesX[i] = width + random(100, 300);
         }
         triangle(spikesX[i], height, spikesX[i] + spikeWidth / 2, height - spikeHeight, spikes[i] + spikeWidth, height);
