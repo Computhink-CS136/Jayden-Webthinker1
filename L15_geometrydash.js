@@ -13,7 +13,8 @@ function setup() {
 function draw() {
     background(0);
 
-m
+    velocity += 0.8;
+    player
     
     fill(0, 255, 0);
     rect(playerX, playerY, playerSize, playerSize);
