@@ -40,7 +40,7 @@ function draw() {
         spikesX[i] -= spikeSpeed;
 
         if (spikes[i] < - spikeWidth) {
-            spike
+            spikesX[i]
         }
     }
 }
