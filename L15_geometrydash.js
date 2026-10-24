@@ -1,0 +1,1 @@
+let playerX = 100;
