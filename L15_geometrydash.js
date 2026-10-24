@@ -46,7 +46,13 @@ function draw() {
                 spikesX[i] = width + random(100, 300);
             }
             triangle(spikesX[i], height, spikesX[i] + spikeWidth / 2, height - spikeHeight, spikesX[i] + spikeWidth, height);
-            
+            if (
+                playerX + playerSize > spikesX[i] &&
+                playerX < spikesX[i] + spikeWidth &&
+                playerY + playerSize > height / spikeHeight
+            ) {
+                
+            }
         }
     } else {
         fill(255, 0, 0);
