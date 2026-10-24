@@ -50,7 +50,7 @@ function draw() {
     } else {
         fill(255, 0, 0);
         textSize(40);
-        text("GAME OVER BOOHOO!!!!", )
+        text("GAME OVER BOOHOO!!!!", width / 2, height / 2);
     }
 
 }
