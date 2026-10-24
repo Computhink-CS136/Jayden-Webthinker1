@@ -13,7 +13,7 @@ function setup() {
 function draw() {
     background(0);
 
-
+m
     
     fill(0, 255, 0);
     rect(playerX, playerY, playerSize, playerSize);
