@@ -35,7 +35,10 @@ function draw() {
     
     fill(0, 255, 0);
     rect(playerX, playerY, playerSize, playerSize);
-    fill(255, 0, 255)
+    fill(255, 0, 255);
+    for (let i = 0; i < spikesX.length; i++) {
+        
+    }
 }
 
 function keyPressed() {
