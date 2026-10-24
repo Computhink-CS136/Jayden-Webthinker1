@@ -24,31 +24,31 @@ function draw() {
     background(0);
 
     if (!gameOver) {
-        
-    }
 
-    velocity += 0.8;
-    playerY += velocity;
-
-    if (playerY >= height - playerSize) {
-        playerY = height - playerSize;
-        isGrounded = true;
-        velocity = 0;
-    } else {
-        isGrounded = false;
-    }
+        velocity += 0.8;
+        playerY += velocity;
     
-    fill(0, 255, 0);
-    rect(playerX, playerY, playerSize, playerSize);
-    fill(255, 0, 255);
-    for (let i = 0; i < spikesX.length; i++) {
-        spikesX[i] -= spikeSpeed;
-
-        if (spikesX[i] < - spikeWidth) {
-            spikesX[i] = width + random(100, 300);
+        if (playerY >= height - playerSize) {
+            playerY = height - playerSize;
+            isGrounded = true;
+            velocity = 0;
+        } else {
+            isGrounded = false;
         }
-        triangle(spikesX[i], height, spikesX[i] + spikeWidth / 2, height - spikeHeight, spikesX[i] + spikeWidth, height);
+        
+        fill(0, 255, 0);
+        rect(playerX, playerY, playerSize, playerSize);
+        fill(255, 0, 255);
+        for (let i = 0; i < spikesX.length; i++) {
+            spikesX[i] -= spikeSpeed;
+    
+            if (spikesX[i] < - spikeWidth) {
+                spikesX[i] = width + random(100, 300);
+            }
+            triangle(spikesX[i], height, spikesX[i] + spikeWidth / 2, height - spikeHeight, spikesX[i] + spikeWidth, height);
+        }
     }
+
 }
 
 function keyPressed() {
