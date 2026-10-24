@@ -23,10 +23,6 @@ function setup() {
 function draw() {
     background(0);
 
-    if (!gameOver) {
-        
-    }
-
     velocity += 0.8;
     playerY += velocity;
 
@@ -49,6 +45,10 @@ function draw() {
         }
         triangle(spikesX[i], height, spikesX[i] + spikeWidth / 2, height - spikeHeight, spikesX[i] + spikeWidth, height);
     }
+    if (!gameOver) {
+
+    }
+
 }
 
 function keyPressed() {
