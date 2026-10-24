@@ -42,7 +42,7 @@ function draw() {
         if (spikes[i] < - spikeWidth) {
             spikesX[i] = width + random(100, 300);
         }
-        
+        triangle(spikes)
     }
 }
 
