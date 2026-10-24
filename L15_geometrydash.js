@@ -1,3 +1,3 @@
 let playerX = 100;
 let playerY;
-playerSi
+let playerSize = 30;
