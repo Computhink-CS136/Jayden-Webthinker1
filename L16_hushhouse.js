@@ -13,8 +13,27 @@ const ROOM_DIRECTIONS = [
   { name: "up", dx: 0, dy: -1, opposite: "down" },
   { name: "down", dx: 0, dy: 1, opposite: "up" }
 ];
+const DEFAULT_KEYBINDS = {
+  moveUp: 87,
+  moveDown: 83,
+  moveLeft: 65,
+  moveRight: 68,
+  shootUp: 38,
+  shootDown: 40,
+  shootLeft: 37,
+  shootRight: 39,
+  useItem: 32,
+  pause: 80
+};
+const BINDING_LABELS = [
+  ["moveUp", "Move up"], ["moveDown", "Move down"],
+  ["moveLeft", "Move left"], ["moveRight", "Move right"],
+  ["shootUp", "Shoot up"], ["shootDown", "Shoot down"],
+  ["shootLeft", "Shoot left"], ["shootRight", "Shoot right"],
+  ["useItem", "Use item"], ["pause", "Pause"]
+];
 
-let gameState = "title";
+let gameState = "menu";
 let player;
 let enemies = [];
 let bullets = [];
@@ -37,6 +56,13 @@ let roomMessage = "";
 let roomMessageUntil = 0;
 let backgroundMarks = [];
 let virtualInput = new Set();
+let keybinds = { ...DEFAULT_KEYBINDS };
+let settingsVolume = 0.55;
+let settingsPage = "main";
+let settingsReturnState = "menu";
+let listeningAction = "";
+let settingsMessage = "";
+let audioContext = null;
 
 const ITEM_DATA = {
   quickNerve: { name: "Quick Nerve", kind: "passive", color: "#e6b869", mark: "+" },
@@ -60,9 +86,10 @@ function setup() {
   pixelDensity(1);
   textFont("Georgia");
   textAlign(CENTER, CENTER);
+  loadPreferences();
   buildBackgroundMarks();
   resetRun();
-  gameState = "title";
+  gameState = "menu";
 }
 
 function draw() {
@@ -73,17 +100,41 @@ function draw() {
     updateGame();
   }
 
-  drawItems();
-  drawBullets();
-  drawEnemies();
-  drawPlayer();
-  drawHud();
-  if (gameState === "playing" || gameState === "paused") drawTouchControls();
+  if (["playing", "paused", "lost", "won"].includes(gameState)) {
+    drawItems();
+    drawBullets();
+    drawEnemyShots();
+    drawEnemies();
+    drawPlayer();
+    drawHud();
+    if (gameState === "playing" || gameState === "paused") drawTouchControls();
+  }
 
-  if (gameState === "title") drawTitleScreen();
+  if (gameState === "menu") drawMainMenu();
+  if (gameState === "settings") drawSettingsScreen();
+  if (gameState === "keybinds") drawKeybindScreen();
   if (gameState === "paused") drawPauseScreen();
   if (gameState === "lost") drawEndScreen(false);
   if (gameState === "won") drawEndScreen(true);
+}
+
+function loadPreferences() {
+  try {
+    const saved = JSON.parse(window.localStorage.getItem("hushHouseSettings") || "{}");
+    keybinds = { ...DEFAULT_KEYBINDS, ...(saved.keybinds || {}) };
+    settingsVolume = constrain(Number(saved.volume ?? 0.55), 0, 1);
+  } catch (error) {
+    keybinds = { ...DEFAULT_KEYBINDS };
+    settingsVolume = 0.55;
+  }
+}
+
+function savePreferences() {
+  try {
+    window.localStorage.setItem("hushHouseSettings", JSON.stringify({ keybinds, volume: settingsVolume }));
+  } catch (error) {
+    settingsMessage = "Settings will reset when this page closes.";
+  }
 }
 
 function buildBackgroundMarks() {
