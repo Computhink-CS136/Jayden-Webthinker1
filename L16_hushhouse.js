@@ -177,10 +177,10 @@ function updateGame() {
 function updatePlayer() {
   let horizontal = 0;
   let vertical = 0;
-  if (isDown(65) || isDown(LEFT_ARROW)) horizontal -= 1;
-  if (isDown(68) || isDown(RIGHT_ARROW)) horizontal += 1;
-  if (isDown(87) || isDown(UP_ARROW)) vertical -= 1;
-  if (isDown(83) || isDown(DOWN_ARROW)) vertical += 1;
+  if (isDown(65)) horizontal -= 1;
+  if (isDown(68)) horizontal += 1;
+  if (isDown(87)) vertical -= 1;
+  if (isDown(83)) vertical += 1;
 
   const magnitude = Math.hypot(horizontal, vertical) || 1;
   const speed = 2.45 + player.speedLevel * 0.32;
