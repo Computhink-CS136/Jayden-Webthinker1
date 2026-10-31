@@ -91,6 +91,7 @@ function resetRun() {
     fireLevel: 0,
     spreadLevel: 0,
     damageLevel: 0,
+    nextShotFrame: 0,
     activeItem: "",
     invulnerableUntil: 0,
     fireBoostUntil: 0,
