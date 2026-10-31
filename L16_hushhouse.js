@@ -1232,49 +1232,162 @@ function drawItems() {
   }
 }
 
-function drawTitleScreen() {
+function drawMainMenu() {
   drawOverlay();
   fill("#e0d9c5");
   textAlign(CENTER, CENTER);
-  textSize(46);
-  text("HUSH HOUSE", CENTER_X, 225);
+  textSize(44);
+  text("HUSH HOUSE", CENTER_X, 205);
   fill("#b5b39f");
   textSize(16);
-  text("The rooms remember what you leave behind.", CENTER_X, 272);
+  text("The rooms remember what you leave behind.", CENTER_X, 253);
   fill("#c5c6b8");
   textSize(13);
-  text("Five floors. Three rooms each. Find the south door.", CENTER_X, 330);
-  text("WASD move  |  Arrow keys fire  |  SPACE use held item  |  P pause", CENTER_X, 369);
-  fill("#d9b685");
-  textSize(15);
-  text("PRESS ENTER OR SPACE TO BEGIN", CENTER_X, 430);
+  text("Explore a shifting house. Find a key. Face what waits below.", CENTER_X, 291);
+  drawMenuButton("BEGIN DESCENT", 350, 325, 260, 52, "#d8bc82");
+  drawMenuButton("SETTINGS", 350, 395, 260, 52, "#aeb6a1");
+  fill("#8f9889");
+  textSize(11);
+  text("ENTER TO BEGIN  /  WASD MOVE  /  ARROWS FIRE", CENTER_X, 482);
 }
 
 function drawPauseScreen() {
   drawOverlay();
   fill("#e0d9c5");
   textAlign(CENTER, CENTER);
-  textSize(38);
+  textSize(34);
   text("LISTEN", CENTER_X, 280);
   fill("#b5b39f");
-  textSize(15);
+  textSize(14);
   text("The house is holding its breath.", CENTER_X, 325);
-  text("Press P to return", CENTER_X, 375);
+  drawMenuButton("RESUME", 350, 365, 260, 48, "#d8bc82");
+  drawMenuButton("SETTINGS", 350, 425, 260, 48, "#aeb6a1");
+  drawMenuButton("MAIN MENU", 350, 485, 260, 48, "#aeb6a1");
 }
 
 function drawEndScreen(won) {
   drawOverlay();
   fill(won ? "#c2d5b6" : "#d89b95");
   textAlign(CENTER, CENTER);
-  textSize(42);
+  textSize(36);
   text(won ? "THE HOUSE LETS GO" : "THE HOUSE KEEPS YOU", CENTER_X, 270);
   fill("#d6d1bf");
   textSize(15);
-  text(won ? "You crossed every floor and found the last door." : `You reached floor ${floorNumber}, room ${roomNumber}.`, CENTER_X, 326);
-  text(`Presences quieted: ${player.kills}  |  Achievements: ${achievementNames.length}`, CENTER_X, 365);
-  fill("#d9b685");
-  textSize(14);
-  text("PRESS ENTER OR CLICK TO BEGIN AGAIN", CENTER_X, 423);
+  text(won ? "You defeated every floor guardian and found the last door." : `You reached floor ${floorNumber}, after exploring ${roomNumber} rooms.`, CENTER_X, 326);
+  text(`Presences quieted: ${player.kills}  |  Achievements: ${achievementNames.length}`, CENTER_X, 360);
+  drawMenuButton("TRY AGAIN", 350, 390, 260, 48, "#d8bc82");
+  drawMenuButton("MAIN MENU", 350, 450, 260, 48, "#aeb6a1");
+}
+
+function drawSettingsScreen() {
+  drawOverlay();
+  textAlign(CENTER, CENTER);
+  fill("#e0d9c5");
+  textSize(34);
+  text("SETTINGS", CENTER_X, 150);
+
+  if (settingsPage === "main") {
+    fill("#c5c6b8");
+    textSize(14);
+    text("SOUND EFFECTS", CENTER_X, 212);
+    const sliderLeft = 340;
+    const sliderRight = 620;
+    stroke("#687065");
+    strokeWeight(4);
+    line(sliderLeft, 240, sliderRight, 240);
+    stroke("#d8bc82");
+    line(sliderLeft, 240, sliderLeft + settingsVolume * (sliderRight - sliderLeft), 240);
+    noStroke();
+    fill("#e5d7b6");
+    ellipse(sliderLeft + settingsVolume * (sliderRight - sliderLeft), 240, 16, 16);
+    fill("#9ba294");
+    textSize(12);
+    text(`${Math.round(settingsVolume * 100)}%`, CENTER_X, 265);
+
+    drawMenuButton("CHANGE KEYBINDS", 350, 315, 260, 48, "#aeb6a1");
+    drawMenuButton("BACK", 350, 395, 260, 48, "#d8bc82");
+    fill("#9ba294");
+    textSize(11);
+    text(settingsMessage, CENTER_X, 470);
+  } else {
+    drawKeybindRows();
+  }
+}
+
+function drawKeybindScreen() {
+  drawSettingsScreen();
+}
+
+function drawKeybindRows() {
+  for (let index = 0; index < BINDING_LABELS.length; index++) {
+    const [action, label] = BINDING_LABELS[index];
+    const column = Math.floor(index / 5);
+    const row = index % 5;
+    const x = column === 0 ? 340 : 620;
+    const y = 228 + row * 48;
+    const isListening = listeningAction === action;
+    const buttonColor = isListening ? "#d8bc82" : "#8e998a";
+    stroke(buttonColor);
+    strokeWeight(1);
+    fill(12, 16, 14, 220);
+    rect(x - 115, y - 18, 230, 36, 3);
+    noStroke();
+    fill(isListening ? "#e8d8b3" : "#d1d1c2");
+    textAlign(LEFT, CENTER);
+    textSize(12);
+    text(label, x - 103, y);
+    textAlign(RIGHT, CENTER);
+    fill(buttonColor);
+    text(isListening ? "PRESS KEY" : keyName(keybinds[action]), x + 103, y);
+  }
+
+  drawMenuButton("DEFAULTS", 250, 500, 205, 42, "#aeb6a1");
+  drawMenuButton("BACK", 505, 500, 205, 42, "#d8bc82");
+  fill("#9ba294");
+  textAlign(CENTER, CENTER);
+  textSize(10);
+  text(settingsMessage, CENTER_X, 548);
+}
+
+function drawMenuButton(label, x, y, width, height, accent) {
+  const hovered = insideButton(mouseX, mouseY, x, y, width, height);
+  stroke(hovered ? accent : "#51584f");
+  strokeWeight(1);
+  fill(hovered ? "#252b26" : "#171c19");
+  rect(x, y, width, height, 3);
+  noStroke();
+  fill(hovered ? accent : "#d1d1c2");
+  textAlign(CENTER, CENTER);
+  textSize(13);
+  text(label, x + width / 2, y + height / 2);
+}
+
+function unlockAudio() {
+  const AudioConstructor = window.AudioContext || window.webkitAudioContext;
+  if (!AudioConstructor) return;
+  if (!audioContext) audioContext = new AudioConstructor();
+  if (audioContext.state === "suspended") audioContext.resume();
+}
+
+function playGameSound(frequency, duration = 0.1, wave = "sine") {
+  if (settingsVolume <= 0) return;
+  try {
+    unlockAudio();
+    if (!audioContext) return;
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    const now = audioContext.currentTime;
+    oscillator.type = wave;
+    oscillator.frequency.setValueAtTime(frequency, now);
+    gain.gain.setValueAtTime(settingsVolume * 0.055, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+    oscillator.start(now);
+    oscillator.stop(now + duration);
+  } catch (error) {
+    audioContext = null;
+  }
 }
 
 function drawOverlay() {
