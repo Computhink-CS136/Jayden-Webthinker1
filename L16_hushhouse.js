@@ -282,7 +282,7 @@ function prepareRoom(room) {
   const isBoss = room.type === "boss";
   const enemyCount = isBoss ? 1 : Math.min(6, 2 + floorNumber + floor(random(0, 3)));
   for (let index = 0; index < enemyCount; index++) {
-    const position = findEnemyPosition();
+    const position = findRoomPosition();
     room.enemies.push(makeEnemy(position.x, position.y, isBoss));
   }
 
