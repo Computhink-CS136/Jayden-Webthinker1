@@ -671,7 +671,7 @@ function checkRoomClear() {
 
 function checkChestInteraction() {
   if (currentRoom.type !== "chest" || currentRoom.chestOpened) return;
-  if (dist(player.body.x, player.body.y, CENTER_X, CENTER_Y) > 48) return;
+  if (dist(player.body.x, player.body.y, CENTER_X, CENTER_Y - 95) > 48) return;
   if (player.keys < 1) {
     if (frameCount >= roomMessageUntil) {
       roomMessage = "The chest is locked. Find a key on this floor.";
