@@ -19,6 +19,7 @@ let achievementUntil = 0;
 let roomMessage = "";
 let roomMessageUntil = 0;
 let backgroundMarks = [];
+let virtualInput = new Set();
 
 const ITEM_DATA = {
   quickNerve: { name: "Quick Nerve", kind: "passive", color: "#e6b869", mark: "+" },
@@ -43,6 +44,7 @@ function setup() {
 }
 
 function draw() {
+  updateTouchInput();
   drawRoom();
 
   if (gameState === "playing") {
@@ -54,6 +56,7 @@ function draw() {
   drawEnemies();
   drawPlayer();
   drawHud();
+  if (gameState === "playing" || gameState === "paused") drawTouchControls();
 
   if (gameState === "title") drawTitleScreen();
   if (gameState === "paused") drawPauseScreen();
@@ -174,10 +177,10 @@ function updateGame() {
 function updatePlayer() {
   let horizontal = 0;
   let vertical = 0;
-  if (keyIsDown(65) || keyIsDown(LEFT_ARROW)) horizontal -= 1;
-  if (keyIsDown(68) || keyIsDown(RIGHT_ARROW)) horizontal += 1;
-  if (keyIsDown(87) || keyIsDown(UP_ARROW)) vertical -= 1;
-  if (keyIsDown(83) || keyIsDown(DOWN_ARROW)) vertical += 1;
+  if (isDown(65) || isDown(LEFT_ARROW)) horizontal -= 1;
+  if (isDown(68) || isDown(RIGHT_ARROW)) horizontal += 1;
+  if (isDown(87) || isDown(UP_ARROW)) vertical -= 1;
+  if (isDown(83) || isDown(DOWN_ARROW)) vertical += 1;
 
   const magnitude = Math.hypot(horizontal, vertical) || 1;
   const speed = 2.45 + player.speedLevel * 0.32;
@@ -189,10 +192,10 @@ function updatePlayer() {
   player.body.y = constrain(player.body.y, ARENA.top + 18, nearExit ? ARENA.bottom + 5 : ARENA.bottom - 18);
 
   const directions = [];
-  if (keyIsDown(LEFT_ARROW)) directions.push([-1, 0]);
-  if (keyIsDown(RIGHT_ARROW)) directions.push([1, 0]);
-  if (keyIsDown(UP_ARROW)) directions.push([0, -1]);
-  if (keyIsDown(DOWN_ARROW)) directions.push([0, 1]);
+  if (isDown(LEFT_ARROW)) directions.push([-1, 0]);
+  if (isDown(RIGHT_ARROW)) directions.push([1, 0]);
+  if (isDown(UP_ARROW)) directions.push([0, -1]);
+  if (isDown(DOWN_ARROW)) directions.push([0, 1]);
   const baseRate = Math.max(8, 24 - player.fireLevel * 3);
   const firingRate = frameCount < player.fireBoostUntil ? Math.max(6, baseRate - 8) : baseRate;
   if (directions.length && frameCount >= player.nextShotFrame) {
@@ -401,6 +404,50 @@ function keyPressed() {
   return false;
 }
 
+function isDown(code) {
+  return keyIsDown(code) || virtualInput.has(code);
+}
+
+function updateTouchInput() {
+  const nextInput = new Set();
+  if (windowWidth < 760 && gameState === "playing") {
+    for (const touch of touches) {
+      if (touch.y > 430 && touch.x < 290) {
+        const horizontal = touch.x - 150;
+        const vertical = touch.y - 510;
+        if (Math.abs(horizontal) > 12) nextInput.add(horizontal < 0 ? 65 : 68);
+        if (Math.abs(vertical) > 12) nextInput.add(vertical < 0 ? 87 : 83);
+      } else if (touch.y > 430 && touch.x > 670) {
+        const horizontal = touch.x - 810;
+        const vertical = touch.y - 510;
+        if (Math.abs(horizontal) > Math.abs(vertical)) {
+          nextInput.add(horizontal < 0 ? LEFT_ARROW : RIGHT_ARROW);
+        } else {
+          nextInput.add(vertical < 0 ? UP_ARROW : DOWN_ARROW);
+        }
+      }
+    }
+  }
+  virtualInput = nextInput;
+}
+
+function touchStarted() {
+  if (windowWidth >= 760) return false;
+  for (const touch of touches) {
+    if (gameState === "title") {
+      gameState = "playing";
+    } else if (gameState === "lost" || gameState === "won") {
+      resetRun();
+      gameState = "playing";
+    } else if (touch.x > 850 && touch.y < 85) {
+      gameState = gameState === "paused" ? "playing" : "paused";
+    } else if (gameState === "playing" && touch.x > 385 && touch.x < 575 && touch.y > 485) {
+      activateItem();
+    }
+  }
+  return false;
+}
+
 function mousePressed() {
   if (gameState === "title") gameState = "playing";
   else if (gameState === "lost" || gameState === "won") {
@@ -487,6 +534,37 @@ function drawHud() {
   drawHearts();
   if (recentAchievement && frameCount < achievementUntil) drawAchievementToast();
   if (roomMessage && frameCount < roomMessageUntil) drawRoomMessage();
+}
+
+function drawTouchControls() {
+  if (windowWidth >= 760) return;
+  push();
+  textAlign(CENTER, CENTER);
+  textSize(13);
+  stroke(205, 207, 183, 155);
+  strokeWeight(2);
+  fill(12, 16, 14, 150);
+  ellipse(150, 510, 142, 142);
+  ellipse(810, 510, 142, 142);
+  noStroke();
+  fill("#c7c9b8");
+  text("W", 150, 469);
+  text("A", 109, 510);
+  text("S", 150, 551);
+  text("D", 191, 510);
+  text("FIRE", 810, 510);
+  fill(12, 16, 14, 205);
+  rect(390, 520, 180, 62, 4);
+  stroke(205, 207, 183, 155);
+  noFill();
+  rect(390, 520, 180, 62, 4);
+  noStroke();
+  fill("#c7c9b8");
+  text("USE ITEM", 480, 551);
+  fill("#c7c9b8");
+  textSize(10);
+  text("PAUSE", 905, 42);
+  pop();
 }
 
 function drawHearts() {
