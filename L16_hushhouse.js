@@ -250,10 +250,11 @@ function generateFloor() {
 
   startRoom = floorRooms[0];
   const depths = calculateRoomDepths(startRoom);
-  const deepest = floorRooms
-    .filter((room) => room !== startRoom)
-    .reduce((depth, room) => Math.max(depth, depths.get(room.id)), 0);
-  const bossOptions = floorRooms.filter((room) => room !== startRoom && depths.get(room.id) === deepest);
+  const bossCandidates = floorRooms.filter((room) => {
+    return room !== startRoom && ROOM_DIRECTIONS.some((direction) => !room.neighbors[direction.name]);
+  });
+  const deepest = bossCandidates.reduce((depth, room) => Math.max(depth, depths.get(room.id)), 0);
+  const bossOptions = bossCandidates.filter((room) => depths.get(room.id) === deepest);
   bossRoom = random(bossOptions);
   bossRoom.type = "boss";
   const availableRooms = floorRooms.filter((room) => room !== startRoom && room !== bossRoom);
