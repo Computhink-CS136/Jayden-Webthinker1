@@ -108,6 +108,7 @@ function resetRun() {
     body: makeBody(CENTER_X, (ARENA.top + ARENA.bottom) / 2, 30),
     hearts: 6,
     maxHearts: 6,
+    keys: 0,
     speedLevel: 0,
     fireLevel: 0,
     spreadLevel: 0,
@@ -124,7 +125,7 @@ function resetRun() {
     kills: 0
   };
   generateFloor();
-  enterRoom(startRoom, "down");
+  enterRoom(startRoom, null);
 }
 
 function makeBody(x, y, diameter) {
@@ -199,7 +200,6 @@ function generateFloor() {
   const openBossSides = ROOM_DIRECTIONS.filter((direction) => !bossRoom.neighbors[direction.name]);
   bossRoom.progressDirection = random(openBossSides).name;
   roomNumber = 1;
-  player.reservedPassiveItems = [];
 
   for (const room of floorRooms) prepareRoom(room);
 }
@@ -388,7 +388,7 @@ function fireShot(directionX, directionY) {
   const spreadAngles = player.spreadLevel > 0 ? [-0.19, 0, 0.19] : [0];
   for (const offset of spreadAngles) {
     const shotAngle = angle + offset;
-    const speed = 7.3;
+    const speed = 7.3 + player.shotSpeedLevel * 1.6;
     bullets.push({
       body: makeBody(player.body.x + Math.cos(shotAngle) * 22, player.body.y + Math.sin(shotAngle) * 22, 10),
       vx: Math.cos(shotAngle) * speed,
@@ -645,7 +645,7 @@ function progressToNextFloor() {
   if (player.healsUsed === 0) awardAchievement("Unmended", "Reached a new floor without healing.");
   player.keys = 0;
   generateFloor();
-  enterRoom(startRoom, "down");
+  enterRoom(startRoom, null);
   roomMessage = "A new floor settles around you.";
   roomMessageUntil = frameCount + 180;
 }
