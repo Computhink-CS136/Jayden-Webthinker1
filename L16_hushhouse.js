@@ -32,6 +32,13 @@ const BINDING_LABELS = [
   ["shootLeft", "Shoot left"], ["shootRight", "Shoot right"],
   ["useItem", "Use item"], ["pause", "Pause"]
 ];
+const ACHIEVEMENTS = [
+  { id: "unmended", name: "Unmended", hint: "Reach the second floor without restoring health." },
+  { id: "stillStanding", name: "Still Standing", hint: "Defeat fifteen enemies in one run." },
+  { id: "keykeeper", name: "Keykeeper", hint: "Spend a floor key to open a chest." },
+  { id: "houseMapped", name: "House Mapped", hint: "Visit every room on one floor." },
+  { id: "longHall", name: "The Long Hall", hint: "Defeat the final floor boss and leave the house." }
+];
 
 let gameState = "menu";
 let player;
@@ -50,6 +57,7 @@ let keyRoom = null;
 let chestRoom = null;
 let roomCleared = false;
 let achievementNames = [];
+let unlockedAchievementIds = [];
 let recentAchievement = "";
 let achievementUntil = 0;
 let roomMessage = "";
@@ -62,6 +70,7 @@ let settingsPage = "main";
 let settingsReturnState = "menu";
 let listeningAction = "";
 let settingsMessage = "";
+let achievementsReturnState = "menu";
 let audioContext = null;
 
 const ITEM_DATA = {
@@ -111,6 +120,7 @@ function draw() {
   }
 
   if (gameState === "menu") drawMainMenu();
+  if (gameState === "achievements") drawAchievementsScreen();
   if (gameState === "settings") drawSettingsScreen();
   if (gameState === "keybinds") drawKeybindScreen();
   if (gameState === "paused") drawPauseScreen();
@@ -123,15 +133,19 @@ function loadPreferences() {
     const saved = JSON.parse(window.localStorage.getItem("hushHouseSettings") || "{}");
     keybinds = { ...DEFAULT_KEYBINDS, ...(saved.keybinds || {}) };
     settingsVolume = constrain(Number(saved.volume ?? 0.55), 0, 1);
+    unlockedAchievementIds = Array.isArray(saved.unlockedAchievementIds)
+      ? saved.unlockedAchievementIds.filter((id) => ACHIEVEMENTS.some((achievement) => achievement.id === id))
+      : [];
   } catch (error) {
     keybinds = { ...DEFAULT_KEYBINDS };
     settingsVolume = 0.55;
+    unlockedAchievementIds = [];
   }
 }
 
 function savePreferences() {
   try {
-    window.localStorage.setItem("hushHouseSettings", JSON.stringify({ keybinds, volume: settingsVolume }));
+    window.localStorage.setItem("hushHouseSettings", JSON.stringify({ keybinds, volume: settingsVolume, unlockedAchievementIds }));
   } catch (error) {
     settingsMessage = "Settings will reset when this page closes.";
   }
