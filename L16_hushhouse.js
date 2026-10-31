@@ -761,14 +761,104 @@ function drawRoom() {
   line(0, 79, GAME_WIDTH, 79);
   line(0, 603, GAME_WIDTH, 603);
   noStroke();
+  drawRoomDoors();
+  drawRoomFeatures();
+  drawMiniMap();
+}
 
-  const doorOpen = roomCleared;
-  fill(doorOpen ? "#9bcaab" : "#4a4b43");
-  rect(CENTER_X - 37, ARENA.bottom - 4, 74, 12);
-  if (doorOpen) {
-    fill(155, 202, 171, 45 + Math.sin(frameCount * 0.08) * 25);
-    ellipse(CENTER_X, ARENA.bottom - 3, 96, 38);
+function drawRoomDoors() {
+  for (const direction of ROOM_DIRECTIONS) {
+    const neighbor = currentRoom.neighbors[direction.name];
+    const isProgressDoor = currentRoom.type === "boss" && currentRoom.progressDirection === direction.name;
+    const hasDoor = Boolean(neighbor || isProgressDoor);
+    const doorOpen = currentRoom.cleared && hasDoor;
+    const color = isProgressDoor ? "#d8bc82" : doorOpen ? "#9bcaab" : "#555a50";
+    stroke(color);
+    strokeWeight(isProgressDoor ? 4 : 3);
+
+    if (direction.name === "left" || direction.name === "right") {
+      const x = direction.name === "left" ? ARENA.left : ARENA.right;
+      if (doorOpen) {
+        line(x, ARENA.top, x, CENTER_Y - DOOR_WIDTH / 2);
+        line(x, CENTER_Y + DOOR_WIDTH / 2, x, ARENA.bottom);
+      } else {
+        line(x, ARENA.top, x, ARENA.bottom);
+      }
+      if (doorOpen) line(x, CENTER_Y - DOOR_WIDTH / 2, x, CENTER_Y + DOOR_WIDTH / 2);
+    } else {
+      const y = direction.name === "up" ? ARENA.top : ARENA.bottom;
+      if (doorOpen) {
+        line(ARENA.left, y, CENTER_X - DOOR_WIDTH / 2, y);
+        line(CENTER_X + DOOR_WIDTH / 2, y, ARENA.right, y);
+      } else {
+        line(ARENA.left, y, ARENA.right, y);
+      }
+      if (doorOpen) line(CENTER_X - DOOR_WIDTH / 2, y, CENTER_X + DOOR_WIDTH / 2, y);
+    }
+
+    if (doorOpen) {
+      noStroke();
+      fill(isProgressDoor ? "#d8bc82" : "#9bcaab");
+      const glow = 35 + Math.sin(frameCount * 0.08) * 15;
+      if (direction.name === "left" || direction.name === "right") {
+        ellipse(direction.name === "left" ? ARENA.left : ARENA.right, CENTER_Y, 18, glow);
+      } else {
+        ellipse(CENTER_X, direction.name === "up" ? ARENA.top : ARENA.bottom, glow, 18);
+      }
+    }
   }
+  noStroke();
+}
+
+function drawRoomFeatures() {
+  if (currentRoom.type !== "chest" || currentRoom.chestOpened) return;
+  const chestX = CENTER_X;
+  const chestY = CENTER_Y - 95;
+  noStroke();
+  fill(10, 12, 10, 110);
+  ellipse(chestX, chestY + 18, 68, 16);
+  fill("#80603d");
+  rect(chestX - 25, chestY - 5, 50, 29, 4);
+  fill("#bd9a5d");
+  rect(chestX - 26, chestY - 11, 52, 15, 5);
+  fill("#e5c779");
+  rect(chestX - 3, chestY - 4, 6, 12, 2);
+  fill("#ddd2b0");
+  textAlign(CENTER, CENTER);
+  textSize(10);
+  text(player.keys ? "TOUCH TO UNLOCK" : "LOCKED CHEST", chestX, chestY + 37);
+}
+
+function drawMiniMap() {
+  if (!floorRooms.length) return;
+  const minX = Math.min(...floorRooms.map((room) => room.gridX));
+  const minY = Math.min(...floorRooms.map((room) => room.gridY));
+  const step = 15;
+  const originX = 83;
+  const originY = 133;
+  stroke(116, 126, 111, 130);
+  strokeWeight(2);
+  for (const room of floorRooms) {
+    const x = originX + (room.gridX - minX) * step;
+    const y = originY + (room.gridY - minY) * step;
+    for (const direction of ROOM_DIRECTIONS) {
+      const neighbor = room.neighbors[direction.name];
+      if (!neighbor || neighbor.id < room.id) continue;
+      line(x, y, originX + (neighbor.gridX - minX) * step, originY + (neighbor.gridY - minY) * step);
+    }
+  }
+  noStroke();
+  for (const room of floorRooms) {
+    if (!room.visited) continue;
+    const x = originX + (room.gridX - minX) * step;
+    const y = originY + (room.gridY - minY) * step;
+    fill(room === currentRoom ? "#eee2bf" : room.type === "boss" ? "#d99b87" : room.type === "chest" ? "#dfc47e" : "#9eac98");
+    ellipse(x, y, room === currentRoom ? 9 : 6, room === currentRoom ? 9 : 6);
+  }
+  fill("#879083");
+  textAlign(LEFT, CENTER);
+  textSize(9);
+  text("MAP", originX - 8, originY - 17);
 }
 
 function drawHud() {
@@ -786,15 +876,15 @@ function drawHud() {
   text(`FLOOR ${floorNumber} / ${MAX_FLOOR}`, CENTER_X, 25);
   textSize(11);
   fill("#8f9889");
-  text(`ROOM ${roomNumber} / ${ROOMS_PER_FLOOR}`, CENTER_X, 49);
+  text(`ROOM ${roomNumber} EXPLORED  /  ${floorRooms.length}`, CENTER_X, 49);
 
   textAlign(RIGHT, CENTER);
   fill("#aeb6a1");
-  textSize(13);
-  text(`HEARTS  ${player.hearts}/${player.maxHearts}`, GAME_WIDTH - 28, 27);
+  textSize(12);
+  text(`KEYS  ${player.keys}`, GAME_WIDTH - 28, 27);
   textSize(10);
   fill("#8f9889");
-  text(`PASSIVES  ${player.speedLevel + player.fireLevel + player.spreadLevel + player.damageLevel}`, GAME_WIDTH - 28, 51);
+  text(`HEARTS  ${player.hearts}/${player.maxHearts}`, GAME_WIDTH - 28, 51);
 
   textAlign(LEFT, CENTER);
   fill("#aeb6a1");
@@ -803,7 +893,8 @@ function drawHud() {
   text(`SPACE  ${activeName}`, 28, 627);
   textAlign(CENTER, CENTER);
   fill(roomCleared ? "#b8d5b9" : "#899087");
-  text(roomCleared ? "SOUTH DOOR OPEN" : "CLEAR THE ROOM", CENTER_X, 627);
+  const objective = currentRoom.type === "boss" ? (roomCleared ? "BOSS DEFEATED: TAKE THE GOLDEN DOOR" : "DEFEAT THE FLOOR BOSS") : currentRoom.type === "chest" ? "FIND A KEY TO OPEN THE CHEST" : roomCleared ? "DOORS OPEN: EXPLORE OR BACKTRACK" : "DEFEAT THE ROOM TO OPEN ITS DOORS";
+  text(objective, CENTER_X, 627);
   textAlign(RIGHT, CENTER);
   fill("#899087");
   text("WASD MOVE  /  ARROWS FIRE  /  P PAUSE", GAME_WIDTH - 28, 627);
