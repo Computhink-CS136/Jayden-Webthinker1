@@ -793,6 +793,13 @@ function touchStarted() {
   return false;
 }
 
+function touchMoved() {
+  if (gameState === "settings" && settingsPage === "main" && touches.length && touches[0].y >= 200 && touches[0].y <= 260) {
+    updateVolumeFromPointer(touches[0].x);
+  }
+  return false;
+}
+
 function mousePressed() {
   handleCanvasPress(mouseX, mouseY);
 }
