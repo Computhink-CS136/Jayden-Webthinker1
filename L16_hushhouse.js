@@ -1052,7 +1052,7 @@ function drawHud() {
   fill("#aeb6a1");
   textSize(11);
   const activeName = player.activeItem ? ITEM_DATA[player.activeItem].name : "EMPTY";
-  text(`SPACE  ${activeName}`, 28, 627);
+  text(`${keyName(keybinds.useItem)}  ${activeName}`, 28, 627);
   textAlign(CENTER, CENTER);
   fill(roomCleared ? "#b8d5b9" : "#899087");
   const objective = currentRoom.type === "boss" ? (roomCleared ? "BOSS DEFEATED: TAKE THE GOLDEN DOOR" : "DEFEAT THE FLOOR BOSS") : currentRoom.type === "chest" ? "FIND A KEY TO OPEN THE CHEST" : roomCleared ? "DOORS OPEN: EXPLORE OR BACKTRACK" : "DEFEAT THE ROOM TO OPEN ITS DOORS";
@@ -1060,7 +1060,7 @@ function drawHud() {
   textAlign(RIGHT, CENTER);
   fill("#899087");
   textSize(9);
-  text(`MOVE ${keyName(keybinds.moveUp)}${keyName(keybinds.moveLeft)}${keyName(keybinds.moveDown)}${keyName(keybinds.moveRight)}  FIRE ${keyName(keybinds.shootUp)}${keyName(keybinds.shootLeft)}${keyName(keybinds.shootDown)}${keyName(keybinds.shootRight)}  ${keyName(keybinds.pause)} PAUSE`, GAME_WIDTH - 28, 627);
+  text(`MOVE ${keyName(keybinds.moveUp)}/${keyName(keybinds.moveLeft)}/${keyName(keybinds.moveDown)}/${keyName(keybinds.moveRight)}  FIRE ${keyName(keybinds.shootUp)}/${keyName(keybinds.shootLeft)}/${keyName(keybinds.shootDown)}/${keyName(keybinds.shootRight)}  ${keyName(keybinds.pause)} PAUSE`, GAME_WIDTH - 28, 627);
 
   drawHearts();
   if (recentAchievement && frameCount < achievementUntil) drawAchievementToast();
