@@ -365,6 +365,9 @@ function enterRoom(room, exitDirection) {
   enemyShots = [];
   roomCleared = currentRoom.cleared;
   roomNumber = floorRooms.filter((knownRoom) => knownRoom.visited).length;
+  if (floorRooms.length && floorRooms.every((knownRoom) => knownRoom.visited)) {
+    awardAchievement("House Mapped", "Visited every room on a floor.");
+  }
 
   const entrySide = ROOM_DIRECTIONS.find((direction) => direction.name === exitDirection)?.opposite;
   player.body.x = CENTER_X;
@@ -698,6 +701,7 @@ function checkChestInteraction() {
 
   player.keys -= 1;
   currentRoom.chestOpened = true;
+  awardAchievement("Keykeeper", "Opened a locked chest.");
   playGameSound(430, 0.3, "triangle");
   const reward = rollRoomLoot();
   currentRoom.items.push(makeRoomItem(reward, CENTER_X, CENTER_Y - 35));
@@ -727,8 +731,12 @@ function checkAchievementProgress() {
 }
 
 function awardAchievement(name, description) {
-  if (achievementNames.includes(name)) return;
-  achievementNames.push(name);
+  const achievement = ACHIEVEMENTS.find((entry) => entry.name === name);
+  if (!achievement) return;
+  if (!achievementNames.includes(name)) achievementNames.push(name);
+  if (unlockedAchievementIds.includes(achievement.id)) return;
+  unlockedAchievementIds.push(achievement.id);
+  savePreferences();
   recentAchievement = `${name}: ${description}`;
   achievementUntil = frameCount + 240;
 }
