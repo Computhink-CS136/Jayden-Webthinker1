@@ -684,7 +684,7 @@ function checkChestInteraction() {
   currentRoom.chestOpened = true;
   playGameSound(430, 0.3, "triangle");
   const reward = rollRoomLoot();
-  currentRoom.items.push(makeRoomItem(reward, CENTER_X, CENTER_Y - 70));
+  currentRoom.items.push(makeRoomItem(reward, CENTER_X, CENTER_Y - 35));
   roomItems = currentRoom.items;
   roomMessage = `Chest opened: ${ITEM_DATA[reward].name}.`;
   roomMessageUntil = frameCount + 160;
@@ -948,7 +948,6 @@ function drawRoomDoors() {
       } else {
         line(x, ARENA.top, x, ARENA.bottom);
       }
-      if (doorOpen) line(x, CENTER_Y - DOOR_WIDTH / 2, x, CENTER_Y + DOOR_WIDTH / 2);
     } else {
       const y = direction.name === "up" ? ARENA.top : ARENA.bottom;
       if (doorOpen) {
@@ -957,7 +956,6 @@ function drawRoomDoors() {
       } else {
         line(ARENA.left, y, ARENA.right, y);
       }
-      if (doorOpen) line(CENTER_X - DOOR_WIDTH / 2, y, CENTER_X + DOOR_WIDTH / 2, y);
     }
 
     if (doorOpen) {
