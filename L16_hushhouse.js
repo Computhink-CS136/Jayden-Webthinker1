@@ -403,10 +403,10 @@ function updateGame() {
 function updatePlayer() {
   let horizontal = 0;
   let vertical = 0;
-  if (isDown(65)) horizontal -= 1;
-  if (isDown(68)) horizontal += 1;
-  if (isDown(87)) vertical -= 1;
-  if (isDown(83)) vertical += 1;
+  if (isActionDown("moveLeft")) horizontal -= 1;
+  if (isActionDown("moveRight")) horizontal += 1;
+  if (isActionDown("moveUp")) vertical -= 1;
+  if (isActionDown("moveDown")) vertical += 1;
 
   const magnitude = Math.hypot(horizontal, vertical) || 1;
   const speed = 2.45 + player.speedLevel * 0.32;
@@ -421,10 +421,10 @@ function updatePlayer() {
   player.body.y = constrain(player.body.y, ARENA.top + 18, ARENA.bottom - 18);
 
   const directions = [];
-  if (isDown(LEFT_ARROW)) directions.push([-1, 0]);
-  if (isDown(RIGHT_ARROW)) directions.push([1, 0]);
-  if (isDown(UP_ARROW)) directions.push([0, -1]);
-  if (isDown(DOWN_ARROW)) directions.push([0, 1]);
+  if (isActionDown("shootLeft")) directions.push([-1, 0]);
+  if (isActionDown("shootRight")) directions.push([1, 0]);
+  if (isActionDown("shootUp")) directions.push([0, -1]);
+  if (isActionDown("shootDown")) directions.push([0, 1]);
   const baseRate = Math.max(8, 24 - player.fireLevel * 3);
   const firingRate = frameCount < player.fireBoostUntil ? Math.max(6, baseRate - 8) : baseRate;
   if (directions.length && frameCount >= player.nextShotFrame) {
@@ -713,27 +713,49 @@ function awardAchievement(name, description) {
 }
 
 function keyPressed() {
-  const pressed = String(key).toLowerCase();
-  if (pressed === "p") {
-    if (gameState === "playing") gameState = "paused";
-    else if (gameState === "paused") gameState = "playing";
+  if (listeningAction) {
+    if (keyCode === ESCAPE) {
+      listeningAction = "";
+      return false;
+    }
+    const duplicate = Object.keys(keybinds).find((action) => action !== listeningAction && keybinds[action] === keyCode);
+    if (duplicate) {
+      settingsMessage = `That key is already assigned to ${BINDING_LABELS.find(([action]) => action === duplicate)[1]}.`;
+    } else {
+      keybinds[listeningAction] = keyCode;
+      savePreferences();
+      settingsMessage = "Key binding saved.";
+    }
+    listeningAction = "";
     return false;
   }
-  if (keyCode === ENTER && (gameState === "title" || gameState === "lost" || gameState === "won")) {
-    resetRun();
+
+  if ((gameState === "playing" || gameState === "paused") && keyCode === keybinds.pause) {
+    gameState = gameState === "playing" ? "paused" : "playing";
+    return false;
+  }
+  if (gameState === "playing" && keyCode === keybinds.useItem) {
+    activateItem();
+    return false;
+  }
+  if (keyCode === ESCAPE && gameState === "paused") {
     gameState = "playing";
     return false;
   }
-  if (keyCode === 32) {
-    if (gameState === "title") gameState = "playing";
-    else activateItem();
+  if (keyCode === ENTER && gameState === "menu") {
+    startGame();
+    return false;
+  }
+  if (keyCode === ENTER && (gameState === "lost" || gameState === "won")) {
+    resetRun();
+    gameState = "playing";
     return false;
   }
   return false;
 }
 
-function isDown(code) {
-  return keyIsDown(code) || virtualInput.has(code);
+function isActionDown(action) {
+  return keyIsDown(keybinds[action]) || virtualInput.has(action);
 }
 
 function updateTouchInput() {
@@ -743,15 +765,15 @@ function updateTouchInput() {
       if (touch.y > 430 && touch.x < 290) {
         const horizontal = touch.x - 150;
         const vertical = touch.y - 510;
-        if (Math.abs(horizontal) > 12) nextInput.add(horizontal < 0 ? 65 : 68);
-        if (Math.abs(vertical) > 12) nextInput.add(vertical < 0 ? 87 : 83);
+        if (Math.abs(horizontal) > 12) nextInput.add(horizontal < 0 ? "moveLeft" : "moveRight");
+        if (Math.abs(vertical) > 12) nextInput.add(vertical < 0 ? "moveUp" : "moveDown");
       } else if (touch.y > 430 && touch.x > 670) {
         const horizontal = touch.x - 810;
         const vertical = touch.y - 510;
         if (Math.abs(horizontal) > Math.abs(vertical)) {
-          nextInput.add(horizontal < 0 ? LEFT_ARROW : RIGHT_ARROW);
+          nextInput.add(horizontal < 0 ? "shootLeft" : "shootRight");
         } else {
-          nextInput.add(vertical < 0 ? UP_ARROW : DOWN_ARROW);
+          nextInput.add(vertical < 0 ? "shootUp" : "shootDown");
         }
       }
     }
@@ -760,28 +782,114 @@ function updateTouchInput() {
 }
 
 function touchStarted() {
-  if (windowWidth >= 760) return false;
   for (const touch of touches) {
-    if (gameState === "title") {
-      gameState = "playing";
-    } else if (gameState === "lost" || gameState === "won") {
-      resetRun();
-      gameState = "playing";
-    } else if (touch.x > 850 && touch.y < 85) {
-      gameState = gameState === "paused" ? "playing" : "paused";
-    } else if (gameState === "playing" && touch.x > 385 && touch.x < 575 && touch.y > 485) {
-      activateItem();
-    }
+    handleCanvasPress(touch.x, touch.y);
   }
   return false;
 }
 
 function mousePressed() {
-  if (gameState === "title") gameState = "playing";
-  else if (gameState === "lost" || gameState === "won") {
-    resetRun();
-    gameState = "playing";
+  handleCanvasPress(mouseX, mouseY);
+}
+
+function mouseDragged() {
+  if (gameState === "settings" && settingsPage === "main" && mouseY >= 200 && mouseY <= 260) {
+    updateVolumeFromPointer(mouseX);
   }
+}
+
+function handleCanvasPress(x, y) {
+  if (gameState === "menu") {
+    if (insideButton(x, y, 350, 325, 260, 52)) startGame();
+    else if (insideButton(x, y, 350, 395, 260, 52)) openSettings("menu");
+    return;
+  }
+  if (gameState === "settings") {
+    if (settingsPage === "main") {
+      if (y >= 200 && y <= 260) updateVolumeFromPointer(x);
+      else if (insideButton(x, y, 350, 315, 260, 48)) {
+        settingsPage = "keys";
+        settingsMessage = "Click a binding, then press the key you want.";
+      } else if (insideButton(x, y, 350, 395, 260, 48)) returnFromSettings();
+    } else {
+      const actions = BINDING_LABELS;
+      for (let index = 0; index < actions.length; index++) {
+        const column = Math.floor(index / 5);
+        const row = index % 5;
+        const xCenter = column === 0 ? 340 : 620;
+        const yCenter = 228 + row * 48;
+        if (insideButton(x, y, xCenter - 115, yCenter - 18, 230, 36)) {
+          listeningAction = actions[index][0];
+          settingsMessage = `Press a key for ${actions[index][1]}.`;
+          return;
+        }
+      }
+      if (insideButton(x, y, 250, 500, 205, 42)) {
+        keybinds = { ...DEFAULT_KEYBINDS };
+        savePreferences();
+        settingsMessage = "Default key bindings restored.";
+      } else if (insideButton(x, y, 505, 500, 205, 42)) returnFromSettings();
+    }
+    return;
+  }
+  if (gameState === "paused") {
+    if (insideButton(x, y, 350, 365, 260, 48)) gameState = "playing";
+    else if (insideButton(x, y, 350, 425, 260, 48)) openSettings("paused");
+    else if (insideButton(x, y, 350, 485, 260, 48)) gameState = "menu";
+    return;
+  }
+  if (gameState === "lost" || gameState === "won") {
+    if (insideButton(x, y, 350, 390, 260, 48)) startGame();
+    else if (insideButton(x, y, 350, 450, 260, 48)) gameState = "menu";
+    return;
+  }
+  if (gameState === "playing" && x > 850 && y < 85) {
+    gameState = "paused";
+  } else if (gameState === "playing" && x > 385 && x < 575 && y > 485) {
+    activateItem();
+  }
+}
+
+function insideButton(x, y, left, top, width, height) {
+  return x >= left && x <= left + width && y >= top && y <= top + height;
+}
+
+function startGame() {
+  resetRun();
+  gameState = "playing";
+  unlockAudio();
+}
+
+function openSettings(returnState) {
+  settingsReturnState = returnState;
+  settingsPage = "main";
+  settingsMessage = "";
+  gameState = "settings";
+}
+
+function returnFromSettings() {
+  listeningAction = "";
+  gameState = settingsReturnState;
+}
+
+function updateVolumeFromPointer(x) {
+  const left = 340;
+  const right = 620;
+  settingsVolume = constrain((x - left) / (right - left), 0, 1);
+  savePreferences();
+}
+
+function keyName(code) {
+  if (code === 32) return "SPACE";
+  if (code === 37) return "LEFT";
+  if (code === 38) return "UP";
+  if (code === 39) return "RIGHT";
+  if (code === 40) return "DOWN";
+  if (code === 13) return "ENTER";
+  if (code === 27) return "ESC";
+  if (code >= 65 && code <= 90) return String.fromCharCode(code);
+  if (code >= 48 && code <= 57) return String.fromCharCode(code);
+  return `KEY ${code}`;
 }
 
 function drawRoom() {
