@@ -410,13 +410,15 @@ function updatePlayer() {
 
   const magnitude = Math.hypot(horizontal, vertical) || 1;
   const speed = 2.45 + player.speedLevel * 0.32;
-  player.body.x += (horizontal / magnitude) * speed;
-  player.body.y += (vertical / magnitude) * speed;
+  const movementX = (horizontal / magnitude) * speed;
+  const movementY = (vertical / magnitude) * speed;
+  player.body.x += movementX;
+  player.body.y += movementY;
 
-  if (player.body.x < ARENA.left) moveThroughDoor("left");
-  if (player.body.x > ARENA.right) moveThroughDoor("right");
-  if (player.body.y < ARENA.top) moveThroughDoor("up");
-  if (player.body.y > ARENA.bottom) moveThroughDoor("down");
+  if (movementX < 0 && player.body.x <= ARENA.left + 18) moveThroughDoor("left");
+  else if (movementX > 0 && player.body.x >= ARENA.right - 18) moveThroughDoor("right");
+  else if (movementY < 0 && player.body.y <= ARENA.top + 18) moveThroughDoor("up");
+  else if (movementY > 0 && player.body.y >= ARENA.bottom - 18) moveThroughDoor("down");
   player.body.x = constrain(player.body.x, ARENA.left + 18, ARENA.right - 18);
   player.body.y = constrain(player.body.y, ARENA.top + 18, ARENA.bottom - 18);
 
