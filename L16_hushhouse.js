@@ -1080,10 +1080,10 @@ function drawTouchControls() {
   ellipse(810, 510, 142, 142);
   noStroke();
   fill("#c7c9b8");
-  text("W", 150, 469);
-  text("A", 109, 510);
-  text("S", 150, 551);
-  text("D", 191, 510);
+  text(keyName(keybinds.moveUp), 150, 469);
+  text(keyName(keybinds.moveLeft), 109, 510);
+  text(keyName(keybinds.moveDown), 150, 551);
+  text(keyName(keybinds.moveRight), 191, 510);
   text("FIRE", 810, 510);
   fill(12, 16, 14, 205);
   rect(390, 520, 180, 62, 4);
@@ -1289,7 +1289,7 @@ function drawMainMenu() {
   drawMenuButton("SETTINGS", 350, 395, 260, 52, "#aeb6a1");
   fill("#8f9889");
   textSize(11);
-  text("ENTER TO BEGIN  /  WASD MOVE  /  ARROWS FIRE", CENTER_X, 482);
+  text(`ENTER TO BEGIN  /  MOVE ${keyName(keybinds.moveUp)} ${keyName(keybinds.moveLeft)} ${keyName(keybinds.moveDown)} ${keyName(keybinds.moveRight)}  /  FIRE ${keyName(keybinds.shootUp)} ${keyName(keybinds.shootLeft)} ${keyName(keybinds.shootDown)} ${keyName(keybinds.shootRight)}`, CENTER_X, 482);
 }
 
 function drawPauseScreen() {
