@@ -1,17 +1,34 @@
 const GAME_WIDTH = 960;
 const GAME_HEIGHT = 650;
 const MAX_FLOOR = 5;
-const ROOMS_PER_FLOOR = 3;
+const MAX_MAP_ROOMS = 9;
+const MIN_MAP_ROOMS = 8;
+const DOOR_WIDTH = 92;
 const ARENA = { left: 52, right: 908, top: 92, bottom: 590 };
 const CENTER_X = GAME_WIDTH / 2;
+const CENTER_Y = (ARENA.top + ARENA.bottom) / 2;
+const ROOM_DIRECTIONS = [
+  { name: "left", dx: -1, dy: 0, opposite: "right" },
+  { name: "right", dx: 1, dy: 0, opposite: "left" },
+  { name: "up", dx: 0, dy: -1, opposite: "down" },
+  { name: "down", dx: 0, dy: 1, opposite: "up" }
+];
 
 let gameState = "title";
 let player;
 let enemies = [];
 let bullets = [];
+let enemyShots = [];
 let roomItems = [];
 let floorNumber = 1;
 let roomNumber = 1;
+let floorRooms = [];
+let roomByCoordinate = new Map();
+let currentRoom = null;
+let startRoom = null;
+let bossRoom = null;
+let keyRoom = null;
+let chestRoom = null;
 let roomCleared = false;
 let achievementNames = [];
 let recentAchievement = "";
@@ -79,10 +96,6 @@ function buildBackgroundMarks() {
 function resetRun() {
   floorNumber = 1;
   roomNumber = 1;
-  enemies = [];
-  bullets = [];
-  roomItems = [];
-  roomCleared = false;
   achievementNames = [];
   recentAchievement = "";
   roomMessage = "";
@@ -94,6 +107,10 @@ function resetRun() {
     fireLevel: 0,
     spreadLevel: 0,
     damageLevel: 0,
+    poisonLevel: 0,
+    keys: 0,
+    uniqueItems: [],
+    reservedPassiveItems: [],
     nextShotFrame: 0,
     activeItem: "",
     invulnerableUntil: 0,
@@ -101,7 +118,8 @@ function resetRun() {
     healsUsed: 0,
     kills: 0
   };
-  spawnRoom();
+  generateFloor();
+  enterRoom(startRoom, "down");
 }
 
 function makeBody(x, y, diameter) {
@@ -111,29 +129,129 @@ function makeBody(x, y, diameter) {
 }
 
 function spawnRoom() {
-  enemies = [];
-  bullets = [];
-  roomItems = [];
-  roomCleared = false;
-  player.body.x = CENTER_X;
-  player.body.y = (ARENA.top + ARENA.bottom) / 2;
-
-  const bossRoom = roomNumber === ROOMS_PER_FLOOR;
-  const enemyCount = bossRoom ? 1 : Math.min(5, 1 + floorNumber + (roomNumber === 2 ? 1 : 0));
-  for (let index = 0; index < enemyCount; index++) {
-    const position = findEnemyPosition();
-    enemies.push(makeEnemy(position.x, position.y, bossRoom));
-  }
-
-  const itemKey = random() < 0.13 ? "heart" : randomItemKey();
-  const itemPosition = {
-    x: random(ARENA.left + 100, ARENA.right - 100),
-    y: random(ARENA.top + 85, ARENA.bottom - 90)
-  };
-  roomItems.push({ body: makeBody(itemPosition.x, itemPosition.y, 26), itemKey });
+  generateFloor();
+  enterRoom(startRoom, "down");
 }
 
-function findEnemyPosition() {
+function generateFloor() {
+  const coordinates = [{ x: 0, y: 0 }];
+  const occupied = new Set(["0,0"]);
+  const roomCount = floor(random(MIN_MAP_ROOMS, MAX_MAP_ROOMS + 1));
+
+  while (coordinates.length < roomCount) {
+    const frontier = new Map();
+    for (const point of coordinates) {
+      for (const direction of ROOM_DIRECTIONS) {
+        const x = point.x + direction.dx;
+        const y = point.y + direction.dy;
+        const key = `${x},${y}`;
+        if (Math.abs(x) > 3 || Math.abs(y) > 3 || occupied.has(key)) continue;
+        frontier.set(key, { x, y });
+      }
+    }
+    if (frontier.size === 0) break;
+    const nextPoint = random(Array.from(frontier.values()));
+    coordinates.push(nextPoint);
+    occupied.add(`${nextPoint.x},${nextPoint.y}`);
+  }
+
+  floorRooms = coordinates.map((point, index) => ({
+    id: index,
+    gridX: point.x,
+    gridY: point.y,
+    type: index === 0 ? "start" : "normal",
+    neighbors: {},
+    enemies: [],
+    items: [],
+    visited: false,
+    cleared: index === 0,
+    chestOpened: false,
+    keyFound: false
+  }));
+  roomByCoordinate = new Map(floorRooms.map((room) => [`${room.gridX},${room.gridY}`, room]));
+
+  for (const room of floorRooms) {
+    for (const direction of ROOM_DIRECTIONS) {
+      const neighbor = roomByCoordinate.get(`${room.gridX + direction.dx},${room.gridY + direction.dy}`);
+      if (neighbor) room.neighbors[direction.name] = neighbor;
+    }
+  }
+
+  startRoom = floorRooms[0];
+  const depths = calculateRoomDepths(startRoom);
+  const deepest = floorRooms
+    .filter((room) => room !== startRoom)
+    .reduce((depth, room) => Math.max(depth, depths.get(room.id)), 0);
+  const bossOptions = floorRooms.filter((room) => room !== startRoom && depths.get(room.id) === deepest);
+  bossRoom = random(bossOptions);
+  bossRoom.type = "boss";
+  const availableRooms = floorRooms.filter((room) => room !== startRoom && room !== bossRoom);
+  chestRoom = random(availableRooms);
+  chestRoom.type = "chest";
+  const keyOptions = availableRooms.filter((room) => room !== chestRoom);
+  keyRoom = random(keyOptions);
+  keyRoom.keyFound = false;
+  const openBossSides = ROOM_DIRECTIONS.filter((direction) => !bossRoom.neighbors[direction.name]);
+  bossRoom.progressDirection = random(openBossSides).name;
+  roomNumber = 1;
+  player.reservedPassiveItems = [];
+
+  for (const room of floorRooms) prepareRoom(room);
+}
+
+function calculateRoomDepths(origin) {
+  const depths = new Map([[origin.id, 0]]);
+  const queue = [origin];
+  while (queue.length) {
+    const room = queue.shift();
+    for (const neighbor of Object.values(room.neighbors)) {
+      if (depths.has(neighbor.id)) continue;
+      depths.set(neighbor.id, depths.get(room.id) + 1);
+      queue.push(neighbor);
+    }
+  }
+  return depths;
+}
+
+function prepareRoom(room) {
+  if (room.type === "start" || room.type === "chest") return;
+  if (room === keyRoom) {
+    const position = findRoomPosition();
+    room.items.push(makeRoomItem("key", position.x, position.y));
+  }
+
+  const isBoss = room.type === "boss";
+  const enemyCount = isBoss ? 1 : Math.min(6, 2 + floorNumber + floor(random(0, 3)));
+  for (let index = 0; index < enemyCount; index++) {
+    const position = findEnemyPosition();
+    room.enemies.push(makeEnemy(position.x, position.y, isBoss));
+  }
+
+  if (!isBoss && random() < 0.68) {
+    const position = findRoomPosition();
+    room.items.push(makeRoomItem(rollRoomLoot(), position.x, position.y));
+  }
+}
+
+function rollRoomLoot() {
+  const availablePassives = Object.keys(ITEM_DATA).filter((itemKey) => {
+    return ITEM_DATA[itemKey].kind === "passive" &&
+      !player.uniqueItems.includes(itemKey) &&
+      !player.reservedPassiveItems.includes(itemKey);
+  });
+  if (availablePassives.length && random() < 0.75) {
+    const itemKey = random(availablePassives);
+    player.reservedPassiveItems.push(itemKey);
+    return itemKey;
+  }
+  return random(["blackout", "redDose", "mend", "sporeCloud", "heart"]);
+}
+
+function makeRoomItem(itemKey, x, y) {
+  return { body: makeBody(x, y, itemKey === "heart" ? 20 : 26), itemKey };
+}
+
+function findRoomPosition() {
   let position = { x: CENTER_X, y: ARENA.top + 55 };
   for (let attempt = 0; attempt < 12; attempt++) {
     position = {
@@ -145,24 +263,71 @@ function findEnemyPosition() {
   return position;
 }
 
-function randomItemKey() {
-  const keys = ["quickNerve", "splitThought", "steadyHand", "heavySilence", "blackout", "redDose", "mend"];
-  return random(keys);
-}
-
 function makeEnemy(x, y, isBoss) {
-  const size = isBoss ? 52 : random(27, 38);
+  const type = isBoss ? "boss" : random(["stalker", "sprinter", "brute", "spitter"]);
+  const size = isBoss ? 64 : type === "brute" ? 47 : type === "spitter" ? 35 : random(30, 39);
+  const baseHealth = isBoss ? 17 + floorNumber * 4 : type === "brute" ? 5 + floorNumber : 3 + floor(floorNumber / 2);
   return {
     body: makeBody(x, y, size),
     size,
-    health: isBoss ? 8 + floorNumber * 2 : 2 + floor(floorNumber / 2),
-    maxHealth: isBoss ? 8 + floorNumber * 2 : 2 + floor(floorNumber / 2),
-    speed: isBoss ? 0.67 + floorNumber * 0.04 : random(0.72, 1.08) + floorNumber * 0.08,
+    health: baseHealth,
+    maxHealth: baseHealth,
+    speed: isBoss ? 0.8 + floorNumber * 0.05 : type === "sprinter" ? 1.35 + floorNumber * 0.11 : type === "brute" ? 0.58 + floorNumber * 0.04 : type === "spitter" ? 0.78 : random(0.9, 1.2) + floorNumber * 0.1,
+    type,
     isBoss,
     hitUntil: 0,
     alive: true,
-    tint: random(["#a75d64", "#849a79", "#8c7caa", "#b08a5f"])
+    nextAttackFrame: frameCount + random(65, 110),
+    nextPoisonFrame: 0,
+    tint: isBoss ? "#9a6767" : random(["#a75d64", "#849a79", "#8c7caa", "#b08a5f"])
   };
+}
+
+function enterRoom(room, exitDirection) {
+  currentRoom = room;
+  currentRoom.visited = true;
+  enemies = currentRoom.enemies;
+  roomItems = currentRoom.items;
+  bullets = [];
+  enemyShots = [];
+  roomCleared = currentRoom.cleared;
+  roomNumber = floorRooms.filter((knownRoom) => knownRoom.visited).length;
+
+  const entrySide = ROOM_DIRECTIONS.find((direction) => direction.name === exitDirection)?.opposite;
+  player.body.x = CENTER_X;
+  player.body.y = CENTER_Y;
+  if (entrySide === "left") player.body.x = ARENA.left + 28;
+  if (entrySide === "right") player.body.x = ARENA.right - 28;
+  if (entrySide === "up") player.body.y = ARENA.top + 28;
+  if (entrySide === "down") player.body.y = ARENA.bottom - 28;
+}
+
+function enterConnectedRoom(direction) {
+  if (!currentRoom.cleared) return false;
+  if (currentRoom.type === "boss" && currentRoom.progressDirection === direction) {
+    progressToNextFloor();
+    return true;
+  }
+  const neighbor = currentRoom.neighbors[direction];
+  if (!neighbor) return false;
+  enterRoom(neighbor, direction);
+  roomMessage = neighbor.cleared ? "The room is familiar." : "The doors seal until the room is quiet.";
+  roomMessageUntil = frameCount + 100;
+  return true;
+}
+
+function moveThroughDoor(direction) {
+  const horizontal = direction === "left" || direction === "right";
+  const aligned = horizontal
+    ? Math.abs(player.body.y - CENTER_Y) < DOOR_WIDTH / 2
+    : Math.abs(player.body.x - CENTER_X) < DOOR_WIDTH / 2;
+  if (aligned && currentRoom.cleared && enterConnectedRoom(direction)) return true;
+
+  if (direction === "left") player.body.x = ARENA.left + 18;
+  if (direction === "right") player.body.x = ARENA.right - 18;
+  if (direction === "up") player.body.y = ARENA.top + 18;
+  if (direction === "down") player.body.y = ARENA.bottom - 18;
+  return false;
 }
 
 function updateGame() {
