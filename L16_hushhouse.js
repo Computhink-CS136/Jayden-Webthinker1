@@ -430,6 +430,7 @@ function updatePlayer() {
   if (directions.length && frameCount >= player.nextShotFrame) {
     for (const direction of directions) fireShot(direction[0], direction[1]);
     player.nextShotFrame = frameCount + firingRate;
+    playGameSound(185, 0.045, "triangle");
   }
 
 }
@@ -513,6 +514,7 @@ function damagePlayer(amount, poison) {
   if (frameCount < player.invulnerableUntil) return;
   player.hearts -= amount;
   player.invulnerableUntil = frameCount + 75;
+  playGameSound(92, 0.2, "sawtooth");
   if (poison) {
     player.poisonedUntil = frameCount + 210;
     player.nextPoisonFrame = frameCount + 45;
@@ -540,6 +542,7 @@ function updateBullets() {
       if (enemy.health <= 0) {
         enemy.alive = false;
         player.kills += 1;
+        playGameSound(245, 0.11, "triangle");
       }
       break;
     }
@@ -564,6 +567,7 @@ function collectItems() {
 
 function collectItem(itemKey) {
   const item = ITEM_DATA[itemKey];
+  playGameSound(itemKey === "key" ? 720 : 540, 0.16, "sine");
   if (itemKey === "key") {
     player.keys += 1;
     roomMessage = "A small brass key. Keep it close.";
@@ -678,6 +682,7 @@ function checkChestInteraction() {
 
   player.keys -= 1;
   currentRoom.chestOpened = true;
+  playGameSound(430, 0.3, "triangle");
   const reward = rollRoomLoot();
   currentRoom.items.push(makeRoomItem(reward, CENTER_X, CENTER_Y - 70));
   roomItems = currentRoom.items;
@@ -1139,6 +1144,10 @@ function drawPlayer() {
   const x = player.body.x;
   const y = player.body.y;
   noStroke();
+  if (player.poisonedUntil > frameCount) {
+    fill(100, 177, 104, 60);
+    ellipse(x, y, 44 + Math.sin(frameCount * 0.13) * 4, 48);
+  }
   fill(8, 10, 10, 120);
   ellipse(x, y + 13, 40, 16);
   fill("#d8d1b8");
@@ -1157,7 +1166,7 @@ function drawEnemies() {
     if (!enemy.alive) continue;
     const x = enemy.body.x;
     const y = enemy.body.y;
-    const color = frameCount < enemy.hitUntil ? "#f1d8bd" : enemy.tint;
+    const color = frameCount < enemy.hitUntil ? "#f1d8bd" : enemy.poisonUntil > frameCount ? "#83b879" : enemy.tint;
     noStroke();
     fill(6, 8, 8, 115);
     ellipse(x, y + enemy.size * 0.35, enemy.size * 1.1, enemy.size * 0.42);
@@ -1172,6 +1181,28 @@ function drawEnemies() {
       fill("#c9b895");
       for (let mark = -2; mark <= 2; mark++) rect(x + mark * 7 - 1, y - enemy.size / 2 - 7, 3, 13);
       drawEnemyHealth(enemy, x, y - enemy.size / 2 - 16);
+    } else if (enemy.type === "brute") {
+      ellipse(x, y, enemy.size * 1.15, enemy.size * 0.95);
+      fill("#252523");
+      triangle(x - 15, y - 11, x - 5, y - 23, x - 2, y - 7);
+      triangle(x + 15, y - 11, x + 5, y - 23, x + 2, y - 7);
+      ellipse(x - 7, y, 5, 6);
+      ellipse(x + 7, y, 5, 6);
+      if (enemy.health > 3) drawEnemyHealth(enemy, x, y - enemy.size / 2 - 9);
+    } else if (enemy.type === "spitter") {
+      ellipse(x, y, enemy.size, enemy.size * 0.86);
+      fill("#252523");
+      ellipse(x - 8, y - 3, 5, 8);
+      ellipse(x + 8, y - 3, 5, 8);
+      fill("#d9b685");
+      ellipse(x, y + 9, 6, 4);
+    } else if (enemy.type === "sprinter") {
+      ellipse(x, y, enemy.size * 0.78, enemy.size * 0.9);
+      fill("#252523");
+      triangle(x - 12, y - 3, x - 28, y - 15, x - 20, y + 5);
+      triangle(x + 12, y - 3, x + 28, y - 15, x + 20, y + 5);
+      ellipse(x - 5, y, 4, 5);
+      ellipse(x + 5, y, 4, 5);
     } else {
       ellipse(x, y, enemy.size * 0.92, enemy.size * 1.05);
       fill("#191d1b");
@@ -1196,6 +1227,16 @@ function drawBullets() {
     ellipse(bullet.body.x, bullet.body.y, 17, 17);
     fill("#f0d7a8");
     ellipse(bullet.body.x, bullet.body.y, 7, 7);
+  }
+}
+
+function drawEnemyShots() {
+  noStroke();
+  for (const shot of enemyShots) {
+    fill(165, 102, 121, 85);
+    ellipse(shot.body.x, shot.body.y, 22, 22);
+    fill(shot.poison ? "#8abf78" : "#d59b9a");
+    ellipse(shot.body.x, shot.body.y, 10, 10);
   }
 }
 
