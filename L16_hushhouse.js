@@ -43,10 +43,15 @@ const ITEM_DATA = {
   splitThought: { name: "Split Thought", kind: "passive", color: "#9bcaab", mark: "Y" },
   steadyHand: { name: "Steady Hand", kind: "passive", color: "#d79eae", mark: "*" },
   heavySilence: { name: "Heavy Silence", kind: "passive", color: "#b3a5db", mark: "+" },
+  sporeSack: { name: "Spore Sack", kind: "passive", color: "#82b777", mark: "S" },
+  deepLung: { name: "Deep Lung", kind: "passive", color: "#82b7bf", mark: "+" },
+  longShadow: { name: "Long Shadow", kind: "passive", color: "#b5a2cf", mark: ">" },
   blackout: { name: "Blackout", kind: "active", color: "#b3a5db", mark: "O" },
   redDose: { name: "Red Dose", kind: "active", color: "#dd8379", mark: "!" },
   mend: { name: "Mending Thread", kind: "active", color: "#9bcaab", mark: "+" },
-  heart: { name: "Lost Heart", kind: "heart", color: "#db777f", mark: "+" }
+  sporeCloud: { name: "Spore Cloud", kind: "active", color: "#82b777", mark: "S" },
+  heart: { name: "Lost Heart", kind: "heart", color: "#db777f", mark: "+" },
+  key: { name: "Brass Key", kind: "key", color: "#e6c77e", mark: "K" }
 };
 
 function setup() {
@@ -108,7 +113,7 @@ function resetRun() {
     spreadLevel: 0,
     damageLevel: 0,
     poisonLevel: 0,
-    keys: 0,
+    shotSpeedLevel: 0,
     uniqueItems: [],
     reservedPassiveItems: [],
     nextShotFrame: 0,
@@ -214,7 +219,10 @@ function calculateRoomDepths(origin) {
 }
 
 function prepareRoom(room) {
-  if (room.type === "start" || room.type === "chest") return;
+  if (room.type === "start" || room.type === "chest") {
+    room.cleared = true;
+    return;
+  }
   if (room === keyRoom) {
     const position = findRoomPosition();
     room.items.push(makeRoomItem("key", position.x, position.y));
@@ -536,6 +544,9 @@ function passiveDescription(itemKey) {
   if (itemKey === "quickNerve") return "movement increased";
   if (itemKey === "splitThought") return "shots split in three";
   if (itemKey === "steadyHand") return "firing speed increased";
+  if (itemKey === "sporeSack") return "shots poison enemies";
+  if (itemKey === "deepLung") return "two extra hearts";
+  if (itemKey === "longShadow") return "shots travel faster";
   return "shot damage increased";
 }
 
