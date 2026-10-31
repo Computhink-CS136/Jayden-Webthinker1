@@ -771,6 +771,14 @@ function keyPressed() {
     gameState = "playing";
     return false;
   }
+  if (keyCode === ESCAPE && gameState === "achievements") {
+    gameState = achievementsReturnState;
+    return false;
+  }
+  if (keyCode === ESCAPE && gameState === "settings") {
+    returnFromSettings();
+    return false;
+  }
   if (keyCode === ENTER && gameState === "menu") {
     startGame();
     return false;
@@ -838,6 +846,11 @@ function handleCanvasPress(x, y) {
   if (gameState === "menu") {
     if (insideButton(x, y, 350, 325, 260, 52)) startGame();
     else if (insideButton(x, y, 350, 395, 260, 52)) openSettings("menu");
+    else if (insideButton(x, y, 350, 465, 260, 48)) openAchievements("menu");
+    return;
+  }
+  if (gameState === "achievements") {
+    if (insideButton(x, y, 350, 515, 260, 44)) gameState = achievementsReturnState;
     return;
   }
   if (gameState === "settings") {
@@ -869,9 +882,10 @@ function handleCanvasPress(x, y) {
     return;
   }
   if (gameState === "paused") {
-    if (insideButton(x, y, 350, 365, 260, 48)) gameState = "playing";
-    else if (insideButton(x, y, 350, 425, 260, 48)) openSettings("paused");
-    else if (insideButton(x, y, 350, 485, 260, 48)) gameState = "menu";
+    if (insideButton(x, y, 350, 345, 260, 44)) gameState = "playing";
+    else if (insideButton(x, y, 350, 400, 260, 44)) openSettings("paused");
+    else if (insideButton(x, y, 350, 455, 260, 44)) openAchievements("paused");
+    else if (insideButton(x, y, 350, 510, 260, 44)) gameState = "menu";
     return;
   }
   if (gameState === "lost" || gameState === "won") {
@@ -901,6 +915,11 @@ function openSettings(returnState) {
   settingsPage = "main";
   settingsMessage = "";
   gameState = "settings";
+}
+
+function openAchievements(returnState) {
+  achievementsReturnState = returnState;
+  gameState = "achievements";
 }
 
 function returnFromSettings() {
