@@ -1061,7 +1061,8 @@ function drawHud() {
   text(objective, CENTER_X, 627);
   textAlign(RIGHT, CENTER);
   fill("#899087");
-  text("WASD MOVE  /  ARROWS FIRE  /  P PAUSE", GAME_WIDTH - 28, 627);
+  textSize(9);
+  text(`MOVE ${keyName(keybinds.moveUp)}${keyName(keybinds.moveLeft)}${keyName(keybinds.moveDown)}${keyName(keybinds.moveRight)}  FIRE ${keyName(keybinds.shootUp)}${keyName(keybinds.shootLeft)}${keyName(keybinds.shootDown)}${keyName(keybinds.shootRight)}  ${keyName(keybinds.pause)} PAUSE`, GAME_WIDTH - 28, 627);
 
   drawHearts();
   if (recentAchievement && frameCount < achievementUntil) drawAchievementToast();
