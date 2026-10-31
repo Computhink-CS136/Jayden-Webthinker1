@@ -333,8 +333,10 @@ function moveThroughDoor(direction) {
 function updateGame() {
   updatePlayer();
   updateEnemies();
+  updateEnemyShots();
   updateBullets();
   collectItems();
+  checkChestInteraction();
   checkRoomClear();
   checkAchievementProgress();
 }
@@ -352,9 +354,12 @@ function updatePlayer() {
   player.body.x += (horizontal / magnitude) * speed;
   player.body.y += (vertical / magnitude) * speed;
 
-  const nearExit = roomCleared && Math.abs(player.body.x - CENTER_X) < 60;
+  if (player.body.x < ARENA.left) moveThroughDoor("left");
+  if (player.body.x > ARENA.right) moveThroughDoor("right");
+  if (player.body.y < ARENA.top) moveThroughDoor("up");
+  if (player.body.y > ARENA.bottom) moveThroughDoor("down");
   player.body.x = constrain(player.body.x, ARENA.left + 18, ARENA.right - 18);
-  player.body.y = constrain(player.body.y, ARENA.top + 18, nearExit ? ARENA.bottom + 5 : ARENA.bottom - 18);
+  player.body.y = constrain(player.body.y, ARENA.top + 18, ARENA.bottom - 18);
 
   const directions = [];
   if (isDown(LEFT_ARROW)) directions.push([-1, 0]);
@@ -368,7 +373,6 @@ function updatePlayer() {
     player.nextShotFrame = frameCount + firingRate;
   }
 
-  if (nearExit && player.body.y >= ARENA.bottom - 10) enterNextRoom();
 }
 
 function fireShot(directionX, directionY) {
@@ -393,17 +397,68 @@ function updateEnemies() {
     const deltaX = player.body.x - enemy.body.x;
     const deltaY = player.body.y - enemy.body.y;
     const distance = Math.hypot(deltaX, deltaY) || 1;
-    enemy.body.x += (deltaX / distance) * enemy.speed;
-    enemy.body.y += (deltaY / distance) * enemy.speed;
+    const retreat = enemy.type === "spitter" && distance < 225;
+    const direction = retreat ? -1 : 1;
+    enemy.body.x += (deltaX / distance) * enemy.speed * direction;
+    enemy.body.y += (deltaY / distance) * enemy.speed * direction;
     enemy.body.x = constrain(enemy.body.x, ARENA.left + enemy.size / 2, ARENA.right - enemy.size / 2);
     enemy.body.y = constrain(enemy.body.y, ARENA.top + enemy.size / 2, ARENA.bottom - enemy.size / 2);
 
-    if (enemy.body.overlaps(player.body) && frameCount >= player.invulnerableUntil) {
-      player.hearts -= 1;
-      player.invulnerableUntil = frameCount + 75;
-      if (player.hearts <= 0) gameState = "lost";
+    if ((enemy.type === "spitter" || enemy.isBoss) && frameCount >= enemy.nextAttackFrame) {
+      const shotSpeed = enemy.isBoss ? 3.2 : 2.8;
+      enemyShots.push({
+        body: makeBody(enemy.body.x, enemy.body.y, 13),
+        vx: (deltaX / distance) * shotSpeed,
+        vy: (deltaY / distance) * shotSpeed,
+        poison: enemy.isBoss,
+        life: 130
+      });
+      enemy.nextAttackFrame = frameCount + (enemy.isBoss ? 56 : 92);
+    }
+
+    if (enemy.body.overlaps(player.body)) {
+      damagePlayer(1, false);
+    }
+
+    if (enemy.poisonUntil > frameCount && frameCount >= enemy.nextPoisonFrame) {
+      enemy.health -= player.poisonLevel;
+      enemy.nextPoisonFrame = frameCount + 38;
+      if (enemy.health <= 0) {
+        enemy.alive = false;
+        player.kills += 1;
+      }
     }
   }
+}
+
+function updateEnemyShots() {
+  for (let shotIndex = enemyShots.length - 1; shotIndex >= 0; shotIndex--) {
+    const shot = enemyShots[shotIndex];
+    shot.body.x += shot.vx;
+    shot.body.y += shot.vy;
+    shot.life -= 1;
+    if (shot.body.overlaps(player.body) && frameCount >= player.invulnerableUntil) {
+      damagePlayer(1, shot.poison);
+      shot.body.visible = false;
+      enemyShots.splice(shotIndex, 1);
+      continue;
+    }
+    if (shot.life <= 0 || shot.body.x < ARENA.left || shot.body.x > ARENA.right || shot.body.y < ARENA.top || shot.body.y > ARENA.bottom) {
+      shot.body.visible = false;
+      enemyShots.splice(shotIndex, 1);
+    }
+  }
+}
+
+function damagePlayer(amount, poison) {
+  if (frameCount < player.invulnerableUntil) return;
+  player.hearts -= amount;
+  player.invulnerableUntil = frameCount + 75;
+  if (poison) {
+    player.poisonedUntil = frameCount + 210;
+    player.nextPoisonFrame = frameCount + 45;
+  }
+  if (player.hearts <= 0) gameState = "lost";
 }
 
 function updateBullets() {
@@ -418,6 +473,10 @@ function updateBullets() {
       if (!enemy.alive || !bullet.body.overlaps(enemy.body)) continue;
       enemy.health -= bullet.damage;
       enemy.hitUntil = frameCount + 7;
+      if (player.poisonLevel && random() < 0.38 + player.poisonLevel * 0.12) {
+        enemy.poisonUntil = frameCount + 200;
+        enemy.nextPoisonFrame = frameCount + 38;
+      }
       hit = true;
       if (enemy.health <= 0) {
         enemy.alive = false;
@@ -446,17 +505,28 @@ function collectItems() {
 
 function collectItem(itemKey) {
   const item = ITEM_DATA[itemKey];
-  if (item.kind === "heart") {
+  if (itemKey === "key") {
+    player.keys += 1;
+    roomMessage = "A small brass key. Keep it close.";
+  } else if (item.kind === "heart") {
     if (player.hearts < player.maxHearts) healPlayer(1);
     else roomMessage = "Your heart is already whole.";
   } else if (item.kind === "active") {
     player.activeItem = itemKey;
     roomMessage = `${item.name} held. Press SPACE to use it.`;
   } else {
+    if (player.uniqueItems.includes(itemKey)) return;
+    player.uniqueItems.push(itemKey);
     if (itemKey === "quickNerve") player.speedLevel += 1;
     if (itemKey === "splitThought") player.spreadLevel += 1;
     if (itemKey === "steadyHand") player.fireLevel += 1;
     if (itemKey === "heavySilence") player.damageLevel += 1;
+    if (itemKey === "sporeSack") player.poisonLevel += 1;
+    if (itemKey === "deepLung") {
+      player.maxHearts += 2;
+      player.hearts += 2;
+    }
+    if (itemKey === "longShadow") player.shotSpeedLevel += 1;
     roomMessage = `${item.name}: ${passiveDescription(itemKey)}`;
   }
   roomMessageUntil = frameCount + 130;
@@ -491,6 +561,19 @@ function activateItem() {
   } else if (itemKey === "mend") {
     healPlayer(2);
     roomMessage = "Mending Thread: the wound closes.";
+  } else if (itemKey === "sporeCloud") {
+    for (const enemy of enemies) {
+      if (!enemy.alive) continue;
+      enemy.health -= 4;
+      enemy.poisonUntil = frameCount + 230;
+      enemy.nextPoisonFrame = frameCount + 38;
+      enemy.hitUntil = frameCount + 10;
+      if (enemy.health <= 0) {
+        enemy.alive = false;
+        player.kills += 1;
+      }
+    }
+    roomMessage = "Spore Cloud: green hush fills the room.";
   }
   roomMessageUntil = frameCount + 150;
 }
@@ -502,12 +585,17 @@ function healPlayer(amount) {
 }
 
 function checkRoomClear() {
-  if (roomCleared || enemies.some((enemy) => enemy.alive)) return;
+  if (currentRoom.cleared || enemies.some((enemy) => enemy.alive)) return;
+  currentRoom.cleared = true;
   roomCleared = true;
-  if (random() < 0.48 && player.hearts < player.maxHearts) {
-    const x = random(ARENA.left + 100, ARENA.right - 100);
-    const y = random(ARENA.top + 90, ARENA.bottom - 90);
-    roomItems.push({ body: makeBody(x, y, 26), itemKey: "heart" });
+  if (currentRoom.type === "boss") {
+    const position = findRoomPosition();
+    const reward = rollRoomLoot();
+    roomItems.push(makeRoomItem(reward, position.x, position.y));
+    roomMessage = "The house gives way. The exit is open.";
+  } else if (random() < 0.48 && player.hearts < player.maxHearts) {
+    const position = findRoomPosition();
+    roomItems.push(makeRoomItem("heart", position.x, position.y));
     roomMessage = "The room leaves something behind.";
   } else {
     roomMessage = "The room is quiet. Find the open door.";
@@ -515,27 +603,40 @@ function checkRoomClear() {
   roomMessageUntil = frameCount + 170;
 }
 
-function enterNextRoom() {
-  if (floorNumber === MAX_FLOOR && roomNumber === ROOMS_PER_FLOOR) {
+function checkChestInteraction() {
+  if (currentRoom.type !== "chest" || currentRoom.chestOpened) return;
+  if (dist(player.body.x, player.body.y, CENTER_X, CENTER_Y) > 48) return;
+  if (player.keys < 1) {
+    if (frameCount >= roomMessageUntil) {
+      roomMessage = "The chest is locked. Find a key on this floor.";
+      roomMessageUntil = frameCount + 100;
+    }
+    return;
+  }
+
+  player.keys -= 1;
+  currentRoom.chestOpened = true;
+  const reward = rollRoomLoot();
+  currentRoom.items.push(makeRoomItem(reward, CENTER_X, CENTER_Y - 70));
+  roomItems = currentRoom.items;
+  roomMessage = `Chest opened: ${ITEM_DATA[reward].name}.`;
+  roomMessageUntil = frameCount + 160;
+}
+
+function progressToNextFloor() {
+  if (floorNumber === MAX_FLOOR) {
     gameState = "won";
     awardAchievement("The Long Hall", "Reached the final floor.");
     return;
   }
 
-  roomNumber += 1;
-  if (roomNumber > ROOMS_PER_FLOOR) {
-    roomNumber = 1;
-    floorNumber += 1;
-    if (floorNumber > 1 && player.healsUsed === 0) {
-      awardAchievement("Unmended", "Reached a new floor without healing.");
-    }
-    if (player.hearts < player.maxHearts && random() < 0.38) {
-      healPlayer(1);
-      roomMessage = "A quiet warmth restores one heart.";
-      roomMessageUntil = frameCount + 180;
-    }
-  }
-  spawnRoom();
+  floorNumber += 1;
+  if (player.healsUsed === 0) awardAchievement("Unmended", "Reached a new floor without healing.");
+  player.keys = 0;
+  generateFloor();
+  enterRoom(startRoom, "down");
+  roomMessage = "A new floor settles around you.";
+  roomMessageUntil = frameCount + 180;
 }
 
 function checkAchievementProgress() {
