@@ -1336,9 +1336,45 @@ function drawMainMenu() {
   text("Explore a shifting house. Find a key. Face what waits below.", CENTER_X, 291);
   drawMenuButton("BEGIN DESCENT", 350, 325, 260, 52, "#d8bc82");
   drawMenuButton("SETTINGS", 350, 395, 260, 52, "#aeb6a1");
+  drawMenuButton("ACHIEVEMENTS", 350, 465, 260, 48, "#aeb6a1");
   fill("#8f9889");
   textSize(11);
-  text(`ENTER TO BEGIN  /  MOVE ${keyName(keybinds.moveUp)} ${keyName(keybinds.moveLeft)} ${keyName(keybinds.moveDown)} ${keyName(keybinds.moveRight)}  /  FIRE ${keyName(keybinds.shootUp)} ${keyName(keybinds.shootLeft)} ${keyName(keybinds.shootDown)} ${keyName(keybinds.shootRight)}`, CENTER_X, 482);
+  text(`ENTER TO BEGIN  /  MOVE ${keyName(keybinds.moveUp)} ${keyName(keybinds.moveLeft)} ${keyName(keybinds.moveDown)} ${keyName(keybinds.moveRight)}  /  FIRE ${keyName(keybinds.shootUp)} ${keyName(keybinds.shootLeft)} ${keyName(keybinds.shootDown)} ${keyName(keybinds.shootRight)}`, CENTER_X, 548);
+}
+
+function drawAchievementsScreen() {
+  drawOverlay();
+  textAlign(CENTER, CENTER);
+  fill("#e0d9c5");
+  textSize(34);
+  text("ACHIEVEMENTS", CENTER_X, 142);
+  fill("#9ba294");
+  textSize(12);
+  text(`${unlockedAchievementIds.length} / ${ACHIEVEMENTS.length} FOUND  ·  HINTS FOR THE REST`, CENTER_X, 178);
+
+  for (let index = 0; index < ACHIEVEMENTS.length; index++) {
+    const achievement = ACHIEVEMENTS[index];
+    const y = 207 + index * 54;
+    const unlocked = unlockedAchievementIds.includes(achievement.id);
+    stroke(unlocked ? "#9aa98e" : "#4e554c");
+    strokeWeight(1);
+    fill(13, 17, 15, 225);
+    rect(135, y, 690, 44, 3);
+    noStroke();
+    textAlign(LEFT, CENTER);
+    fill(unlocked ? "#d8bc82" : "#aeb6a1");
+    textSize(12);
+    text(achievement.name, 151, y + 13);
+    fill("#92998c");
+    textSize(10);
+    text(achievement.hint, 151, y + 31);
+    textAlign(RIGHT, CENTER);
+    fill(unlocked ? "#b9d1ad" : "#777f73");
+    textSize(9);
+    text(unlocked ? "FOUND" : "LOCKED", 808, y + 22);
+  }
+
+  drawMenuButton("BACK", 350, 515, 260, 44, "#d8bc82");
 }
 
 function drawPauseScreen() {
@@ -1350,9 +1386,10 @@ function drawPauseScreen() {
   fill("#b5b39f");
   textSize(14);
   text("The house is holding its breath.", CENTER_X, 325);
-  drawMenuButton("RESUME", 350, 365, 260, 48, "#d8bc82");
-  drawMenuButton("SETTINGS", 350, 425, 260, 48, "#aeb6a1");
-  drawMenuButton("MAIN MENU", 350, 485, 260, 48, "#aeb6a1");
+  drawMenuButton("RESUME", 350, 345, 260, 44, "#d8bc82");
+  drawMenuButton("SETTINGS", 350, 400, 260, 44, "#aeb6a1");
+  drawMenuButton("ACHIEVEMENTS", 350, 455, 260, 44, "#aeb6a1");
+  drawMenuButton("MAIN MENU", 350, 510, 260, 44, "#aeb6a1");
 }
 
 function drawEndScreen(won) {
