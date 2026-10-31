@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101312">
+  <title>Hush House</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      background: #101312;
+      color: #ddd7c3;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      background: repeating-linear-gradient(0deg, #101312 0, #101312 23px, #141816 24px);
+    }
+
+    main {
+      width: min(100%, 1000px);
+      margin: 0 auto;
+      padding: 18px 16px 12px;
+    }
+
+    header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 2px 12px;
+      border-bottom: 1px solid #42483f;
+    }
+
+    h1 {
+      margin: 0;
+      color: #e0d9c5;
+      font-size: 19px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    header p {
+      margin: 0;
+      color: #929a8c;
+      font-family: sans-serif;
+      font-size: 11px;
+    }
+
+    #game-stage {
+      width: 100%;
+      margin: 14px auto 0;
+      overflow: hidden;
+      border: 1px solid #4b5148;
+      background: #0e1110;
+    }
+
+    canvas {
+      display: block;
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 960 / 650;
+    }
+
+    footer {
+      padding: 10px 2px 0;
+      color: #899087;
+      font-family: sans-serif;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    footer a { color: #bdc9a9; }
+
+    @media (max-width: 600px) {
+      main { padding: 10px 8px; }
+      header { align-items: flex-start; flex-direction: column; gap: 4px; }
+      #game-stage { margin-top: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Hush House</h1>
+      <p>Five floors. Three rooms each. Find the south door.</p>
+    </header>
+    <div id="game-stage" aria-label="Hush House game"></div>
+    <footer>
+      WASD to move · Arrow keys to fire · Space to use an item · P to pause
+      <span aria-hidden="true"> | </span>
+      <a href="index.html">Back to homepage</a>
+    </footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.3/lib/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5play@3.35.5/planck.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5play@3.35.5/p5play.min.js"></script>
+  <script src="L16_hushhouse.js"></script>
+</body>
+</html>
